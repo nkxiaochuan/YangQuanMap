@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+	default-autowire="byName" default-lazy-init="true">
+	<!-- 启用类扫描机制，通过元数据配置Service，无元数据的在此配置-->
+
+
+	<!-- ============Components Service Area================ -->
+	<!-- Image <import resource="classpath*:spring/components/applicationContext-image.xml" 
+		/> -->
+	<!-- Rule <import resource="classpath:spring/components/applicationContext-rule.xml" 
+		/> -->
+
+
+	
+	<!-- 
+	<bean id="codeCheckService"
+		  class="ins.domain.service.spring.CodeCheckServiceSpringImpl">
+		<property name="sendFrom" value="${mail.sendFrom}"/>
+	</bean>
+	 -->
+	 <!-- 查勘任务数据提交接口
+	<bean id="fileUploadManagerService"
+		class="ins.domain.upload.service.FileUploadManagerServiceImpl" />
+			-->
+			
+    
+    <bean id="sinoMapService" class="ins.map.service.spring.SinoMapServiceImpl"></bean>
+    <bean id="simpConfigService" class="ins.map.service.spring.SimpConfigServiceImpl"></bean>
+
+</beans>

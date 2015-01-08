@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<!-- Spring ApplicationContext配置文件的路径?,可使用通配符，
+		多个路径用?1,号分隔此参数用于后面的Spring-Context loader -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:spring/*.xml,classpath:org/codehaus/xfire/spring/xfire.xml
+		</param-value>
+	</context-param>
+
+	<!--Spring ApplicationContext 载入 -->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
+	</listener>
+	
+	
+	<!--<listener>
+	    <description>TCP/IP upload</description>
+	    <listener-class>ins.domain.upload.server.StartTCPListener</listener-class>
+	</listener>
+	
+		-->
+		<filter> 
+			 <filter-name>SessionFilter</filter-name> 
+			 <filter-class>cn.com.sinosoft.mobileplat.common.util.SessionFilter</filter-class> 
+			 <init-param> 
+			     <description>将当前登录的用户的信息保存在 session 中时使用的key，如果没有配置此参数，则该过滤器不起作用</description> 
+			     <param-name>sessionKey</param-name> 
+			     <param-value>user</param-value> 
+			 </init-param> 
+			 <init-param> 
+			     <description> 
+			         如果用户未登录（即在 session 中 key 为 sessionKey 的属性不存在或为空），则将请求重定向到该 url。 
+			         该 url 不包含web应用的 ContextPath。 
+			         如果不配置此参数，则在用户未登录系统的情况下，直接重定向到web应用的根路径（/） 
+			     </description> 
+			     <param-name>redirectUrl</param-name> 
+			     <param-value>/login.jsp</param-value> 
+			 </init-param> 
+			 <init-param> 
+			     <description> 
+			         不需要进行拦截的 url 的正则表达式，即：如果当前请求的 url 的 servletPath 能匹配该正则表达式，则直接放行（即使未登录系统）。 
+			         此参数的值一般为 loginServlet 和 registServlet 等。 
+			         另外，参数 redirectUrl 的值不用包含在该正则表达式中，因为 redirectUrl 对应的 url 会被自动放行。 
+			         还有一点需要说明的是，该参数的值不包含web应用的 ContextPath。 
+			     </description> 
+			     <param-name>excepUrlRegex</param-name> 
+			     <param-value>/login.do</param-value> 
+			 </init-param> 
+	</filter> 
+	  
+	<filter-mapping> 
+	 <filter-name>SessionFilter</filter-name> 
+	 <url-pattern>*.do</url-pattern> 
+	</filter-mapping> 
+	<filter-mapping> 
+	 <filter-name>SessionFilter</filter-name> 
+	 <url-pattern>/pages/*</url-pattern> 
+	</filter-mapping> 
+	
+	<filter-mapping> 
+	 <filter-name>SessionFilter</filter-name> 
+	 <url-pattern>mainMap.jsp</url-pattern> 
+	</filter-mapping> 
+	
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>GBK</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+ 
+	<!-- 注入xfire -->
+
+	<!-- 不整合时使用org.codehaus.xfire.transport.http.XFireConfigurableServlet -->
+	<!-- <servlet-class>org.codehaus.xfire.transport.http.XFireConfigurableServlet</servlet-class>
+	-->
+
+	<!-- 增加OpenSessionInViewFilter -->
+	<filter>
+		<filter-name>hibernateFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	 
+	<filter>
+		<filter-name>struts2</filter-name>
+	<!-- 2012-09-18 之前使用的低版本 过滤器和分发器类--> 	
+	<!-- <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class> -->
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>initServlet</servlet-name>
+		<servlet-class>
+		cn.com.sinosoft.mobileplat.common.util.InitServlet
+		</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+    
+    <servlet>
+ 		<servlet-name>LocationUploadServlet</servlet-name>
+ 		<servlet-class>cn.com.sinosoft.map.web.LocationUploadServlet</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>LocationUploadServlet</servlet-name>
+ 		<url-pattern>LocationUploadServlet</url-pattern>
+ 	</servlet-mapping>
+ 	
+ 	
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!--  session时间设置 -->
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
+    
+</web-app>

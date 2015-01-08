@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<bean id="mongo" class="com.mongodb.Mongo">
+        <constructor-arg index="0" value="${mongodb_ip}"></constructor-arg>
+        <constructor-arg index="1" value="${mongodb_post}"></constructor-arg>
+    </bean>
+
+    <bean id="morphia" class="ins.domain.nosql.connection.MorphiaBean">
+    	<property name="mapPackage" value="${morphia_database_name}"></property>
+        <property name="mongo" ref="mongo"></property>
+        <property name="dbName" value="${morphia_database_name}"></property>
+        <property name="user" value="${mongodb_user_name}"></property>
+        <property name="password" value="${mongodb_user_password}"></property>
+    </bean>
+</beans>

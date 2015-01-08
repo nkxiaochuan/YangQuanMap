@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+	default-autowire="byName" default-lazy-init="true">
+ 
+	<!-- 员工管理 --><!--
+	<bean id="userAction" class="ins.platform.web.UserAction"
+		scope="prototype" />
+
+	 机构管理 
+	<bean id="companyAction" class="ins.platform.web.CompanyAction"
+		scope="prototype" />
+ 
+	 证书认证 
+	<bean id="licenseAction" class="ins.platform.web.LicenseAction"
+		scope="prototype" />
+		
+	 定时任务 
+	<bean id="quartzAction" class="ins.platform.quartz.web.QuartzAction"
+		scope="prototype" />
+		
+	 代码检查 
+	<bean id="codeCheckAction" class="ins.domain.web.CodeCheckAction"
+		scope="prototype" />
+	<bean id="svnUserAction" class="ins.domain.web.SvnUserAction" scope="prototype" />
+	
+	 考勤记录查询 
+	<bean id="checkWorkInfoAction" class="ins.domain.checkworkinfo.web.CheckWorkInfoAction
+	"  scope="prototype"></bean>
+	 考勤 统计查询
+	<bean  id="checkWorkCountAction" class="ins.domain.checkworkinfo.web.CheckWorkCountAction" scope="prototype"></bean>
+	 工作绩效统计 
+	<bean id="workAchievementsInfoAction" class="ins.domain.checkworkinfo.web.WorkAchievementsInfoAction" scope="prototype"></bean>
+	
+	 案件处理时效统计 
+	<bean id="taskHandleTimeCountAction" class="ins.domain.checkworkinfo.web.TaskHandleTimeCountAction" scope="prototype"></bean>
+	
+	 新版本上传 
+	<bean id="uploadNewVersionAction" class="ins.domain.checkworkinfo.web.UploadNewVersionAction" scope="prototype"></bean>
+	
+	
+	  版本上传记录 
+	<bean id="uploadRecordAction" class="ins.domain.checkworkinfo.web.UploadRecordAction" scope="prototype"></bean>
+	
+    --><!-- 登录 -->
+    <!-- 应用管理 -->
+    <!--<bean id="simpApplicationAction" class="ins.domain.checkworkinfo.web.SimpApplicationAction"  scope="prototype"></bean>
+    设备管理 
+    <bean id="simpDeviceInfoAction" class="ins.domain.checkworkinfo.web.SimpDeviceInfoAction"  scope="prototype"></bean>
+     设备配置信息 
+    <bean id="versionLogAction" class="ins.domain.checkworkinfo.web.VersionLogAction"  scope="prototype"></bean>
+    
+    <bean id="configAction" class="ins.domain.checkworkinfo.web.ConfigAction" scope="prototype"></bean>
+
+    <bean id="clearCacheAction" class="ins.domain.checkworkinfo.web.ClearCacheAction" scope="prototype"></bean>
+-->
+    <bean id="loginAction" class="ins.domain.checkworkinfo.web.LoginAction" scope="prototype"/>
+	<bean id="sinoMapAction" class="ins.map.web.SinoMapAction" scope="prototype"></bean>
+</beans>

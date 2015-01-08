@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	debug="false">
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender> 
+	<appender name="DatabaseAppender" class="ins.platform.log.jdbc.DatabaseAppender">	
+		<param name="BufferSize" value="1" /><!-- 缓存池大小 -->
+		<param name="Driver" value="oracle.jdbc.OracleDriver" /><!-- JDBC驱动类 -->
+		<param name="URL" value="jdbc:oracle:thin:@192.168.2.190:1521:orcl" /> <!-- JDBC URL -->
+		<param name="User" value="arch4platform" /> <!-- 用户名 -->
+		<param name="Password" value="arch4platform" /> <!-- 密码 -->
+		<param name="ServerNameEnvKey" value="weblogic.Name" />  <!-- ServerName环境变量key，其值存入ServerName字段 -->
+ 	</appender>
+	<appender name="Async-JdbcLogAppender" class="org.apache.log4j.AsyncAppender">
+		<param name="BufferSize" value="8192" />
+		<appender-ref ref="STDOUT" />
+	</appender>
+	<category name="p6spy">
+		<param name="additivity" value="false" />
+		<priority value="DEBUG" />
+		<appender-ref ref="Async-JdbcLogAppender" />
+	</category>
+
+	<category name="ins.framework.log.RunTimeLogAdvice">
+		<param name="additivity" value="false" />
+		<priority value="WARN" />
+		<appender-ref ref="Async-JdbcLogAppender" />
+	</category>
+
+	<category name="ins">
+		<param name="additivity" value="false" />
+		<priority value="INFO" />
+		<appender-ref ref="Async-JdbcLogAppender" />
+	</category>
+
+	<category name="org.springframework">
+		<param name="additivity" value="false" />
+		<priority value="ERROR" />
+		<appender-ref ref="Async-JdbcLogAppender" />
+	</category>
+
+	<category name="org.hibernate">
+		<param name="additivity" value="false" />
+		<priority value="WARN" />
+		<appender-ref ref="Async-JdbcLogAppender" />
+	</category>
+
+	<category name="org.springmodules.workflow.jbpm31">
+		<param name="additivity" value="false" />
+		<priority value="WARN" />
+		<appender-ref ref="STDOUT" />
+	</category>
+	<root>
+		<level value="WARN" />
+		<appender-ref ref="Async-JdbcLogAppender" />
+	</root>
+</log4j:configuration>

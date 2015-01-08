@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="PMD specific rules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd"
+    xsi:noNamespaceSchemaLocation="http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+<description>PMD rule set(Based on 5.0.0)</description>
+<!-- 规则级别定义：
+	1：错误隐患（可能导致异常、或易引起逻辑错误，如吞噬异常）；
+	2：安全隐患（可能泄露系统底层信息、损害系统健康，如SQL注入、系统退出）；
+    3：性能隐患（导致内存、CPU等的不必要消耗，如无用代码）；
+	4：编码风格（对系统带来可维护行问题的编码方式，如不正确的命名）
+	5：可选建议（某些好的实现方法的建议）
+-->
+<!-- 括号规则集 -->
+	<rule ref="rulesets/braces.xml/IfStmtsMustUseBraces"><priority>1</priority></rule>
+	<rule ref="rulesets/braces.xml/WhileLoopsMustUseBraces"><priority>1</priority></rule>
+	<rule ref="rulesets/braces.xml/IfElseStmtsMustUseBraces"><priority>1</priority></rule>
+	<rule ref="rulesets/braces.xml/ForLoopsMustUseBraces"><priority>1</priority></rule>
+	
+	<!-- 无用代码规则集 -->
+	<rule ref="rulesets/unusedcode.xml/UnusedPrivateField"><priority>3</priority></rule>
+	<rule ref="rulesets/unusedcode.xml/UnusedLocalVariable"><priority>3</priority></rule>
+	<rule ref="rulesets/unusedcode.xml/UnusedPrivateMethod"><priority>3</priority></rule>
+	<rule ref="rulesets/unusedcode.xml/UnusedFormalParameter"><priority>5</priority></rule> 
+		
+	<!-- JCL日志规则集 -->
+	<rule ref="rulesets/logging-jakarta-commons.xml/UseCorrectExceptionLogging"><priority>4</priority></rule>
+	<rule ref="rulesets/logging-jakarta-commons.xml/ProperLogger"><priority>4</priority><properties><property name="staticLoggerName" value="logger"/></properties></rule>
+	
+	<!-- Java日志规则集 -->
+	<rule ref="rulesets/logging-java.xml/MoreThanOneLogger"><priority>4</priority></rule>
+	<rule ref="rulesets/logging-java.xml/LoggerIsNotStaticFinal"><priority>4</priority></rule>
+	<rule ref="rulesets/logging-java.xml/SystemPrintln"><priority>5</priority></rule>
+	<rule ref="rulesets/logging-java.xml/AvoidPrintStackTrace"><priority>5</priority></rule>	
+	
+	<!-- JUnit规则集 --> 
+	<rule ref="rulesets/junit.xml/JUnitStaticSuite"><priority>5</priority></rule>
+	<rule ref="rulesets/junit.xml/JUnitSpelling"><priority>5</priority></rule>
+	<rule ref="rulesets/junit.xml/JUnitAssertionsShouldIncludeMessage"><priority>5</priority></rule>
+	<rule ref="rulesets/junit.xml/JUnitTestsShouldIncludeAssert"><priority>5</priority></rule>
+	<!--
+	<rule ref="rulesets/junit.xml/TestClassWithoutTestCases"><priority>5</priority></rule>
+	-->
+	<rule ref="rulesets/junit.xml/UnnecessaryBooleanAssertion"><priority>5</priority></rule>
+	<rule ref="rulesets/junit.xml/UseAssertEqualsInsteadOfAssertTrue"><priority>5</priority></rule>
+	<rule ref="rulesets/junit.xml/UseAssertSameInsteadOfAssertTrue"><priority>5</priority></rule>
+	<rule ref="rulesets/junit.xml/UseAssertNullInsteadOfAssertTrue"><priority>5</priority></rule>
+	<rule ref="rulesets/junit.xml/SimplifyBooleanAssertion"><priority>5</priority></rule>  
+	
+	<!-- 代码大小规则集 --> 
+	<rule ref="rulesets/codesize.xml/NPathComplexity"><priority>5</priority></rule>
+	<rule ref="rulesets/codesize.xml/ExcessiveMethodLength"><priority>5</priority></rule>
+	<rule ref="rulesets/codesize.xml/ExcessiveParameterList"><priority>5</priority></rule>
+	<rule ref="rulesets/codesize.xml/ExcessiveClassLength"><priority>5</priority></rule>
+	<rule ref="rulesets/codesize.xml/CyclomaticComplexity"><priority>5</priority></rule>
+	<rule ref="rulesets/codesize.xml/ExcessivePublicCount"><priority>5</priority></rule>
+	<rule ref="rulesets/codesize.xml/TooManyFields"><priority>5</priority></rule>
+	<rule ref="rulesets/codesize.xml/NcssMethodCount"><priority>5</priority></rule>
+	<rule ref="rulesets/codesize.xml/NcssTypeCount"><priority>5</priority></rule>
+	<rule ref="rulesets/codesize.xml/NcssConstructorCount"><priority>5</priority></rule>
+	<rule ref="rulesets/codesize.xml/TooManyMethods"><priority>5</priority></rule> 
+
+	<!-- 代码优化规则集 --> 
+	<rule ref="rulesets/optimizations.xml/LocalVariableCouldBeFinal"><priority>5</priority></rule>
+	<rule ref="rulesets/optimizations.xml/MethodArgumentCouldBeFinal"><priority>5</priority></rule>
+	<rule ref="rulesets/optimizations.xml/AvoidInstantiatingObjectsInLoops"><priority>5</priority></rule> 
+	<rule ref="rulesets/optimizations.xml/UseArrayListInsteadOfVector"><priority>3</priority></rule>
+	<rule ref="rulesets/optimizations.xml/SimplifyStartsWith"><priority>5</priority></rule>
+	<rule ref="rulesets/optimizations.xml/UseStringBufferForStringAppends"><priority>5</priority></rule>
+	<rule ref="rulesets/optimizations.xml/UseArraysAsList"><priority>5</priority></rule>
+	<rule ref="rulesets/optimizations.xml/AvoidArrayLoops"><priority>5</priority></rule>
+	<rule ref="rulesets/optimizations.xml/UnnecessaryWrapperObjectCreation"><priority>3</priority></rule>
+	<rule ref="rulesets/optimizations.xml/AddEmptyString"><priority>5</priority></rule>
+	
+	<!-- 代码优化规则集 -->
+	<rule ref="rulesets/typeresolution.xml/CloneMethodMustImplementCloneable"><priority>1</priority></rule> 
+	<rule ref="rulesets/typeresolution.xml/SignatureDeclareThrowsException"><priority>5</priority></rule>
+
+	
+	<!-- 耦合优化规则集 -->  
+	<rule ref="rulesets/coupling.xml/CouplingBetweenObjects"><priority>5</priority></rule>
+	<rule ref="rulesets/coupling.xml/ExcessiveImports"><priority>5</priority></rule>
+	<rule ref="rulesets/coupling.xml/LooseCoupling"><priority>4</priority></rule>
+
+		
+  <!-- import优化规则集 	--> 
+	<rule ref="rulesets/imports.xml/DuplicateImports"><priority>4</priority></rule>
+	<rule ref="rulesets/imports.xml/DontImportJavaLang"><priority>4</priority></rule>
+	<rule ref="rulesets/imports.xml/UnusedImports"><priority>4</priority></rule>
+	<rule ref="rulesets/imports.xml/ImportFromSamePackage"><priority>4</priority></rule>
+	<rule ref="rulesets/imports.xml/TooManyStaticImports"><priority>4</priority></rule>
+
+	
+  <!-- 克隆优化规则集 	--> 
+	<rule ref="rulesets/clone.xml/ProperCloneImplementation"><priority>5</priority></rule>
+	<rule ref="rulesets/clone.xml/CloneThrowsCloneNotSupportedException"><priority>5</priority></rule>
+	<rule ref="rulesets/clone.xml/CloneMethodMustImplementCloneable"><priority>5</priority></rule>
+
+	
+	<!-- 设计优化规则集 -->
+	<rule ref="rulesets/design.xml/UseSingleton"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/SimplifyBooleanReturns"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/SimplifyBooleanExpressions"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/SwitchStmtsShouldHaveDefault"><priority>1</priority></rule>
+	<rule ref="rulesets/design.xml/AvoidDeeplyNestedIfStmts"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/AvoidReassigningParameters"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/SwitchDensity"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/ConstructorCallsOverridableMethod"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/AccessorClassGeneration"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/FinalFieldCouldBeStatic"><priority>3</priority></rule>
+	<rule ref="rulesets/design.xml/CloseResource"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/NonStaticInitializer"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/DefaultLabelNotLastInSwitchStmt"><priority>1</priority></rule>
+	<rule ref="rulesets/design.xml/NonCaseLabelInSwitchStatement"><priority>4</priority></rule>
+	<rule ref="rulesets/design.xml/OptimizableToArrayCall"><priority>3</priority></rule>
+	<rule ref="rulesets/design.xml/BadComparison"><priority>1</priority></rule>
+	<rule ref="rulesets/design.xml/EqualsNull"><priority>1</priority></rule>
+	<rule ref="rulesets/design.xml/ConfusingTernary"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/InstantiationToGetClass"><priority>3</priority></rule>
+	<rule ref="rulesets/design.xml/IdempotentOperations"><priority>3</priority></rule>
+	<rule ref="rulesets/design.xml/SimpleDateFormatNeedsLocale"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/ImmutableField"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/UseLocaleWithCaseConversions"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/AvoidProtectedFieldInFinalClass"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/AssignmentToNonFinalStatic"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/MissingStaticMethodInNonInstantiatableClass"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/AvoidSynchronizedAtMethodLevel"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/MissingBreakInSwitch"><priority>1</priority></rule>
+	<rule ref="rulesets/design.xml/UseNotifyAllInsteadOfNotify"><priority>1</priority></rule>
+	<rule ref="rulesets/design.xml/AvoidInstanceofChecksInCatchClause"><priority>4</priority></rule>
+	<rule ref="rulesets/design.xml/AbstractClassWithoutAbstractMethod"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/SimplifyConditional"><priority>3</priority></rule>
+	<rule ref="rulesets/design.xml/CompareObjectsWithEquals"><priority>1</priority></rule>
+	<rule ref="rulesets/design.xml/PositionLiteralsFirstInComparisons"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/UnnecessaryLocalBeforeReturn"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/NonThreadSafeSingleton"><priority>1</priority></rule>
+	<rule ref="rulesets/design.xml/UncommentedEmptyMethod"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/UncommentedEmptyConstructor"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/AvoidConstantsInterface"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/UnsynchronizedStaticDateFormatter"><priority>1</priority></rule>
+	<rule ref="rulesets/design.xml/PreserveStackTrace"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/UseCollectionIsEmpty"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/EmptyMethodInAbstractClassShouldBeAbstract"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/SingularField"><priority>5</priority></rule>
+	<rule ref="rulesets/design.xml/ReturnEmptyArrayRatherThanNull"><priority>4</priority></rule>
+	<rule ref="rulesets/design.xml/AbstractClassWithoutAnyMethod"><priority>4</priority></rule>
+	<rule ref="rulesets/design.xml/TooFewBranchesForASwitchStatement"><priority>4</priority></rule>
+	
+	
+	<!-- 基本优化规则集 XXXXXXXXXXXXXXX-->
+	<!---->
+	<rule ref="rulesets/empty.xml/EmptyCatchBlock"><priority>1</priority></rule>
+	<rule ref="rulesets/empty.xml/EmptyIfStmt"><priority>5</priority></rule>
+	<rule ref="rulesets/empty.xml/EmptyWhileStmt"><priority>1</priority></rule>
+	<rule ref="rulesets/empty.xml/EmptyTryBlock"><priority>4</priority></rule>
+	<rule ref="rulesets/empty.xml/EmptyFinallyBlock"><priority>4</priority></rule>
+	<rule ref="rulesets/empty.xml/EmptySwitchStatements"><priority>4</priority></rule>
+	<rule ref="rulesets/empty.xml/EmptyInitializer"><priority>4</priority></rule>
+	<rule ref="rulesets/basic.xml/JumbledIncrementer"><priority>1</priority></rule>
+	<rule ref="rulesets/basic.xml/ForLoopShouldBeWhileLoop"><priority>5</priority></rule>
+	<rule ref="rulesets/unnecessary.xml/UnnecessaryConversionTemporary"><priority>3</priority></rule>
+	<rule ref="rulesets/basic.xml/OverrideBothEqualsAndHashcode"><priority>1</priority></rule>
+	<rule ref="rulesets/basic.xml/DoubleCheckedLocking"><priority>1</priority></rule>
+	<rule ref="rulesets/basic.xml/ReturnFromFinallyBlock"><priority>1</priority></rule>
+	<rule ref="rulesets/empty.xml/EmptySynchronizedBlock"><priority>4</priority></rule>
+	<rule ref="rulesets/unnecessary.xml/UnnecessaryReturn"><priority>4</priority></rule>
+	<rule ref="rulesets/empty.xml/EmptyStaticInitializer"><priority>4</priority></rule>
+	<rule ref="rulesets/basic.xml/UnconditionalIfStatement"><priority>1</priority></rule>
+	<rule ref="rulesets/empty.xml/EmptyStatementNotInLoop"><priority>4</priority></rule>
+	<rule ref="rulesets/basic.xml/BooleanInstantiation"><priority>3</priority></rule>
+	<rule ref="rulesets/unnecessary.xml/UnnecessaryFinalModifier"><priority>5</priority></rule>
+	<rule ref="rulesets/basic.xml/CollapsibleIfStatements"><priority>5</priority></rule>
+	<rule ref="rulesets/unnecessary.xml/UselessOverridingMethod"><priority>5</priority></rule>
+	<rule ref="rulesets/basic.xml/ClassCastExceptionWithToArray"><priority>5</priority></rule>
+	<rule ref="rulesets/basic.xml/AvoidDecimalLiteralsInBigDecimalConstructor"><priority>5</priority></rule>
+	<rule ref="rulesets/unnecessary.xml/UselessOperationOnImmutable"><priority>1</priority></rule>
+	<rule ref="rulesets/basic.xml/MisplacedNullCheck"><priority>1</priority></rule>
+	<rule ref="rulesets/unnecessary.xml/UnusedNullCheckInEquals"><priority>5</priority></rule>
+	<rule ref="rulesets/basic.xml/AvoidThreadGroup"><priority>5</priority></rule>
+	<rule ref="rulesets/basic.xml/BrokenNullCheck"><priority>1</priority></rule>
+	<rule ref="rulesets/basic.xml/BigIntegerInstantiation"><priority>3</priority></rule>
+	<rule ref="rulesets/basic.xml/AvoidUsingOctalValues"><priority>1</priority></rule>
+	<rule ref="rulesets/basic.xml/AvoidUsingHardCodedIP"><priority>5</priority></rule>
+	<rule ref="rulesets/basic.xml/CheckResultSet"><priority>1</priority></rule>
+	<rule ref="rulesets/basic.xml/AvoidMultipleUnaryOperators"><priority>1</priority></rule> 
+	
+	<!-- 有争议优化规则集 -->	
+	<!--
+	<rule ref="rulesets/controversial.xml/UnnecessaryConstructor"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/NullAssignment"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/OnlyOneReturn"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/UnusedModifier"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/AssignmentInOperand"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/AtLeastOneConstructor"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/DontImportSun"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/SuspiciousOctalEscape"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/CallSuperInConstructor"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/UnnecessaryParentheses"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/DefaultPackage"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/BooleanInversion"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/DataflowAnomalyAnalysis"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/AvoidFinalLocalVariable"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/AvoidUsingShortType"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/AvoidUsingVolatile"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/AvoidUsingNativeCode"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/AvoidAccessibilityAlteration"><priority>5</priority></rule>
+	<rule ref="rulesets/controversial.xml/DoNotCallGarbageCollectionExplicitly"><priority>5</priority></rule>
+	 -->	
+	<!-- 迁移优化规则集 -->	
+	<rule ref="rulesets/migrating.xml/ReplaceVectorWithList"><priority>3</priority></rule>
+	<rule ref="rulesets/migrating.xml/ReplaceHashtableWithMap"><priority>3</priority></rule>
+	<rule ref="rulesets/migrating.xml/ReplaceEnumerationWithIterator"><priority>3</priority></rule>
+	<rule ref="rulesets/migrating.xml/AvoidEnumAsIdentifier"><priority>1</priority></rule>
+	<rule ref="rulesets/migrating.xml/AvoidAssertAsIdentifier"><priority>1</priority></rule>
+	<rule ref="rulesets/migrating.xml/IntegerInstantiation"><priority>3</priority></rule>
+	<rule ref="rulesets/migrating.xml/ByteInstantiation"><priority>3</priority></rule>
+	<rule ref="rulesets/migrating.xml/ShortInstantiation"><priority>3</priority></rule>
+	<rule ref="rulesets/migrating.xml/LongInstantiation"><priority>3</priority></rule>
+	<!--
+	<rule ref="rulesets/migrating.xml/JUnit4TestShouldUseBeforeAnnotation"><priority>5</priority></rule>
+	<rule ref="rulesets/migrating.xml/JUnit4TestShouldUseAfterAnnotation"><priority>5</priority></rule>
+	<rule ref="rulesets/migrating.xml/JUnit4TestShouldUseTestAnnotation"><priority>5</priority></rule>
+	<rule ref="rulesets/migrating.xml/JUnit4SuitesShouldUseSuiteAnnotation"><priority>5</priority></rule>
+	<rule ref="rulesets/migrating.xml/JUnitUseExpected"><priority>5</priority></rule>
+-->	
+	<!-- 严格异常优化规则集 -->	
+	<rule ref="rulesets/strictexception.xml/AvoidCatchingThrowable"><priority>5</priority></rule>
+	<rule ref="rulesets/strictexception.xml/AvoidThrowingNewInstanceOfSameException"><priority>5</priority></rule>
+	<rule ref="rulesets/strictexception.xml/SignatureDeclareThrowsException"><priority>5</priority></rule>
+	<rule ref="rulesets/strictexception.xml/ExceptionAsFlowControl"><priority>5</priority></rule>
+	<rule ref="rulesets/strictexception.xml/AvoidCatchingNPE"><priority>5</priority></rule>
+	<rule ref="rulesets/strictexception.xml/AvoidThrowingRawExceptionTypes"><priority>5</priority></rule>
+	<rule ref="rulesets/strictexception.xml/AvoidThrowingNullPointerException"><priority>5</priority></rule>
+	<rule ref="rulesets/strictexception.xml/AvoidRethrowingException"><priority>5</priority></rule>
+	<rule ref="rulesets/strictexception.xml/DoNotExtendJavaLangError"><priority>5</priority></rule>
+	<rule ref="rulesets/strictexception.xml/DoNotThrowExceptionInFinally"><priority>5</priority></rule>
+	
+	<!-- SUN安全优化规则集	
+	<rule ref="rulesets/sunsecure.xml/MethodReturnsInternalArray"><priority>5</priority></rule>
+	<rule ref="rulesets/sunsecure.xml/ArrayIsStoredDirectly"><priority>5</priority></rule>
+	 -->
+	
+	<!-- String规则集 -->
+	<!---->	
+	<rule ref="rulesets/strings.xml/AvoidDuplicateLiterals"><priority>5</priority></rule>	
+	<rule ref="rulesets/strings.xml/StringInstantiation"><priority>3</priority></rule>
+	<rule ref="rulesets/strings.xml/StringToString"><priority>3</priority></rule>
+	<rule ref="rulesets/strings.xml/InefficientStringBuffering"><priority>3</priority></rule>
+	<rule ref="rulesets/strings.xml/UnnecessaryCaseChange"><priority>3</priority></rule>
+	<rule ref="rulesets/strings.xml/UseStringBufferLength"><priority>3</priority></rule>
+	<rule ref="rulesets/strings.xml/AppendCharacterWithChar"><priority>3</priority></rule>
+	<rule ref="rulesets/strings.xml/ConsecutiveLiteralAppends"><priority>5</priority></rule>
+	<rule ref="rulesets/strings.xml/UseIndexOfChar"><priority>3</priority></rule>
+	<rule ref="rulesets/strings.xml/InefficientEmptyStringCheck"><priority>5</priority></rule>
+	<rule ref="rulesets/strings.xml/InsufficientStringBufferDeclaration"><priority>5</priority></rule>
+	<rule ref="rulesets/strings.xml/UselessStringValueOf"><priority>3</priority></rule>
+	<rule ref="rulesets/strings.xml/StringBufferInstantiationWithChar"><priority>3</priority></rule>
+	<rule ref="rulesets/strings.xml/UseEqualsToCompareStrings"><priority>1</priority></rule>
+	<rule ref="rulesets/strings.xml/AvoidStringBufferField"><priority>1</priority></rule>
+	
+	<!-- JavaBean规则集 -->	
+	<rule ref="rulesets/javabeans.xml/BeanMembersShouldSerialize"><priority>5</priority></rule> 
+	<rule ref="rulesets/javabeans.xml/MissingSerialVersionUID"><priority>5</priority></rule> 
+	
+	<!-- finalizer规则集 -->
+	<rule ref="rulesets/finalizers.xml/EmptyFinalizer"><priority>4</priority></rule>
+	<rule ref="rulesets/finalizers.xml/FinalizeOnlyCallsSuperFinalize"><priority>4</priority></rule>
+	<rule ref="rulesets/finalizers.xml/FinalizeOverloaded"><priority>1</priority></rule>
+	<rule ref="rulesets/finalizers.xml/FinalizeDoesNotCallSuperFinalize"><priority>1</priority></rule>
+	<rule ref="rulesets/finalizers.xml/FinalizeShouldBeProtected"><priority>1</priority></rule>
+	<rule ref="rulesets/finalizers.xml/AvoidCallingFinalize"><priority>1</priority></rule>
+	
+	
+	<!-- j2ee规则集 -->	
+	<rule ref="rulesets/j2ee.xml/UseProperClassLoader"><priority>1</priority></rule>
+	<!--
+	<rule ref="rulesets/j2ee.xml/MDBAndSessionBeanNamingConvention"><priority>1</priority></rule>
+	<rule ref="rulesets/j2ee.xml/RemoteSessionInterfaceNamingConvention"><priority>1</priority></rule>
+	<rule ref="rulesets/j2ee.xml/LocalInterfaceSessionNamingConvention"><priority>1</priority></rule>
+	<rule ref="rulesets/j2ee.xml/LocalHomeNamingConvention"><priority>1</priority></rule>
+	<rule ref="rulesets/j2ee.xml/RemoteInterfaceNamingConvention"><priority>1</priority></rule>
+	-->	
+	<rule ref="rulesets/j2ee.xml/DoNotCallSystemExit"><priority>2</priority></rule>
+	<!--
+	<rule ref="rulesets/j2ee.xml/StaticEJBFieldShouldBeFinal"><priority>1</priority></rule>
+	-->
+	<rule ref="rulesets/j2ee.xml/DoNotUseThreads"><priority>5</priority></rule>	
+	
+	<!-- 变量名规则集 -->	
+	<!-- 
+	<rule ref="rulesets/naming.xml/ShortVariable"><priority>5</priority></rule>
+	-->
+	<rule ref="rulesets/naming.xml/LongVariable"><priority>5</priority><properties><property name="minimum" value="50"/></properties ></rule>
+	<rule ref="rulesets/naming.xml/ShortMethodName"><priority>5</priority></rule>
+	<rule ref="rulesets/naming.xml/VariableNamingConventions"><priority>5</priority></rule>
+	<rule ref="rulesets/naming.xml/MethodNamingConventions"><priority>5</priority></rule>
+	<rule ref="rulesets/naming.xml/ClassNamingConventions"><priority>4</priority></rule>
+	<!-- 
+	<rule ref="rulesets/naming.xml/AbstractNaming"><priority>5</priority></rule>
+	<rule ref="rulesets/naming.xml/MisleadingVariableName"><priority>5</priority></rule>
+	-->
+	<rule ref="rulesets/naming.xml/AvoidDollarSigns"><priority>4</priority></rule>
+	<rule ref="rulesets/naming.xml/MethodWithSameNameAsEnclosingClass"><priority>1</priority></rule>
+	<rule ref="rulesets/naming.xml/SuspiciousHashcodeMethodName"><priority>1</priority></rule>
+	<rule ref="rulesets/naming.xml/SuspiciousConstantFieldName"><priority>5</priority></rule>
+	<rule ref="rulesets/naming.xml/SuspiciousEqualsMethodName"><priority>1</priority></rule>
+	<rule ref="rulesets/naming.xml/AvoidFieldNameMatchingTypeName"><priority>4</priority></rule>
+	<rule ref="rulesets/naming.xml/AvoidFieldNameMatchingMethodName"><priority>4</priority></rule>
+	<rule ref="rulesets/naming.xml/NoPackage"><priority>5</priority></rule>                
+	<rule ref="rulesets/naming.xml/PackageCase"><priority>5</priority></rule>                  
+
+	<rule ref="rulesets/naming.xml/BooleanGetMethodName"><priority>5</priority></rule>
+	<rule language="java" name="DbPool Use1" since="10.00" message="Avoid DbPool Would Not Open in Loop" dfa="false" typeResolution="true"         class="net.sourceforge.pmd.lang.rule.XPathRule"         externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>DbPool Open in ForStatement</description>
+      <priority>1</priority>
+      <properties>
+          <property name="xpath">
+              <value><![CDATA[//ForStatement[.//PrimaryPrefix[Name[ends-with(@Image, '.open')]]] ]]></value>
+          </property>
+      </properties>
+      <example><![CDATA[
+for(){
+  dbpool.open();
+}
+]]> </example>
+    </rule>
+  <rule language="java" name="DbPool Use2"
+    		 since="10.00" dfa="false" typeResolution="true"
+          message="Avoid DbPool Would Not Open in Loop"
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+DbPool Open in whileStatement.
+      </description>
+      <priority>1</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//WhileStatement[.//PrimaryPrefix[Name[ends-with(@Image, '.open')]]]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[
+while(){
+  dbpool.open();
+}
+]]>
+      </example>
+    </rule>
+
+  <rule language="java" name="DbPool Use3" since="10.00"   message="warn:DbPool Has Been Declared More Than Once"
+         dfa="false" typeResolution="true" class="net.sourceforge.pmd.lang.rule.XPathRule"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+DbPool Open More Than Once.
+      </description>
+      <priority>1</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//MethodDeclaration[
+count(.//AllocationExpression/ClassOrInterfaceType[@Image = 'DbPool']) > 1
+]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[
+class viod bar{
+  public viod foo(){
+    DbPool dbpool = new DbPool();
+    DbPool dbpool2 = new DbPool(); //warn
+  }
+}
+]]>
+      </example>
+    </rule> 
+  <rule language="java" name="DbPool Use4"
+    		 since="10.00" dfa="false" typeResolution="true"  message="DbPool Has Been Declared In Error"          class="net.sourceforge.pmd.lang.rule.XPathRule"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+DbPool Open More Than Once.
+      </description>
+      <priority>1</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//MethodDeclaration[count(.//FormalParameters//ClassOrInterfaceType[@Image='DbPool'])>=1
+and count(.//LocalVariableDeclaration//ClassOrInterfaceType[@Image='DbPool'])>=1
+]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[
+class viod bar{
+  public viod foo(DbPool dbpool){
+    DbPool dbpool = new DbPool(); //DbPool Has Been Declared In Error
+  }
+}
+]]>
+      </example>
+    </rule> 
+  <rule language="java" name="DbPool Use5" since="10.00"  message="DbPool Has Been Open In Error"
+          class="net.sourceforge.pmd.lang.rule.XPathRule" dfa="false" typeResolution="true"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+DbPool Open More Than Once.
+      </description>
+      <priority>1</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//MethodDeclaration[count(.//FormalParameters//ClassOrInterfaceType[@Image='DbPool'])>=1
+and count(.//PrimaryPrefix/Name[ends-with(@Image, '.open')])>=1
+]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[
+class viod bar{
+  public viod foo(DbPool dbpool){
+    dbpool.open(); //DbPool Has Been Open In Error
+  }
+}
+]]>
+      </example>
+    </rule> 
+  <rule language="java" name="ResultSetClosedRule" since="10.01"   message="ResultSet Should Be Closed in finally statement"
+          class="net.sourceforge.pmd.lang.rule.XPathRule" dfa="false" typeResolution="true"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+ResultSet Should Be Closed in finally statement
+      </description>
+      <priority>5</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//MethodDeclaration[.//ClassOrInterfaceType[@Image = 'ResultSet']
+and (
+count(.//FinallyStatement)=0 or count(.//FinallyStatement[.//PrimaryPrefix/Name[ends-with(@Image, '.close') and not(starts-with(@Image, 'dbpool'))
+and not(starts-with(@Image, 'dbManager'))]])=0
+)
+]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[
+  ResultSet rs = new ResultSet();
+  rs.close();//ResultSet Must Be Closed
+
+]]>
+      </example>
+    </rule>
+	<rule language="java"  name="DbPool Use Not Return Before Closed" since="10.00" dfa="false" typeResolution="true"
+  message="Avoid DbPool Would Not Return When DbPool open but before closed"
+  class="net.sourceforge.pmd.lang.rule.XPathRule">
+  <description>
+  DbPool Use Not Return Before Closed
+  </description>
+  <properties>
+    <property name="xpath">
+    <value>
+<![CDATA[
+//MethodDeclaration[.//PrimaryPrefix[Name[ends-with(@Image, '.open')]]
+and (count((.//IfStatement)//ReturnStatement)>=1 
+or count((.//ForStatement)//ReturnStatement)>=1
+or count((.//WhileStatement)//ReturnStatement)>=1)
+]
+
+]]>
+    </value>
+    </property>
+  </properties>
+  <priority>1</priority>
+  <example>
+<![CDATA[
+public class Test{
+      public Vector insert(String strSQL) throws
+        SQLException,NamingException{
+       Vector vector = new Vector();
+        DbPool dbpool = new DbPool();
+        dbpool.open();
+        while(true){
+            return vector;
+         }
+        try{
+            dbpool.beginTransaction();
+            insert(dbpool);
+            dbpool.commitTransaction();
+            dbpool.close();
+        }
+        catch(Exception exception){
+            dbpool.rollbackTransaction();
+            dbpool.close();
+            throw exception;
+        }
+        finally{
+            dbpool.close();
+        }
+        return vector;
+    }
+}
+]]>
+  </example>
+		</rule>	
+<rule language="java" name="AvoidInstantiatingObjectsInLoops(sinosoft)" since="10.00" dfa="false" typeResolution="true"
+  message="Objects ShouldNot Be Instanced in Loops"
+  class="net.sourceforge.pmd.lang.rule.XPathRule">
+  <description>
+  created by sinosoft
+  </description>
+  <properties>
+    <property name="xpath">
+    <value>
+<![CDATA[
+//Statement/*[self::ForStatement or self::WhileStatement or self::DoStatement]/Statement/descendant::LocalVariableDeclaration[
+./Type/ReferenceType/ClassOrInterfaceType 
+and 
+./VariableDeclarator/VariableInitializer/Expression/PrimaryExpression/PrimaryPrefix/AllocationExpression/ClassOrInterfaceType
+and(not (contains(
+./ancestor::ForStatement/descendant::StatementExpression/PrimaryExpression[PrimaryPrefix/Name[ends-with(@Image,".add")]]/PrimarySuffix/Arguments/ArgumentList/Expression
+/PrimaryExpression/PrimaryPrefix/Name/@Image ,./VariableDeclarator/VariableDeclaratorId/@Image
+)))
+and(not (contains(
+./ancestor::WhileStatement/descendant::StatementExpression/PrimaryExpression[PrimaryPrefix/Name[ends-with(@Image,".add")]]/PrimarySuffix/Arguments/ArgumentList/Expression
+/PrimaryExpression/PrimaryPrefix/Name/@Image ,./VariableDeclarator/VariableDeclaratorId/@Image
+)))
+and(not (contains(
+./ancestor::DoStatement/descendant::StatementExpression/PrimaryExpression[PrimaryPrefix/Name[ends-with(@Image,".add")]]/PrimarySuffix/Arguments/ArgumentList/Expression
+/PrimaryExpression/PrimaryPrefix/Name/@Image ,./VariableDeclarator/VariableDeclaratorId/@Image
+)))
+]
+]]>
+    </value>
+    </property>
+  </properties>
+  <priority>5</priority>
+  <example>
+  </example>
+		</rule>
+	<rule language="java" name="SessionSetOrPutStatement" since="10.00" dfa="false" typeResolution="true"
+  message="SessionSetOrPut statement is been seen"
+  class="net.sourceforge.pmd.lang.rule.XPathRule">
+  <description>
+  created by sinoosft
+  </description>
+  <properties>
+    <property name="xpath">
+    <value>
+<![CDATA[
+//Name[starts-with(@Image,'session.setAttribute') or starts-with(@Image,'Session.setAttribute') or starts-with(@Image,'session.putValue') or starts-with(@Image,'Session.putValue')]
+]]>
+    </value>
+    </property>
+  </properties>
+  <priority>5</priority>
+  <example>
+<![CDATA[
+public class Foo {
+	public static vodi main(String ags){
+	Session.set("aa","bb");
+}
+}
+]]>
+  </example>
+		</rule>
+	<rule language="java" name="MaybeUsePreparedStatement(SQL Injection)" since="10.00" dfa="false" typeResolution="true"
+  message="The varible in sqlstatement should use ?"
+  class="net.sourceforge.pmd.lang.rule.XPathRule">
+  <description>
+  created by sinoosft
+  </description>
+  <properties>
+    <property name="xpath">
+    <value>
+<![CDATA[
+//Expression[(
+.//PrimaryExpression/
+PrimaryPrefix/Literal[(
+starts-with(translate(upper-case(@Image)," ",""),'"SELECT') )
+])
+and(
+.//PrimaryExpression/
+PrimaryPrefix/Literal[contains(upper-case(@Image),"WHERE")]
+)
+and(
+.//PrimaryExpression/PrimaryPrefix/Name/@Image=
+./ancestor::ClassOrInterfaceBodyDeclaration/descendant::VariableDeclarator/VariableDeclaratorId/@Image
+)
+]
+]]>
+    </value>
+    </property>
+  </properties>
+  <priority>5</priority>
+  <example>
+<![CDATA[
+public class Test {
+	public void bar() {
+		String selectHql1 = "select * from prpduser where name=? and sex=1";	//avoid
+		StringBuffer  selectHql2 ="select * from a where name=? and sex=?";//right
+	}
+}
+]]>
+  </example>
+  </rule> 
+  <rule language="java" name="DBManager Use1" dfa="false" typeResolution="true"
+    		since="10.00"
+          message="Avoid DBManager Would Not Open in Loop"
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+    <description>
+				DBManager should not Open in ForStatement.
+      </description>
+      <priority>1</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//ForStatement[.//PrimaryPrefix[Name[ends-with(@Image, '.open')]]] 
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[
+for(){ 
+  dbManager.open();
+}
+]]>
+      </example>
+    </rule>
+  <rule language="java" name="DBManager Use2" dfa="false" typeResolution="true"	since="10.00"  message="Avoid DBManager Would Not Open in Loop"
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+DBManager should not Open in whileStatement.
+      </description>
+      <priority>1</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//WhileStatement[.//PrimaryPrefix[Name[ends-with(@Image, '.open')]]]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[
+while(){
+  dbManager.open();
+}
+]]>
+      </example>
+    </rule>
+
+  <rule language="java" name="DBManager Use3"
+    		 since="10.00" dfa="false" typeResolution="true"
+          message="warn:DBManager Has Been Declared More Than Once"
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+DBManager Open More Than Once.
+      </description>
+      <priority>1</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//MethodDeclaration[
+count(.//AllocationExpression/ClassOrInterfaceType[@Image = 'DBManager']) > 1
+]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[
+class viod bar{
+  public viod foo(){
+    DBManager dbManager = new DBManager();
+    DBManager dbpool2 = new DBManager(); //warn
+  }
+}
+]]>
+      </example>
+    </rule> 
+  <rule language="java" name="DBManager Use4"
+    		 since="10.00" dfa="false" typeResolution="true"
+          message="DBManager Has Been Declared In Error"
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+DBManager Open More Than Once.
+      </description>
+      <priority>1</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//MethodDeclaration[count(.//FormalParameters//ClassOrInterfaceType[@Image='DBManager'])>=1
+and count(.//LocalVariableDeclaration//ClassOrInterfaceType[@Image='DBManager'])>=1
+]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[
+class viod bar{
+  public viod foo(DBManager dbManager){
+    DBManager dbManager = new DBManager(); //DBManager Has Been Declared In Error
+  }
+}
+]]>
+      </example>
+    </rule> 
+  <rule language="java" name="DBManager Use5"
+    		 since="10.00" dfa="false" typeResolution="true"
+          message="DBManager Has Been Open In Error"
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+DBManager Open More Than Once.
+      </description>
+      <priority>1</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//MethodDeclaration[count(.//FormalParameters//ClassOrInterfaceType[@Image='DBManager'])>=1
+and count(.//PrimaryPrefix/Name[ends-with(@Image, '.open')])>=1
+]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[
+class viod bar{
+  public viod foo(DBManager dbManager){
+    dbManager.open(); //DBManager Has Been Open In Error
+  }
+}
+]]>
+      </example>
+    </rule> 
+  <rule language="java" name="DBManagerOrDBPoolClosedRule"
+    		 since="10.01" dfa="false" typeResolution="true"
+          message="DBManager or DBPool should be closed in finally statement"
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+DBManager or DBPool should be closed in finally statement
+      </description>
+      <priority>5</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//MethodDeclaration[.//PrimaryPrefix[Name[ends-with(@Image, '.open')
+]]
+and (
+(count(.//FinallyStatement) = 0 )
+or
+(count(.//FinallyStatement[.//PrimaryPrefix/Name[ends-with(@Image,'.close')
+and not(starts-with(@Image,'resultset')) and not(starts-with(@Image,'rs'))
+]])=0)
+)
+]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+      </example>
+    </rule> 
+  <rule language="java" name="AviodUserQuery(0)Rule"
+    		 since="10.01" dfa="false" typeResolution="true"
+          message="The query_count should be limited"
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+The query_count should be limited
+      </description>
+      <priority>3</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//Statement/StatementExpression/PrimaryExpression[PrimaryPrefix/Name[ends-with(@Image,'.query')] 
+and PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix/Literal[@Image=0]]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+      </example>
+    </rule>
+  <rule language="java" name="DBManagerOrDBPoolOpenedRule"
+    		 since="10.01"
+          message="DBManager Or DBPool Should Be Opened In Try Statement"
+          class="net.sourceforge.pmd.lang.rule.XPathRule" dfa="false" typeResolution="true"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+DBManager Or DBPool Should Be Opened In Try Statement
+      </description>
+      <priority>5</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//MethodDeclaration/Block/BlockStatement/Statement/StatementExpression/PrimaryExpression/PrimaryPrefix
+/Name[ends-with(@Image,'.open')]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+      </example>
+    </rule>
+    
+    <rule language="java" name="StringSubStringCheckLength"
+    		 since="10.01"
+          message="The length of the String must be check when use the method of substring"
+          class="net.sourceforge.pmd.lang.rule.XPathRule" dfa="false" typeResolution="true"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+The length of the String must be check when use the method of substring
+      </description>
+      <priority>5</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//Expression/PrimaryExpression/PrimaryPrefix/Name[
+ends-with(@Image,'.substring') 
+and not
+(substring-before(@Image,'.')=substring-before(
+./ancestor::ClassOrInterfaceBodyDeclaration
+/descendant::PrimaryExpression/PrimaryPrefix/Name[ends-with(@Image,'.length')]/@Image,'.')
+)
+]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[	  
+public class Foo { 
+	public void doSomething() {
+		if("1".equals(lossType.substring(0, 1))){  //maybe throw StringIndexOutOfBoundsException
+			 
+		}
+	}
+}
+]]> 	  
+      </example>
+    </rule>
+ 
+   <rule language="java" name="URLConnectionOpenWithoutTimeout"
+    		 since="10.01"
+          message="URLConnection shoule setConnectTimeout"
+          class="net.sourceforge.pmd.lang.rule.XPathRule" dfa="false" typeResolution="true"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+URLConnection shoule setConnectTimeout
+      </description>
+      <priority>3</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//LocalVariableDeclaration[Type/ReferenceType/ClassOrInterfaceType[@Image='URLConnection']]
+[not(starts-with(
+./ancestor::ClassOrInterfaceBodyDeclaration
+/descendant::Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name/@Image,
+concat(VariableDeclarator/VariableDeclaratorId/@Image,'.setConnectTimeout')))]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+      </example>
+    </rule> 
+    <rule language="java" name="VariableDeclarationMoreThanOneAtOnceRule"
+    		 since="10.01"
+          message="LocalVariable Declaration is More Than one At Once"
+          class="net.sourceforge.pmd.lang.rule.XPathRule" dfa="false" typeResolution="true"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+Variable Declaration is More Than one At Once
+      </description>
+      <priority>4</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//*[self::LocalVariableDeclaration or self::FieldDeclaration][count(./VariableDeclarator)>1]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+      </example>
+    </rule>
+    <rule language="java" name="PrivateFinalVariableDeclarationRule"
+    		 since="10.01"
+          message="LocalVariable Declaration is More Than one At Once"
+          class="net.sourceforge.pmd.lang.rule.XPathRule" dfa="false" typeResolution="true"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+private Variable Declaration should be decorated with final 
+      </description>
+      <priority>4</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//*[self::LocalVariableDeclaration or self::FieldDeclaration][@Private='true' and @Final='false']
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+      </example>
+    </rule>
+    <rule language="java" name="LongVariableDeclarationRule"
+    		 since="10.01"
+          message="LocalVariable Declaration is More Than one At Once"
+          class="net.sourceforge.pmd.lang.rule.XPathRule" dfa="false" typeResolution="true"
+          externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions">
+      <description>
+long Variable Declaration should be decorated with L not l 
+      </description>
+      <priority>4</priority>
+      <properties>
+          <property name="xpath">
+              <value>
+<![CDATA[
+//*[self::LocalVariableDeclaration or self::FieldDeclaration][(./Type/PrimitiveType[@Image='long']) and (
+VariableDeclarator/VariableInitializer/Expression/PrimaryExpression/PrimaryPrefix/Literal[ends-with(@Image,'l')]
+)]
+]]>
+              </value>
+          </property>
+      </properties>
+      <example>
+<![CDATA[	  
+public class Foo { 
+	public void doSomething() {
+		long i = 1l;//This bad,use 1L.
+	}
+}
+]]>   
+      </example>
+    </rule>                
+	<rule language="java" name="UsePreparedStatement(SQL Injection)" since="10.00" dfa="false" typeResolution="true"
+  message="The varible in sqlstatement should use ?"
+  class="net.sourceforge.pmd.lang.rule.XPathRule">
+  <description>
+  created by sinoosft
+  </description>
+  <properties>
+    <property name="xpath">
+    <value>
+<![CDATA[ 
+//PrimaryExpression/PrimaryPrefix/Literal[(
+   starts-with(normalize-space(upper-case(@Image)),'"SELECT ')
+   and contains(normalize-space(upper-case(@Image))," WHERE ")
+   and (
+   	      contains(replace(@Image,' ',''),"='")     
+	   or contains(replace(@Image,' ',''),">'")     
+	   or contains(replace(@Image,' ',''),"<'")     
+	   or contains(replace(@Image,' ',''),">='")     
+	   or contains(replace(@Image,' ',''),"<='")     
+	   or contains(replace(upper-case(@Image),' ',''),"LIKE'")     
+	   or contains(replace(upper-case(@Image),' ',''),"IN('")       
+	   or contains(replace(upper-case(@Image),' ',''),"BETWEEN('")      
+	  )              
+)]
+]]>
+    </value>
+    </property>
+  </properties>
+  <priority>2</priority>
+  <example>
+<![CDATA[
+public class Test {
+	public void bar() {
+		String selectHql1 = "select * from prpduser where name=? and sex='1'";	//avoid
+		StringBuffer  selectHql2 ="select * from a where name=? and sex=?";//right
+	}
+}
+]]>
+  </example>
+  </rule> 
+</ruleset>

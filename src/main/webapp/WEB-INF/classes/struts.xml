@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 文件上传大小限制 ,其值必须大于拦截器中的maxinumsize-->
+	<constant name="struts.multipart.maxSize" value="167772160909"></constant>
+	
+	<!-- 是否为struts开发模式 -->
+	<constant name="struts.devMode" value="false" />
+	<!-- 是否国际化信息自动加载 -->
+	<constant name="struts.i18n.reload" value="true" />
+	<!-- 是否自动加载xml配置(true,false) -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+	
+	
+	<!-- 默认的UI template主题 -->
+	<constant name="struts.ui.theme" value="xhtml" />
+	<!-- 默认的国际化地区信息 -->
+	<constant name="struts.locale" value="zh_CN" />
+	<!-- 国际化信息内码 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- action的后缀 -->
+	<constant name="struts.action.extension" value="do" />
+	<!-- 加载附加的国际化属性文件（不包含.properties后缀）。可以增加多个properties文件的名称，使用逗号或者空格分割 -->
+	<constant name="struts.custom.i18n.resources" value="i18n/messages" />
+	<!-- ObjectFactory接口 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!-- 指定当使用SpringObjectFactory时的自动装配逻辑.合法值包括: name、type、 auto和 constructor(缺省为 name ) -->
+	<constant name="struts.objectFactory.spring.autoWire" value="name" />
+	<!-- 允许动态方法调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<!-- 是否spring应该使用自身的cache -->
+	<constant name="struts.objectFactory.spring.useClassCache" value="true" />
+	<constant name="struts.freemarker.templatesCache" value="true" />
+	<!-- 是否struts过滤器中提供的静态内容应该被浏览器缓存在头部属性中 -->
+	<constant name="struts.serve.static.browserCache" value="true" />
+	<!-- 是否struts过滤器应该提供静态内容 -->
+	<constant name="struts.serve.static" value="true" />
+	<!-- 是否不缓存XSLT模版 -->
+	<constant name="struts.xslt.nocache" value="false" />
+
+	<!-- 基准包，所有Struts模块配置文件均需继承default而不是struts-default 
+	<package name="default" extends="struts-default">
+		<global-results>
+			<result name="success">/common/AjaxSuccess.jsp</result>
+			<result name="error">/common/AjaxError.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception">
+			</exception-mapping>
+		</global-exception-mappings> 
+	</package>
+	
+	<package name="root" extends="default" namespace="/">
+		<action name="*" class="ins.framework.web.Struts2Action"
+			method="execute">
+			<result name="success" type="redirect">/{1}.jsp</result>
+		</action>
+	</package>
+	 -->
+	<!-- 其他 -->
+	<include file="struts/checkwork/struts-checkwork.xml"></include> 
+	<include file="struts/map/struts-map.xml"></include> 
+</struts>
+

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     2013-1-21 上午10:52:35                                                        
+
+     project    
+     description
+                   
+     yaochunyang                                                                
+     ====================================================================== -->
+<project name="mobileplatform" default="main" basedir=".">
+	<description>移动平台系统自动构建</description>
+		<property name="compiler.args" value="-encoding GBK" />
+		<!-- 路径配置 -->
+		<property name="src.dir" value="${basedir}" />
+		<property name="src.dest.dir" value="${src.dir}/src/main" />
+		<property name="lib.dir" value="${src.dest.dir}/webapp/WEB-INF/lib" />
+		<property name="web.classes.dir" value="${src.dest.dir}/webapp/WEB-INF/classes" />
+		<property name="resources.dir" value="${src.dest.dir}/resources" />
+
+		<tstamp prefix="system">
+			<format property="day" pattern="yyyy-MM-dd" />
+		</tstamp>
+		<patternset id="compiler.resource">
+			<exclude name="**/?*.java" />
+		</patternset>
+
+		<!-- 检查环境 -->
+		<target name="check-env">
+			<!-- 检查JDK版本为5.0 -->
+			<fail message="Must Set the JAVA_HOME to JDK5.0">
+				<condition>
+					<not>
+						<equals arg1="${ant.java.version}" arg2="1.5" />
+					</not>
+				</condition>
+			</fail>
+		</target>
+
+		<!-- 编译源文件 -->
+		<path id="compile.classpath">
+			<pathelement location="${web.classes.dir}" />
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${src.dir}/lib">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+		<target name="compile.classpath" >
+					<javac destdir="${web.classes.dir}" includes="**/*.java" debug="true">
+						<compilerarg line="${compiler.args}" />
+						<src path="${src.dest.dir}/java" />
+						<classpath refid="compile.classpath" />
+					</javac>
+					<copy todir="${web.classes.dir}">
+						<fileset dir="${src.dest.dir}/java">
+							<patternset refid="compiler.resource" />
+						</fileset>
+					</copy>
+					<copy todir="${web.classes.dir}">
+						<fileset dir="${src.dest.dir}/resources" includes="**/*" />
+					</copy>
+		</target>
+		
+		<!-- 生成部署包 -->
+			<target name="deploy"> 
+				<delete dir="${ant.project.name}" />
+				<mkdir dir="${ant.project.name}" />
+				<copy todir="${ant.project.name}">
+					<fileset dir="${src.dest.dir}/webapp" includes="**/*" />
+				</copy>
+			</target>
+		
+		<target name="main">
+			
+			<antcall target="check-env"></antcall>		
+			<antcall target="compile.classpath"></antcall>	
+			<antcall target="deploy"></antcall>
+			
+		</target>
+	</project>

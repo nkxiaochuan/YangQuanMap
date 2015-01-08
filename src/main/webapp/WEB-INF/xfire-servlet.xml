@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+   
+     <import resource="classpath:org/codehaus/xfire/spring/xfire.xml" />
+    
+ 
+         <!-- 定义访问的url  -->   
+       <!--<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"> 
+        <property name="urlMap"> 
+          <map> 
+            <entry key="/configOperate">
+                <ref bean="configService"/> 
+             </entry>
+         </map> 
+        </property> 
+      </bean> 
+      
+     <bean id="configService"
+		class="org.codehaus.xfire.spring.remoting.XFireExporter">
+		<property name="serviceFactory">
+			<ref bean="xfire.serviceFactory" />
+		</property>
+		<property name="xfire">
+			<ref bean="xfire" />
+		</property>
+		<property name="serviceBean" ref="configService" />
+		
+		<property name="serviceClass">
+			<value>ins.domain.checkworkinfo.service.facade.ConfigService</value>
+		</property>
+		
+	   </bean>
+   
+  	--><!--  一键报案数据提交接口 
+	<bean id="claimService"
+		class="org.codehaus.xfire.spring.remoting.XFireExporter">
+		<property name="serviceFactory">
+			<ref bean="xfire.serviceFactory" />
+		</property>
+		<property name="xfire">
+			<ref bean="xfire" />
+		</property>
+		<property name="serviceBean" ref="ClaimReportService" />
+		
+		<property name="serviceClass">
+			<value>com.sinosoft.common.webservice.ClaimReportService</value>
+		</property>
+		
+	   </bean>-->
+	
+	<!-- 自主查勘信息查询接口   
+	<bean id="searchSelfSurveyService"
+		class="org.codehaus.xfire.spring.remoting.XFireExporter">
+		<property name="serviceFactory">
+			<ref bean="xfire.serviceFactory" />
+		</property>
+		<property name="xfire">
+			<ref bean="xfire" />
+		</property>
+		<property name="serviceBean">
+			<ref bean="SearchSelfSurveyService" />
+		</property>
+		<property name="serviceClass">
+			<value>com.sinosoft.common.webservice.SearchSelfSurveyService
+			</value>
+		</property>
+	</bean>--> 
+	
+	   <!--   查勘任务数据提交接口 
+	<bean id="selfSurveyService"
+		class="org.codehaus.xfire.spring.remoting.XFireExporter">
+		<property name="serviceFactory">
+			<ref bean="xfire.serviceFactory" />
+		</property>
+		<property name="xfire">
+			<ref bean="xfire" />
+		</property>
+		<property name="serviceBean">
+			<ref bean="SelfSurveyService" />
+		</property>
+		<property name="serviceClass">
+			<value>com.sinosoft.common.webservice.SelfSurveyService</value>
+		</property>
+	</bean>-->
+	
+    <!-- 短信通知服务接口   
+	<bean id="sMSNotificationService"
+		class="org.codehaus.xfire.spring.remoting.XFireExporter">
+		<property name="serviceFactory">
+			<ref bean="xfire.serviceFactory" />
+		</property>
+		<property name="xfire">
+			<ref bean="xfire" />
+		</property>
+		<property name="serviceBean">
+			<ref bean="SMSNotificationService" />
+		</property>
+		<property name="serviceClass">
+			<value>com.sinosoft.common.webservice.SMSNotificationService</value>
+		</property>
+	</bean> -->
+	
+
+
+</beans>
