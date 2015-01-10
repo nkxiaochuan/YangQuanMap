@@ -116,7 +116,7 @@ public class UserServiceSpringImpl extends
 		return ((PrpDuser) super.get(userCode));
 	}
 
-	public String getComCodeByUserCode(String userCode) {
+/*	public String getComCodeByUserCode(String userCode) {
 		if (userCode == null) {
 			return "";
 		}
@@ -133,7 +133,7 @@ public class UserServiceSpringImpl extends
 		}
 
 		return user.getPrpDcompany().getComCode();
-	}
+	}*/
 
 	public void unvalidUser(String userCode) {
 		PrpDuser user = (PrpDuser) get(userCode);
@@ -262,6 +262,11 @@ public class UserServiceSpringImpl extends
 				"from PrpDuser _user order by _user.userCode").setMaxResults(5)
 				.list();
 		return list;
+	}
+
+	public String getComCodeByUserCode(String paramString) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

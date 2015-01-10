@@ -1,18 +1,15 @@
 package ins.map.web;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import cn.com.sinosoft.map.model.pojo.LocationInfoVo;
-
-import ins.framework.cache.CacheManager;
-import ins.framework.cache.CacheService;
 import ins.framework.web.Struts2Action;
 import ins.map.schema.model.LocationInfo;
 import ins.map.service.facade.SinoMapService;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import cn.com.sinosoft.map.model.pojo.LocationInfoVo;
 
 public class SinoMapAction extends Struts2Action {
 
@@ -33,13 +30,13 @@ public class SinoMapAction extends Struts2Action {
 				LocationInfoVo vo = new LocationInfoVo();
 				vo.setLngX(l.getLngX());
 				vo.setLatY(l.getLatY());
-				vo.setUserName(l.getUserName());
-				vo.setPhoneNumber(l.getPhoneNumber());
-				vo.setUpdateTimehis(df.format(l.getUpdateTimehis()));
-				if((c.getTime().getTime() - l.getUpdateTimehis().getTime())/(1000*60) > 30){
+				vo.setUserName(l.getName());
+				vo.setPhoneNumber(l.getInformation());
+				vo.setUpdateTimehis(df.format(l.getOperateTimeForHis()));
+				if((c.getTime().getTime() - l.getOperateTimeForHis().getTime())/(1000*60) > 30){
 					vo.setIsValid("0");
 				}else{
-					vo.setIsValid(l.getIsValid());
+					vo.setIsValid(l.getValidStatus());
 				}
 				locationInfoVos.add(vo);
 			}
@@ -54,7 +51,11 @@ public class SinoMapAction extends Struts2Action {
 	//初始化地图页面
 	public String prepareMap(){
 		System.out.println("test");
+		String lanX = (String) getRequest().getParameter("lanX");
+		String latY = (String) getRequest().getParameter("latY");
 		getRequest().setAttribute("webTime", "10000");
+		getRequest().setAttribute("lanX", lanX);
+		getRequest().setAttribute("latY", latY);
 		return SUCCESS;
 	}
 	public void setLocationInfo(LocationInfo locationInfo) {

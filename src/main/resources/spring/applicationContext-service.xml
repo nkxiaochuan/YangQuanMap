@@ -32,6 +32,6 @@
 			
     
     <bean id="sinoMapService" class="ins.map.service.spring.SinoMapServiceImpl"></bean>
-    <bean id="simpConfigService" class="ins.map.service.spring.SimpConfigServiceImpl"></bean>
+    <!--<bean id="simpConfigService" class="ins.map.service.spring.SimpConfigServiceImpl"></bean>-->
 
 </beans>

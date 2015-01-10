@@ -67,16 +67,6 @@ public class UserAction extends Struts2Action {
 				&& (!("".equals(this.prpDuser.getUserName())))) {
 			queryRule.addLike("userName", this.prpDuser.getUserName());
 		}
-		if ((this.prpDuser.getPrpDcompany().getComCode() != null)
-				&& (!("".equals(this.prpDuser.getPrpDcompany().getComCode())))) {
-			queryRule.addLike("prpDcompany.comCode", this.prpDuser
-					.getPrpDcompany().getComCode());
-		}
-
-		if ((this.prpDuser.getNewUserCode() != null)
-				&& (!("".equals(this.prpDuser.getNewUserCode())))) {
-			queryRule.addEqual("newUserCode", this.prpDuser.getNewUserCode());
-		}
 
 		Page page = this.userService.findUser(queryRule, this.pageNo,
 				this.pageSize);

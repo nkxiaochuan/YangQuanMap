@@ -1,7 +1,5 @@
 package ins.platform.schema.vo;
 
-import ins.platform.schema.model.PrpDcompany;
-
 import java.io.Serializable;
 import java.util.Date;
 

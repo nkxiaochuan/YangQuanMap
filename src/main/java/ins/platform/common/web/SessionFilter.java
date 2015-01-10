@@ -2,7 +2,6 @@ package ins.platform.common.web;
 
 import ins.framework.common.ServiceFactory;
 import ins.platform.schema.model.PrpDuser;
-import ins.platform.service.facade.CompanyService;
 import ins.platform.service.facade.UserService;
 
 import java.io.IOException;
@@ -53,17 +52,17 @@ public class SessionFilter
         return;
       }
       UserService userService = (UserService)ServiceFactory.getService("userService");
-      CompanyService companyService = (CompanyService)ServiceFactory.getService("companyService");
+    //  CompanyService companyService = (CompanyService)ServiceFactory.getService("companyService");
       PrpDuser prpDuser = userService.findUserByUserCode(userCode);
-      String comCName = companyService.findComCNameByComCode(prpDuser.getPrpDcompany().getComCode());
+ //     String comCName = companyService.findComCNameByComCode(prpDuser.getPrpDcompany().getComCode());
 
       String sessionIdForIdentify = "" + new Date().getTime() + new Random().nextInt(1000);
 
       session.setAttribute("sessionID", sessionIdForIdentify);
       session.setAttribute("UserCode", userCode);
       session.setAttribute("UserName", prpDuser.getUserName());
-      session.setAttribute("ComCode", prpDuser.getPrpDcompany().getComCode());
-      session.setAttribute("ComCName", comCName);
+   //   session.setAttribute("ComCode", prpDuser.getPrpDcompany().getComCode());
+   //   session.setAttribute("ComCName", comCName);
     }
   }
 }

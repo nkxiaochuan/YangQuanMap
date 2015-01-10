@@ -155,25 +155,25 @@ public class LocationUploadServlet extends HttpServlet {
 	    	if(loca != null){
 	    		loca.setLngX(locationUploadReq.getLngX());
 	    		loca.setLatY(locationUploadReq.getLatY());
-	    		loca.setUserName(locationUploadReq.getUserName());
+	    		loca.setName(locationUploadReq.getUserName());
 	    		loca.setUpdateTimehis(new Date());
-	    		loca.setPhoneNumber(locationUploadReq.getPhoneNumber());
+	    	//	loca.setPhoneNumber(locationUploadReq.getPhoneNumber());
 	    		if("1".equals(locationUploadReq.getFlag())){
-	    			loca.setIsValid("1");
+	    			loca.setValidStatus("1");
 	    		}else if("2".equals(locationUploadReq.getFlag())){
-	    			loca.setIsValid("0");
+	    			loca.setValidStatus("0");
 	    		}
 	    		sinoMapService.updateLocationInfo(loca);
 	    	}else{
 	    		locationInfo.setId(UUIDUtil.getUUID());
 	    		locationInfo.setLngX(locationUploadReq.getLngX());
 	    		locationInfo.setLatY(locationUploadReq.getLatY());
-	    		locationInfo.setUserCode(locationUploadReq.getUserCode());
-	    		locationInfo.setUserName(locationUploadReq.getUserName());
-	    		locationInfo.setPhoneNumber(locationUploadReq.getPhoneNumber());
+	    		locationInfo.setName(locationUploadReq.getUserCode());
+	    		locationInfo.setName(locationUploadReq.getUserName());
+	    		//locationInfo.setPhoneNumber(locationUploadReq.getPhoneNumber());
 	    		locationInfo.setInsertTimeHis(new Date());
 	    		locationInfo.setUpdateTimehis(new Date());
-	    		locationInfo.setIsValid("1");
+	    		locationInfo.setValidStatus("1");
 	    		sinoMapService.saveLocationInfo(locationInfo);
 	    	}
 	    	HeadMsg headMsg = new HeadMsg();

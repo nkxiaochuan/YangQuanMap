@@ -15,8 +15,6 @@ public abstract interface UserService {
 	public abstract Page findUser(QueryRule paramQueryRule, int paramInt1,
 			int paramInt2);
 
-	public abstract PrpDuser getUserByUserCode(String paramString);
-
 	public abstract void update(PrpDuser paramPrpDuser);
 
 	public abstract void updateNothing();

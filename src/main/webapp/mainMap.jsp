@@ -1,4 +1,6 @@
 <div id="initMapDiv" class="navTab-panel tabsPageContent layoutBox" style='height: 476px;'></div> 
+<input id="lanX" type="hidden" value="${lanX}">
+<input id="latY" type="hidden" value="${latY}">
 <script type="text/javascript"> 
 var map = new BMap.Map("initMapDiv");          // 创建地图实例  
 map.enableScrollWheelZoom();    //启用滚轮放大缩小，默认禁用
@@ -8,7 +10,10 @@ map.addControl(new BMap.NavigationControl());
 map.addControl(new BMap.ScaleControl());    
 map.addControl(new BMap.OverviewMapControl());    
 map.addControl(new BMap.MapTypeControl());    
-var point = new BMap.Point(116.417854,39.921988);
+//var point = new BMap.Point(116.417854,39.921988);
+var lanX = document.getElementById("lanX").value;
+var latY = document.getElementById("latY").value;
+var point = new BMap.Point(lanX,latY);
 map.centerAndZoom(point, 15);
 
 function getXYdata(){

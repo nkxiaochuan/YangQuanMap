@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,12 +24,13 @@ public class LocationInfo implements Serializable{
 	private String id;
 	private String lngX;
 	private String latY;
-	private String userCode;
-	private String userName;
-	private String phoneNumber;
-	private Date insertTimeHis;
-	private Date updateTimehis;
-	private String isValid;
+	private PrpAreaInfo prpAreaInfo;
+	private String name;
+	private String category;
+	private String information;
+	private Date insertTimeForHis;
+	private Date operateTimeForHis;
+	private String validStatus;
 	
 	@Id
 	@Column(name = "ID")
@@ -51,49 +54,57 @@ public class LocationInfo implements Serializable{
 	public void setLatY(String latY) {
 		this.latY = latY;
 	}
-	@Column(name="USERCODE")
-	public String getUserCode() {
-		return userCode;
+	@ManyToOne(targetEntity=PrpAreaInfo.class)
+	@JoinColumn(name="comCode")
+	public PrpAreaInfo getPrpAreaInfo() {
+		return prpAreaInfo;
 	}
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
+	public void setPrpAreaInfo(PrpAreaInfo prpAreaInfo) {
+		this.prpAreaInfo = prpAreaInfo;
 	}
-	@Column(name="USERNAME")
-	public String getUserName() {
-		return userName;
+	@Column(name="NAME")
+	public String getName() {
+		return name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	@Column(name="PHONENUMBER")
-	public String getPhoneNumber() {
-		return phoneNumber;
+	@Column(name="CATEGORY")
+	public String getCategory() {
+		return category;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setCategory(String category) {
+		this.category = category;
 	}
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="INSERTTIMEHIS")
-	public Date getInsertTimeHis() {
-		return insertTimeHis;
+	@Column(name="INFORMATION")
+	public String getInformation() {
+		return information;
 	}
-	public void setInsertTimeHis(Date insertTimeHis) {
-		this.insertTimeHis = insertTimeHis;
+	public void setInformation(String information) {
+		this.information = information;
 	}
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="UPDATETIMEHIS")
-	public Date getUpdateTimehis() {
-		return updateTimehis;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "INSERTTIMEFORHIS",insertable = false, updatable = false)
+	public Date getInsertTimeForHis() {
+		return this.insertTimeForHis;
 	}
-	public void setUpdateTimehis(Date updateTimehis) {
-		this.updateTimehis = updateTimehis;
+	public void setInsertTimeForHis(Date insertTimeForHis) {
+		this.insertTimeForHis = insertTimeForHis;
 	}
-	public void setIsValid(String isValid) {
-		this.isValid = isValid;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "OPERATETIMEFORHIS", insertable = false)
+	public Date getOperateTimeForHis() {
+		return this.operateTimeForHis;
 	}
-	@Column(name="ISVALID")
-	public String getIsValid() {
-		return isValid;
+	public void setOperateTimeForHis(Date operateTimeForHis) {
+		this.operateTimeForHis = operateTimeForHis;
+	}
+	public void setValidStatus(String validStatus) {
+		this.validStatus = validStatus;
+	}
+	@Column(name="VALIDSTATUS")
+	public String getValidStatus() {
+		return validStatus;
 	}
 	
 }
