@@ -10,6 +10,12 @@
 		<action name="prepareMap" class="sinoMapAction" method="prepareMap">
 			<result>/mainMap.jsp</result>
 		</action>
+		<action name="addLocationInfo" class="sinoMapAction" method="addLocationInfo">
+		</action>
+		<action name="updateLocationInfo" class="sinoMapAction" method="updateLocationInfo">
+		</action>
+		<action name="deleteLocationInfo" class="sinoMapAction" method="deleteLocationInfo">
+		</action>
 	</package>
 
 </struts>

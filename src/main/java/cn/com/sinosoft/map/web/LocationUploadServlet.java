@@ -156,7 +156,7 @@ public class LocationUploadServlet extends HttpServlet {
 	    		loca.setLngX(locationUploadReq.getLngX());
 	    		loca.setLatY(locationUploadReq.getLatY());
 	    		loca.setName(locationUploadReq.getUserName());
-	    		loca.setUpdateTimehis(new Date());
+	    		loca.setOperateTimeForHis(new Date());
 	    	//	loca.setPhoneNumber(locationUploadReq.getPhoneNumber());
 	    		if("1".equals(locationUploadReq.getFlag())){
 	    			loca.setValidStatus("1");
@@ -171,8 +171,8 @@ public class LocationUploadServlet extends HttpServlet {
 	    		locationInfo.setName(locationUploadReq.getUserCode());
 	    		locationInfo.setName(locationUploadReq.getUserName());
 	    		//locationInfo.setPhoneNumber(locationUploadReq.getPhoneNumber());
-	    		locationInfo.setInsertTimeHis(new Date());
-	    		locationInfo.setUpdateTimehis(new Date());
+	    		locationInfo.setInsertTimeForHis(new Date());
+	    		locationInfo.setOperateTimeForHis(new Date());
 	    		locationInfo.setValidStatus("1");
 	    		sinoMapService.saveLocationInfo(locationInfo);
 	    	}

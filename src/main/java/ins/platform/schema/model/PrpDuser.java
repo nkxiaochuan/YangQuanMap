@@ -7,6 +7,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,6 +31,7 @@ public class PrpDuser implements Serializable {
 	private Date operateTimeForHis;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "USERCODE", unique = true, nullable = false, length = 10)
 	public String getUserCode() {
 		return this.userCode;
@@ -54,7 +57,7 @@ public class PrpDuser implements Serializable {
 	public void setRoleCode(String roleCode) {
 		this.roleCode = roleCode;
 	}
-	@Column(name = "USERNAME", length = 30)
+	@Column(name = "USERNAME", length = 30, nullable = false)
 	public String getUserName() {
 		return this.userName;
 	}
@@ -63,7 +66,7 @@ public class PrpDuser implements Serializable {
 		this.userName = userName;
 	}
 
-	@Column(name = "PASSWORD", length = 128)
+	@Column(name = "PASSWORD", length = 128, nullable = false)
 	public String getPassword() {
 		return this.password;
 	}

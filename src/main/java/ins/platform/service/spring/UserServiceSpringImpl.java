@@ -112,8 +112,11 @@ public class UserServiceSpringImpl extends
 		save(user);
 	}
 
-	public PrpDuser findUserByUserCode(String userCode) {
-		return ((PrpDuser) super.get(userCode));
+	public PrpDuser findUserByUserName(String userName) {
+		QueryRule queryRule = QueryRule.getInstance();
+		queryRule.addSql(" 1=1");
+		queryRule.addEqual("userName", userName);
+		return super.findUnique(queryRule);
 	}
 
 /*	public String getComCodeByUserCode(String userCode) {
@@ -265,6 +268,11 @@ public class UserServiceSpringImpl extends
 	}
 
 	public String getComCodeByUserCode(String paramString) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public PrpDuser findUserByUserCode(String paramString) {
 		// TODO Auto-generated method stub
 		return null;
 	}

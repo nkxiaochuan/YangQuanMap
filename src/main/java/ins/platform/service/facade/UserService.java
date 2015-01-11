@@ -8,6 +8,7 @@ import ins.platform.schema.vo.PrpDuserVo;
 import java.util.List;
 
 public abstract interface UserService {
+	public abstract PrpDuser findUserByUserName(String paramString);
 	public abstract PrpDuser findUserByUserCode(String paramString);
 
 	public abstract PrpDuser getUser(String paramString);

@@ -18,6 +18,8 @@ public class PrpMenu implements Serializable {
 	private String menuName;
 	private String menuType;
 	private String menuUrl;
+	private String parentMenuCode;
+	private String menuLevel;
 	private String info;
 	private String menuOrder;
 	private Date insertTimeForHis;
@@ -52,6 +54,20 @@ public class PrpMenu implements Serializable {
 	}
 	public void setMenuUrl(String menuUrl) {
 		this.menuUrl = menuUrl;
+	}
+	@Column(name="PARENTMENUCODE")
+	public String getParentMenuCode() {
+		return parentMenuCode;
+	}
+	public void setParentMenuCode(String parentMenuCode) {
+		this.parentMenuCode = parentMenuCode;
+	}
+	@Column(name="MENULEVEL")
+	public String getMenuLevel() {
+		return menuLevel;
+	}
+	public void setMenuLevel(String menuLevel) {
+		this.menuLevel = menuLevel;
 	}
 	@Column(name="INFO")
 	public String getInfo() {

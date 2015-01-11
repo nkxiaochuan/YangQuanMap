@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
-<title>云端服务系统</title>
+<title>邮政地图查询系统</title>
 
 <link href="common/dwz/themes/azure/style.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="common/dwz/themes/css/core.css" rel="stylesheet" type="text/css" media="screen" />
@@ -81,24 +81,8 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 	<div id="layout">
 		<div id="header">
 			<div class="headerNav">
-				<a class="logo" href="http://www.jsptz.com"><fmt:message key="label.common.main.codechecksystem" /></a>
+				<a class="logo"></a>
 				<ul class="nav">
-					<li><a href="${ctx }/index.do?request_locale=zh_CN" target="_parent">简体中文</a>
-					</li>
-					<li><a href="${ctx }/index.do?request_locale=zh_TW" target="_parent">繁體中文</a>
-					</li>
-					<li><a href="${ctx }/index.do?request_locale=en_US" target="_parent">English</a>
-					</li>
-					<li><a href="${ctx }/license/query.do" target="dialog" fresh="false" width="550" height="400">
-					<c:choose>
-					<c:when test="${isChecked}">
-						<fmt:message key="label.platform.license.checklicensesucceed" />
-					</c:when>
-					<c:otherwise>
-						<fmt:message key="label.platform.license.checklicensefailed" />
-					</c:otherwise>
-					</c:choose>
-					</a></li>
 					<li><a href="${ctx }/user/prepareChangePassword.do" target="dialog" width="600"><fmt:message key="label.common.main.changepassword" /></a></li>
 					<li><a href="${ctx}/user/logout.do" target="_parent"><fmt:message key="label.common.main.exit" /></a></li>
 				</ul>

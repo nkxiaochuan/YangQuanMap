@@ -59,7 +59,7 @@ public class LoginAction extends Struts2Action {
 
 	public String login(){
 //		CacheService cache = CacheManager.getInstance("config");
-		PrpDuser user = userService.findUserByUserCode(j_username);
+		PrpDuser user = userService.findUserByUserName(j_username);
 		String enpass = EncryptUtils.md5(j_password);
 		if (null != user&&enpass.equals(user.getPassword())) {
 			getSession().setAttribute("user", user);

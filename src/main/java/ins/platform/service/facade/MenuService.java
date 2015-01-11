@@ -2,8 +2,10 @@ package ins.platform.service.facade;
 
 import ins.platform.schema.model.PrpMenu;
 
-public interface MenuService {
+import java.util.List;
 
+public interface MenuService {
+	public abstract List<PrpMenu> getMenuList(String menuString);
 	public abstract void addMenu(PrpMenu menu);
 	public abstract void updateMenu(PrpMenu menu);
 	public abstract void deleteMenuByMenuCode(String menuCode);

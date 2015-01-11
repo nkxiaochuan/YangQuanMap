@@ -2,12 +2,17 @@ package ins.map.web;
 
 import ins.framework.web.Struts2Action;
 import ins.map.schema.model.LocationInfo;
+import ins.map.schema.model.PrpAreaInfo;
+import ins.map.service.facade.LocationInfoService;
 import ins.map.service.facade.SinoMapService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import cn.com.sinosoft.map.model.pojo.LocationInfoVo;
 
@@ -17,14 +22,16 @@ public class SinoMapAction extends Struts2Action {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static Logger log = Logger.getLogger("SinoMapAction.class");
 	private LocationInfo locationInfo;
 	private SinoMapService sinoMapService;
+	private LocationInfoService locationInfoService;
 	public String getXYdata(){
 		List<LocationInfo> locationInfos = new ArrayList(0);
 		List<LocationInfoVo> locationInfoVos = new ArrayList(0);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
-			locationInfos = sinoMapService.findLocationInfos();
+			locationInfos = locationInfoService.findLocationInfos();
 			Calendar c = Calendar.getInstance();
 			for(LocationInfo l : locationInfos){
 				LocationInfoVo vo = new LocationInfoVo();
@@ -41,7 +48,7 @@ public class SinoMapAction extends Struts2Action {
 				locationInfoVos.add(vo);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			log.error(e);
 			e.printStackTrace();
 		}
 		writeJSONData(locationInfoVos, "lngX","latY","userName","phoneNumber","updateTimehis","isValid");
@@ -50,7 +57,6 @@ public class SinoMapAction extends Struts2Action {
 
 	//놓迦뺏뒈暠女충
 	public String prepareMap(){
-		System.out.println("test");
 		String lanX = (String) getRequest().getParameter("lanX");
 		String latY = (String) getRequest().getParameter("latY");
 		getRequest().setAttribute("webTime", "10000");
@@ -58,6 +64,54 @@ public class SinoMapAction extends Struts2Action {
 		getRequest().setAttribute("latY", latY);
 		return SUCCESS;
 	}
+	
+	public String addLocationInfo() {
+		try {
+			locationInfoService.addLocationInfo(locationInfo);
+			return SUCCESS;
+		}catch(Exception e) {
+			log.error(e);
+			e.printStackTrace();
+		}
+		return ERROR;
+	}
+	
+	public String updateLocationInfo() {
+		try {
+			locationInfoService.updateLocationInfoById(locationInfo);
+			return SUCCESS;
+		}catch(Exception e) {
+			log.error(e);
+			e.printStackTrace();
+		}
+		return ERROR;
+	}
+	public String deleteLocationInfo() {
+		try {
+			locationInfoService.deleteLocationInfo(locationInfo);
+			return SUCCESS;
+		}catch(Exception e) {
+			log.error(e);
+			e.printStackTrace();
+		}
+		return ERROR;
+	}
+	/*public static void main(String args) {
+		SinoMapAction action = new SinoMapAction();
+		LocationInfo info = new LocationInfo();
+		info.setCategory("1");
+		info.setInformation("댕소봤가가가가가가가가가가가가가가가가가가가가가가가가가가가가가");
+		info.setInsertTimeForHis(new Date());
+		info.setLatY("1232.232");
+		info.setLngX("12343");
+		info.setName("aaaa");
+		info.setOperateTimeForHis(new Date());
+		PrpAreaInfo areaInfo = new PrpAreaInfo();
+		areaInfo.setComCode("admin");
+		info.setPrpAreaInfo(areaInfo);
+		action.setLocationInfo(info);
+		action.addLocationInfo();
+	}*/
 	public void setLocationInfo(LocationInfo locationInfo) {
 		this.locationInfo = locationInfo;
 	}
@@ -72,6 +126,14 @@ public class SinoMapAction extends Struts2Action {
 
 	public SinoMapService getSinoMapService() {
 		return sinoMapService;
+	}
+
+	public LocationInfoService getLocationInfoService() {
+		return locationInfoService;
+	}
+
+	public void setLocationInfoService(LocationInfoService locationInfoService) {
+		this.locationInfoService = locationInfoService;
 	}
 
 }

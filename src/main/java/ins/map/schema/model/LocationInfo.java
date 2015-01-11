@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,26 +30,28 @@ public class LocationInfo implements Serializable{
 	private String name;
 	private String category;
 	private String information;
+	private String extension;
 	private Date insertTimeForHis;
 	private Date operateTimeForHis;
 	private String validStatus;
 	
 	@Id
-	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "ID", unique = true, nullable = false, length = 32)
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	@Column(name="LNGX")
+	@Column(name="LNGX", nullable = false)
 	public String getLngX() {
 		return lngX;
 	}
 	public void setLngX(String lngX) {
 		this.lngX = lngX;
 	}
-	@Column(name="LATY")
+	@Column(name="LATY", nullable = false)
 	public String getLatY() {
 		return latY;
 	}
@@ -82,6 +86,13 @@ public class LocationInfo implements Serializable{
 	}
 	public void setInformation(String information) {
 		this.information = information;
+	}
+	@Column(name="EXTENSION")
+	public String getExtension() {
+		return extension;
+	}
+	public void setExtension(String extension) {
+		this.extension = extension;
 	}
 	@Temporal(TemporalType.DATE)
 	@Column(name = "INSERTTIMEFORHIS",insertable = false, updatable = false)
