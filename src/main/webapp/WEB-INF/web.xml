@@ -128,7 +128,7 @@
 		cn.com.sinosoft.mobileplat.common.util.InitServlet
 		</servlet-class>
 		<load-on-startup>3</load-on-startup>
-	</servlet>
+	</servlet><!--
     
     <servlet>
  		<servlet-name>LocationUploadServlet</servlet-name>
@@ -140,7 +140,7 @@
  	</servlet-mapping>
  	
  	
-	<welcome-file-list>
+	--><welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
 
