@@ -63,9 +63,7 @@ public class LoginAction extends Struts2Action {
 		String enpass = EncryptUtils.md5(j_password);
 		if (null != user&&enpass.equals(user.getPassword())) {
 			getSession().setAttribute("user", user);
-			getSession().setAttribute("userCode", j_username);
 			getRequest().setAttribute("login", "1");
-			getRequest().setAttribute("webTime", "10000");
 			return "login";
 		}
 		getRequest().setAttribute("login", "0");

@@ -112,10 +112,10 @@ public class UserServiceSpringImpl extends
 		save(user);
 	}
 
-	public PrpDuser findUserByUserName(String userName) {
+	public PrpDuser findUserByUserName(String userCode) {
 		QueryRule queryRule = QueryRule.getInstance();
 		queryRule.addSql(" 1=1");
-		queryRule.addEqual("userName", userName);
+		queryRule.addEqual("userCode", userCode);
 		return super.findUnique(queryRule);
 	}
 
