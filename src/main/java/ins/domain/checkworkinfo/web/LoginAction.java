@@ -62,7 +62,8 @@ public class LoginAction extends Struts2Action {
 		PrpDuser user = userService.findUserByUserName(j_username);
 		String enpass = EncryptUtils.md5(j_password);
 		if (null != user&&enpass.equals(user.getPassword())) {
-			getSession().setAttribute("user", user);
+			getSession().setAttribute("userMsg", user);
+			getSession().setAttribute("userCode", user.getUserCode());
 			getRequest().setAttribute("login", "1");
 			return "login";
 		}

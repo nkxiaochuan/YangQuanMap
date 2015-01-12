@@ -1,10 +1,16 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#container{height:100%}  
+</style>
 <div id="initMapDiv" class="navTab-panel tabsPageContent layoutBox" style='height: 476px;'></div> 
 <input id="lanX" type="hidden" value="${lanX}">
 <input id="latY" type="hidden" value="${latY}">
 <script type="text/javascript"> 
-var map = new BMap.Map("initMapDiv");          // 创建地图实例  
-map.enableScrollWheelZoom();    //启用滚轮放大缩小，默认禁用
-map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+var map = new BMap.Map("initMapDiv");          // 麓麓陆篓碌脴脥录脢碌脌媒  
+map.enableScrollWheelZoom();    //脝么脫脙鹿枚脗脰路脜麓贸脣玫脨隆拢卢脛卢脠脧陆没脫脙
+map.enableContinuousZoom();    //脝么脫脙碌脴脥录鹿脽脨脭脥脧脳搂拢卢脛卢脠脧陆没脫脙
 map.addControl(new BMap.NavigationControl());
 map.addControl(new BMap.NavigationControl());    
 map.addControl(new BMap.ScaleControl());    
@@ -28,10 +34,10 @@ function getXYdata(){
 			 }
 		   },
 		   failure: function(res){
-			   alert("失败");
+			   alert("脢搂掳脺");
 		   },
 		   statusCode: {302: function() {
-			    alert("登录超时，请重新登录！");
+			    alert("碌脟脗录鲁卢脢卤拢卢脟毛脰脴脨脗碌脟脗录拢隆");
 			    location.href="http://localhost:8001/sinoMap";
 			  }
 		   }
@@ -48,16 +54,16 @@ function GPStranslate(obj){
     var marker = new BMap.Marker(pt);
 	    map.addOverlay(marker);
 	    var label = new BMap.Label(msg,{offset:new BMap.Size(-30,-20)});
-	    label.setTitle("最后定位时间：" + date);
+	    label.setTitle("脳卯潞贸露篓脦禄脢卤录盲拢潞" + date);
 	    if(isValid=='0'){
 	    	label.setStyle({backgroundColor:"#CCCCCC"});
 	    }else{
 	    	label.setStyle({color:"#9933FF",fontWeight:"bolder",backgroundColor:"#CCFF99"});
     	    }
-	    marker.setLabel(label); //添加百度label
+	    marker.setLabel(label); //脤铆录脫掳脵露脠label
 	    
 }
-//定时刷新坐标
+//露篓脢卤脣垄脨脗脳酶卤锚
 setInterval(function(){
 	map.clearOverlays();
 	getXYdata();

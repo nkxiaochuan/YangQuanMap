@@ -56,7 +56,7 @@ public class SinoMapAction extends Struts2Action {
 		return null;
 	}
 
-	//³õÊ¼»¯µØÍ¼Ò³Ãæ
+	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í¼Ò³ï¿½ï¿½
 	public String prepareMap(){
 		String lanX = (String) getRequest().getParameter("lanX");
 		String latY = (String) getRequest().getParameter("latY");
@@ -114,7 +114,7 @@ public class SinoMapAction extends Struts2Action {
 		SinoMapAction action = new SinoMapAction();
 		LocationInfo info = new LocationInfo();
 		info.setCategory("1");
-		info.setInformation("´ó¼ÒºÃ°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡");
+		info.setInformation("ï¿½ï¿½ÒºÃ°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		info.setInsertTimeForHis(new Date());
 		info.setLatY("1232.232");
 		info.setLngX("12343");

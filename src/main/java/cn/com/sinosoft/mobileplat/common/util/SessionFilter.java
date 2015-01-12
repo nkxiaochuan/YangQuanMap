@@ -25,7 +25,7 @@ public class SessionFilter implements Filter {
 
 //	private static Logger logger = Logger.getLogger(SessionFilter.class);
 	private static CacheService sessionCache;
-	private static CacheService UserManager = CacheManager.getInstance("UserManager");//总部出单用户Cache
+	private static CacheService UserManager = CacheManager.getInstance("UserManager");
 	private Map<String, String> ignoreKeys;
 	private UserService userService;
 	public UserService getUserService() {
@@ -74,7 +74,7 @@ public class SessionFilter implements Filter {
 					PrpDuser prpDuser = null;
 //					String ZBCDComCode = (String) session.getAttribute("ZBCDComCode");//总部出单机构代码
 					prpDuser = (PrpDuser) session
-							.getAttribute("user");
+							.getAttribute("userMsg");
 					String cacheKey = UserManager.generateCacheKey(userCode);
 //					UserDt zbcdUser = (UserDt)ZBCDUserDtManager.getCache(cacheKey);
 					if (null != userCode && !"".equals(userCode)
