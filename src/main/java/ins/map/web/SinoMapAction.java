@@ -24,6 +24,7 @@ public class SinoMapAction extends Struts2Action {
 	private static final long serialVersionUID = 1L;
 	private static Logger log = Logger.getLogger("SinoMapAction.class");
 	private LocationInfo locationInfo;
+	private List<LocationInfo> locationInfoList;
 	private SinoMapService sinoMapService;
 	private LocationInfoService locationInfoService;
 	public String getXYdata(){
@@ -65,8 +66,21 @@ public class SinoMapAction extends Struts2Action {
 		return SUCCESS;
 	}
 	
+	public String prepareAddLocationInfo(){
+		return SUCCESS;
+	}
+	
+	public String getLocationInfos() {
+		locationInfoList = locationInfoService.findLocationInfos();
+		return SUCCESS;
+	}
+	
 	public String addLocationInfo() {
 		try {
+			System.out.println(locationInfo.getLatY());
+			PrpAreaInfo info = new PrpAreaInfo();
+			info.setComCode("admin");
+			locationInfo.setPrpAreaInfo(info);
 			locationInfoService.addLocationInfo(locationInfo);
 			return SUCCESS;
 		}catch(Exception e) {
@@ -135,5 +149,11 @@ public class SinoMapAction extends Struts2Action {
 	public void setLocationInfoService(LocationInfoService locationInfoService) {
 		this.locationInfoService = locationInfoService;
 	}
+	public List<LocationInfo> getLocationInfoList() {
+		return locationInfoList;
+	}
 
+	public void setLocationInfoList(List<LocationInfo> locationInfoList) {
+		this.locationInfoList = locationInfoList;
+	}
 }

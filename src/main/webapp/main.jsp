@@ -83,8 +83,8 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 			<div class="headerNav">
 				<a class="logo"></a>
 				<ul class="nav">
-					<li><a href="${ctx }/user/prepareChangePassword.do" target="dialog" width="600"><fmt:message key="label.common.main.changepassword" /></a></li>
-					<li><a href="${ctx}/user/logout.do" target="_parent"><fmt:message key="label.common.main.exit" /></a></li>
+					<li><a href="${ctx}/loginAction/prepareChangePassword.do" target="dialog" width="600"><fmt:message key="label.common.main.changepassword" /></a></li>
+					<li><a href="${ctx}/loginAction/logout.do" target="_parent"><fmt:message key="label.common.main.exit" /></a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div><fmt:message key="label.common.main.blue" /></div></li>
@@ -131,18 +131,18 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 					</div> 
 					  
 					<!-- 可以添加一个权限可 -->
-					<!--  <div class="accordionHeader"> 
+					  <div class="accordionHeader"> 
 						<h2>
 							<span>Folder</span><fmt:message key="label.domain.main.systemmanage" />
 						</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-						  <li><a href="${ctx}/user/prepareQuery.do" target="navTab" ><fmt:message key="label.domain.main.usermanage" /></a></li>									 
+						  <li><a href="${ctx}/sinoMapAction/prepareAddLocationInfo.do" target="navTab" ><fmt:message key="label.domain.main.usermanage" /></a></li>									 
 		                  <li><a href="${ctx}/quartz/prepareQuery.do" target="navTab"><fmt:message key="label.domain.main.timeconfiguration" /></a></li>
 	                   </ul>
 					</div>
-					-->
+					
 				</div>
 			</div>
 		</div>

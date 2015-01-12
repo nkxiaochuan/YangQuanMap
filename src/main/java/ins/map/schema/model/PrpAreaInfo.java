@@ -31,7 +31,7 @@ public class PrpAreaInfo implements Serializable{
 	private String validStatus;
 	
 	@Id
-	@Column(name = "COMCODE")
+	@Column(name = "COMCODE",unique = true, nullable = false, length = 8)
 	public String getComCode() {
 		return comCode;
 	}

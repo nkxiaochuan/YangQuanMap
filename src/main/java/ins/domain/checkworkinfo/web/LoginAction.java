@@ -70,5 +70,10 @@ public class LoginAction extends Struts2Action {
 		getRequest().setAttribute("login_em", "用户名密码不匹配！");
 		return "error";
 	}
+	
+	public String logout() {    
+        getSession().removeAttribute("user");  
+        return SUCCESS;  
+    }
 
 }
