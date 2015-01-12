@@ -121,14 +121,39 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 					</div>
 					<div class="accordionContent">
 							<ul class="tree treeFolder">
-								 <li><a href="${ctx}/sinoMapAction/prepareMap.do?lanX=113.60747&latY=37.853347" target="navTab" fresh="false">阳泉市邮政城区</a></li>
-								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab" rel="234">阳泉市矿区</a></li>
-								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab" rel="deviceBound">区域管理</a></li>
-								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab" rel="configInfo">操作员管理</a></li>
-								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="dialog" rel="configInfo">备用</a></li>
-		                  		
+								<li>
+									<a href="#">我的区域列表</a>
+									<ul>
+										<li>
+											<a
+												href="${ctx}/sinoMapAction/prepareMap.do?lanX=113.60747&latY=37.853347"
+												target="navTab" fresh="false">阳泉市邮政城区</a>
+										</li>
+										<li>
+											<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
+												rel="234">阳泉市矿区</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="#">数据维护</a>
+									<ul>
+										<li>
+											<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
+												rel="deviceBound">区域管理</a>
+										</li>
+										<li>
+											<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
+												rel="configInfo">操作员管理</a>
+										</li>
+										<li>
+											<a href="${ctx}/sinoMapAction/prepareMap.do" target="dialog"
+												rel="configInfo">备用</a>
+										</li>
+									</ul>
+								</li>
 							</ul>
-					</div> 
+						</div> 
 					  
 					<!-- 可以添加一个权限可 -->
 					  <div class="accordionHeader"> 
