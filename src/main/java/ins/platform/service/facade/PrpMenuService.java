@@ -4,7 +4,7 @@ import ins.platform.schema.model.PrpMenu;
 
 import java.util.List;
 
-public interface MenuService {
+public interface PrpMenuService {
 	public abstract List<PrpMenu> getMenuList(String menuString);
 	public abstract void addMenu(PrpMenu menu);
 	public abstract void updateMenu(PrpMenu menu);

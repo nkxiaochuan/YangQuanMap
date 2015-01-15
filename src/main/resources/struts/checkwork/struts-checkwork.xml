@@ -13,5 +13,7 @@
 		<action name="logout" class="loginAction" method="logout">
 			<result name="success">/index.jsp</result>
 		</action>
+		<action name="changePassword" class="loginAction" method="changePassword">
+		</action>
 	</package>
 </struts>

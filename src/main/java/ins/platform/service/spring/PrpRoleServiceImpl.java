@@ -31,4 +31,10 @@ public class PrpRoleServiceImpl extends GenericDaoHibernate<PrpRole, String> imp
 		return this.find(queryRule);
 	}
 
+	public PrpRole getRoleByRoleCode(String roleCode) {
+		QueryRule queryRule = QueryRule.getInstance();
+		queryRule.addEqual("roleCode",roleCode);
+		return this.findUnique(queryRule);
+	}
+
 }

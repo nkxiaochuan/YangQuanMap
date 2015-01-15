@@ -83,7 +83,7 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 			<div class="headerNav">
 				<a class="logo"></a>
 				<ul class="nav">
-					<li><a href="${ctx}/loginAction/prepareChangePassword.do" target="dialog" width="600"><fmt:message key="label.common.main.changepassword" /></a></li>
+					<li><a href="pages/platform/user/ChangePassword.jsp" target="dialog" width="500"><fmt:message key="label.common.main.changepassword" /></a></li>
 					<li><a href="${ctx}/loginAction/logout.do" target="_parent"><fmt:message key="label.common.main.exit" /></a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
@@ -121,12 +121,15 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 					</div>
 					<div class="accordionContent">
 							<ul class="tree treeFolder">
-								 <li><a href="${ctx}/sinoMapAction/prepareMap.do?lanX=113.60747&latY=37.853347" target="navTab" rel="initMap">阳泉市邮政城区</a></li>
+								 <%--<li><a href="${ctx}/sinoMapAction/prepareMap.do?lanX=113.60747&latY=37.853347" target="navTab" rel="initMap">阳泉市邮政城区</a></li>
 								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab" rel="initMap">阳泉市矿区</a></li>
 								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab" rel="deviceBound">区域管理</a></li>
 								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab" rel="configInfo">操作员管理</a></li>
 								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="dialog" rel="configInfo">备用</a></li>
-		                  		
+		                  		--%>
+		                  		<s:iterator value="menuList"  var="menu"><s:property value="menucode"/><s:property/>
+		                  			<li><a href='${ctx}<s:property value="menu.menuUrl"/>' target="<s:property value='menu.menuType'/>"><s:property value="menu.menuName"/></a></li>
+		                  		</s:iterator>
 							</ul>
 					</div> 
 					  

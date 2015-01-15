@@ -1,14 +1,14 @@
 package ins.platform.service.spring;
 
-import java.util.List;
-
 import ins.framework.common.QueryRule;
 import ins.framework.dao.GenericDaoHibernate;
 import ins.platform.schema.model.PrpMenu;
-import ins.platform.service.facade.MenuService;
+import ins.platform.service.facade.PrpMenuService;
+
+import java.util.List;
 
 public class PrpMenuServiceImpl extends GenericDaoHibernate<PrpMenu, String> implements
-		MenuService {
+		PrpMenuService {
 
 	public void addMenu(PrpMenu menu) {
 		this.save(menu);
@@ -26,8 +26,11 @@ public class PrpMenuServiceImpl extends GenericDaoHibernate<PrpMenu, String> imp
 		String menus = menuString.trim();
 		String[] menuArray = menus.split(",");
 		QueryRule queryRule = QueryRule.getInstance();
-		queryRule.addSql(" 1=1");
-		queryRule.addIn("menuCode", menuArray);
-		return this.find(queryRule);
+		//queryRule.addSql(" 1=1");
+	//	queryRule.addSql(" menucode in (" +menuString+")");
+	//	queryRule.addIn("menuCode", menuArray);
+		String sql = "select * from prpmenu where menucode in (" +menuString+" )";
+		List<PrpMenu> menuList = this.findBySql(sql, null);
+		return menuList;
 	}
 }
