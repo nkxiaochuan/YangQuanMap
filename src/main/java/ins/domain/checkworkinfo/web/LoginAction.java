@@ -66,11 +66,13 @@ public class LoginAction extends Struts2Action {
 				user.setPassword(newPassword);
 				userService.update(user);			
 		        renderJSON(changePasswordSuccess());
+			}else {
+				renderJSON(changePasswordFeilure("用户名密码不匹配！"));
 			}
 		}catch(Exception e) {
 			log.error(e);
 			e.printStackTrace();
-			renderJSON(changePasswordFeilure());
+			renderJSON(changePasswordFeilure("操作失败"));
 		}
 		return null;
 	}
@@ -85,10 +87,10 @@ public class LoginAction extends Struts2Action {
         return jsonObject.toString();
 	}
 	
-	private String changePasswordFeilure() {
+	private String changePasswordFeilure(String feilureReason) {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("statusCode", "300");
-        jsonObject.put("message", "操作失败");
+        jsonObject.put("message", feilureReason);
         return jsonObject.toString();
 	}
 	
