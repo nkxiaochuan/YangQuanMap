@@ -11,4 +11,5 @@ public interface PrpRoleService {
 	public abstract void deleteRoleByRoleCode(String RoleCode);
 	public abstract void updateRole(PrpRole role);
 	public abstract List<PrpRole> findRoles();
+	public PrpRole findRlolesByRoleCode(String roleCode);
 }
