@@ -140,7 +140,7 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 										<c:forEach var="prpAreaInfo" items="${prpAreaInfos}">
 											<li>
 												<a href="${ctx}/sinoMapAction/prepareMap.do?areaID=${prpAreaInfo.comCode}"
-													target="navTab" rel="12">${prpAreaInfo.comName}</a>
+													target="navTab" rel="areaList">${prpAreaInfo.comName}</a>
 											</li>
 										</c:forEach>
 									</ul>
@@ -151,11 +151,11 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 										<ul>
 											<li>
 												<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
-													rel="deviceBound">区域管理</a>
+													rel="areaManage">区域管理</a>
 											</li>
 											<li>
 												<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
-													rel="configInfo">人员管理</a>
+													rel="userManage">人员管理</a>
 											</li>
 										</ul>
 									</li>
