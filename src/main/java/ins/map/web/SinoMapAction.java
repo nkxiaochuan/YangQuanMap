@@ -52,16 +52,16 @@ public class SinoMapAction extends Struts2Action {
 			log.error(e);
 			e.printStackTrace();
 		}
-		System.out.println(">>>>æŸ¥è¯¢åæ ‡æƒ…å†µ");
+		System.out.println(">>>>²éÑ¯×ø±êÇé¿ö");
 		writeJSONData(locationInfoVos, "lngX","latY","userName","phoneNumber","updateTimehis","isValid");
 		return null;
 	}
 
-	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í¼Ò³ï¿½ï¿½
+	//???????????
 	public String prepareMap(){
 		getRequest().setAttribute("lanX", "113.60747");
 		getRequest().setAttribute("latY", "37.853347");
-		System.out.println(">>>>åˆå§‹åŒ–åœ°å›¾é¡µé¢");
+		System.out.println(">>>>³õÊ¼»¯µØÍ¼Ò³Ãæ");
 		return SUCCESS;
 	}
 	
@@ -113,7 +113,7 @@ public class SinoMapAction extends Struts2Action {
 		SinoMapAction action = new SinoMapAction();
 		LocationInfo info = new LocationInfo();
 		info.setCategory("1");
-		info.setInformation("ï¿½ï¿½ÒºÃ°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		info.setInformation("???e?????????????????????????????????????????????????????????");
 		info.setInsertTimeForHis(new Date());
 		info.setLatY("1232.232");
 		info.setLngX("12343");

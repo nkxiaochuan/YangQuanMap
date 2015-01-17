@@ -1,24 +1,24 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <div class="pageContent">
-	<form method="post" action="${ctx}/user/changePassword.do" class="required-validate pageForm"
+	<form method="post" action="${ctx}/loginAction/changePassword.do" class="required-validate pageForm"
 		onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<%-- callbackType为回调方法入口，当callbackType="closeCurrent"时会关闭当前tab,callbackType="forward"时需要forwardUrl值   --%>
 		<input type="hidden" name="callbackType" value="closeCurrent" />
 		<div class="pageFormContent" layouth="57">
 			<p>
-				<label> <s:text name="form.pwd" /><fmt:message key="label.platform.user.usercode"/></label> ${prpDuser.userCode}<input type="hidden" name="prpDuser.userCode"
-					value="${prpDuser.userCode}" />
+				<label> <fmt:message key="label.platform.user.usercode"/></label> ${user.userCode}<input type="hidden" name="j_username"
+					value="${user.userCode}" />
 			</p>
 			<p>
-				<label> <s:text name="form.pwd" /> <fmt:message key="label.platform.user.oldpassword"/></label> <input type="password" name="prpDuser.password" class="required" />
+				<label>  <fmt:message key="label.platform.user.oldpassword"/></label> <input type="password" name="j_password" class="required" />
 			</p>
 			<p>
-				<label> <s:text name="form.newPwd" /><fmt:message key="label.platform.user.newpassword"/> </label> <input type="password" id="newPassword" name="newPassword"
+				<label> <fmt:message key="label.platform.user.newpassword"/> </label> <input type="password" id="newPassword" name="newPassword"
 					class="required" />
 			</p>
 			<p>
-				<label> <s:text name="form.confirmPwd" /><fmt:message key="label.platform.user.confirmpassword"/>  </label> <input type="password" name="newPassword2" class="required"
+				<label> <fmt:message key="label.platform.user.confirmpassword"/>  </label> <input type="password" name="newPassword2" class="required"
 					equalTo="#newPassword" />
 			</p>
 		</div>

@@ -8,10 +8,11 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
 	default-autowire="byName" default-lazy-init="true">
  
-	<!-- 员工管理 --><!--
+ 	<bean id="sinoMapBaseAction" class="ins.platform.common.web.SinoMapBaseAction" scope="prototype"/>
+	<!-- 员工管理 -->
 	<bean id="userAction" class="ins.platform.web.UserAction"
 		scope="prototype" />
-
+<!--
 	 机构管理 
 	<bean id="companyAction" class="ins.platform.web.CompanyAction"
 		scope="prototype" />

@@ -13,7 +13,7 @@ import ins.framework.cache.CacheManager;
 import ins.framework.cache.CacheService;
 import ins.framework.common.EncryptUtils;
 /**
- * ï¿½ï¿½Â¼
+ * ???
  * @author
  *
  */
@@ -99,18 +99,18 @@ public class LoginAction extends Struts2Action {
 			getRequest().setAttribute("login", "1");
 			getRequest().setAttribute("roleType", "1");
 			getRequest().setAttribute("areaID", "111");
-			getRequest().setAttribute("areaName", "é˜³æ³‰æµ‹è¯•åŒºåŸŸèœå•");
-			//åˆå§‹åŒ–èœå•  gebin
+			getRequest().setAttribute("areaName", "ÑôÈª²âÊÔÇøÓò²Ëµ¥");
+			//³õÊ¼»¯²Ëµ¥  gebin
 //			PrpRole prpRole = prpRoleService.findRlolesByRoleCode(user.getRoleCode());
 //			List<PrpMenu> allMenus = menuService.getMenuList(prpRole.getMenuCodeArray());
 //			for(PrpMenu menu:allMenus){
 //				
 //			}
-			//åˆå§‹åŒ–èœå•  end
+			//³õÊ¼»¯²Ëµ¥  end
 			return "login";
 		}
 		getRequest().setAttribute("login", "0");
-		getRequest().setAttribute("login_em", "ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»Æ¥ï¿½ä£¡");
+		getRequest().setAttribute("login_em", "????????????");
 		return "error";
 	}
 	

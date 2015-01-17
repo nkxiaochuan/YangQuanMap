@@ -2,18 +2,61 @@ package ins.platform.web;
 
 import ins.framework.common.Page;
 import ins.framework.common.QueryRule;
-import ins.framework.web.Struts2Action;
+import ins.map.schema.model.PrpAreaInfo;
+import ins.map.service.facade.PrpAreaInfoService;
+import ins.platform.common.web.SinoMapBaseAction;
 import ins.platform.schema.model.PrpDuser;
+import ins.platform.schema.model.PrpRole;
+import ins.platform.service.facade.PrpRoleService;
 import ins.platform.service.facade.UserService;
 
+import java.util.Date;
 import java.util.List;
 
-public class UserAction extends Struts2Action {
+import net.sf.json.JSONObject;
+
+public class UserAction extends SinoMapBaseAction {
 	private UserService userService;
+	private PrpRoleService prpRoleService;
+	private PrpAreaInfoService prpAreaInfoService;
 	private PrpDuser prpDuser;
 	private String userCode;
 	private String newPassword;
 	private List<PrpDuser> userList;
+	private List<PrpRole> roleList;
+	private List<PrpAreaInfo> areaInfoList;
+
+	public PrpAreaInfoService getPrpAreaInfoService() {
+		return prpAreaInfoService;
+	}
+
+	public void setPrpAreaInfoService(PrpAreaInfoService prpAreaInfoService) {
+		this.prpAreaInfoService = prpAreaInfoService;
+	}
+
+	public List<PrpAreaInfo> getAreaInfoList() {
+		return areaInfoList;
+	}
+
+	public void setAreaInfoList(List<PrpAreaInfo> areaInfoList) {
+		this.areaInfoList = areaInfoList;
+	}
+
+	public PrpRoleService getPrpRoleService() {
+		return prpRoleService;
+	}
+
+	public void setPrpRoleService(PrpRoleService prpRoleService) {
+		this.prpRoleService = prpRoleService;
+	}
+
+	public List<PrpRole> getRoleList() {
+		return roleList;
+	}
+
+	public void setRoleList(List<PrpRole> roleList) {
+		this.roleList = roleList;
+	}
 
 	public List<PrpDuser> getUserList() {
 		return userList;
@@ -59,14 +102,14 @@ public class UserAction extends Struts2Action {
 
 	public String query() {
 		QueryRule queryRule = QueryRule.getInstance();
-		if ((this.prpDuser.getUserCode() != null)
+		/*if ((this.prpDuser.getUserCode() != null)
 				&& (!("".equals(this.prpDuser.getUserCode())))) {
 			queryRule.addEqual("userCode", this.prpDuser.getUserCode());
 		}
 		if ((this.prpDuser.getUserName() != null)
 				&& (!("".equals(this.prpDuser.getUserName())))) {
 			queryRule.addLike("userName", this.prpDuser.getUserName());
-		}
+		}*/
 
 		Page page = this.userService.findUser(queryRule, this.pageNo,
 				this.pageSize);
@@ -89,12 +132,31 @@ public class UserAction extends Struts2Action {
 	}
 
 	public String add() {
-		this.userService.save(this.prpDuser);
-
-		return "success";
+		try {
+			prpDuser.setInsertTimeForHis(new Date());
+			prpDuser.setOperateTimeForHis(new Date());
+			this.userService.save(this.prpDuser);
+			renderJSON(successClose("添加成功"));
+			return null;
+		}catch(Exception e) {
+			logger.equals(e);
+			e.printStackTrace();
+			renderJSON(feilure("添加不成功！"));
+			return null;
+		}
 	}
 
 	public String prepareAdd() {
+		roleList = (List<PrpRole>) getCache().get("roleList");
+		if(roleList == null) {
+			roleList = prpRoleService.findRoles();
+			getCache().put("roleList", roleList);
+		}
+		areaInfoList = (List<PrpAreaInfo>) getCache().get("areaInfoList");
+		if(areaInfoList == null) {
+			areaInfoList = prpAreaInfoService.findAreaInfos();
+			getCache().put("areaInfoList", areaInfoList);
+		}
 		return "success";
 	}
 

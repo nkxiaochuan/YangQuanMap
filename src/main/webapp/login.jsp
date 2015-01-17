@@ -101,8 +101,8 @@ function validateLogin(){
 			<div class="login_banner"><img src="common/dwz/themes/default/images/login_banner.jpg" /></div>
 			<div class="login_main">
 				<ul class="helpList">
-					<li><a href="javascript:toggleBox('forgotPwd')">Forgot Password?</a></li>
-					<li id="forgotPwd" style="background: none; display: none">
+					<%--<li><a href="javascript:toggleBox('forgotPwd')">Forgot Password?</a></li>
+					--%><li id="forgotPwd" style="background: none; display: none">
 					<form method="post" action="" onsubmit="return validateCallback(this);">
 						<p>
 							<label>用户名：</label>
@@ -113,11 +113,6 @@ function validateLogin(){
 					</form>
 					</li>
 				</ul>
-
-				<div class="login_inner">
-					<p>用户名：默认admin</p>
-					<p>密 &nbsp;&nbsp;码：默认sinosoft（请自行修改）</p>
-				</div>
 			</div>
 		</div>
 		<!-- 
