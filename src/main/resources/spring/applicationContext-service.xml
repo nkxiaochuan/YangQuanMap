@@ -35,5 +35,6 @@
     <bean id="locationInfoService" class="ins.map.service.spring.LocationInfoServiceImpl"></bean>
     <bean id="prpMenuService" class="ins.platform.service.spring.PrpMenuServiceImpl"></bean>
     <bean id="prpRoleService" class="ins.platform.service.spring.PrpRoleServiceImpl"></bean>
-
+	<bean id="userService" class="ins.platform.service.spring.UserServiceSpringImpl"></bean>
+	<bean id="prpAreaInfoService" class="ins.map.service.spring.PrpAreaInfoServiceImpl"></bean>
 </beans>

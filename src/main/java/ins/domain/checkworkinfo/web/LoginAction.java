@@ -1,7 +1,6 @@
 package ins.domain.checkworkinfo.web;
 
-import ins.framework.common.EncryptUtils;
-import ins.framework.web.Struts2Action;
+import ins.platform.common.web.SinoMapBaseAction;
 import ins.platform.schema.model.PrpDuser;
 import ins.platform.schema.model.PrpMenu;
 import ins.platform.schema.model.PrpRole;
@@ -20,13 +19,12 @@ import org.springframework.security.core.token.Sha512DigestUtils;
  * @author
  *
  */
-public class LoginAction extends Struts2Action {
+public class LoginAction extends SinoMapBaseAction {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static Logger log = Logger.getLogger("LoginAction.class");
 	private UserService userService;
 	private PrpMenuService prpMenuService;
 	private PrpRoleService prpRoleService;
@@ -65,33 +63,16 @@ public class LoginAction extends Struts2Action {
 			if (null != user&&enpass.equals(user.getPassword())) {
 				user.setPassword(newPassword);
 				userService.update(user);			
-		        renderJSON(changePasswordSuccess());
+		        renderJSON(successClose("操作成功"));
 			}else {
-				renderJSON(changePasswordFeilure("用户名密码不匹配！"));
+				renderJSON(feilure("用户名密码不匹配！"));
 			}
 		}catch(Exception e) {
-			log.error(e);
+			logger.error(e);
 			e.printStackTrace();
-			renderJSON(changePasswordFeilure("操作失败"));
+			renderJSON(feilure("操作失败"));
 		}
 		return null;
-	}
-	private String changePasswordSuccess() {
-		JSONObject jsonObject = new JSONObject();
-        jsonObject.put("statusCode", "200");
-        jsonObject.put("message", "操作成功");
-        jsonObject.put("navTabId", "");
-        jsonObject.put("rel", "");
-        jsonObject.put("callbackType", "closeCurrent");
-        jsonObject.put("forwardUrl", "");
-        return jsonObject.toString();
-	}
-	
-	private String changePasswordFeilure(String feilureReason) {
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("statusCode", "300");
-        jsonObject.put("message", feilureReason);
-        return jsonObject.toString();
 	}
 	
 	public List<PrpMenu> getMenuList() {

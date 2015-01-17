@@ -24,8 +24,8 @@
 			<dd>
 				<c:choose>
 					<c:when test="${prpDuser.userCode == null}">
-						<input type="text" name="prpDuser.userCode" class="required" maxlength="20" value="${prpDuser.userCode}" />
-					</c:when>
+						<%--<input type="text" name="prpDuser.userCode" class="required" maxlength="20" value="${prpDuser.userCode}" />
+					--%></c:when>
 					<c:otherwise>
 							${prpDuser.userCode}<input type="hidden" name="prpDuser.userCode" value="${prpDuser.userCode }" />
 					</c:otherwise>
@@ -49,26 +49,26 @@
 				<fmt:message key="label.platform.user.comcode" />
 			</dt>
 			<dd>
-				<input type="text" name="prpDuser.prpDcompany.comCode" class="required" value="${prpDuser.prpDcompany.comCode }" />
+				<%--<input type="text" name="prpDuser.prpAreaInfo.comCode" class="required" value="${prpDuser.prpAreaInfo.comCode }" />--%>
+				<s:select list="areaInfoList" name="prpDuser.prpAreaInfo.comCode" listKey="comCode" listValue="comName"></s:select>
 			</dd>
 		</dl>
 
-		<dl>
+		<%--<dl>
 			<dt>
 				<fmt:message key="label.platform.user.comcname" />
 			</dt>
 			<dd>
-				<input type="text" name="prpDuser.prpDcompany.comCName" class="readonly" readonly="readonly"
-					value="${prpDuser.prpDcompany.comCName}" />
+				<input type="text" name="prpDuser.prpAreaInfo.comName" class="readonly" readonly="readonly"
+					value="${prpDuser.prpAreaInfo.comName}" />
 			</dd>
 		</dl>
-		<dl>
+		--%><dl>
 			<dt>
-				<fmt:message key="label.platform.user.comename" />
+				<fmt:message key="label.platform.user.roleCode" />
 			</dt>
 			<dd>
-				<input type="text" name="prpDuser.prpDcompany.comEName" class="readonly" readonly="readonly"
-					value="${prpDuser.prpDcompany.comEName}" />
+				<s:select list="roleList" name="prpDuser.roleCode" listKey="roleCode" listValue="info"></s:select>
 			</dd>
 		</dl>
 
@@ -89,7 +89,7 @@
 			</dd>
 		</dl>
 
-		<dl>
+		<%--<dl>
 			<dt>
 				<fmt:message key="label.platform.user.passwdsetdate" />
 			</dt>
@@ -119,13 +119,13 @@
 				<input type="text" name="prpDuser.articleCode" class="required" value="${prpDuser.articleCode}" />
 			</dd>
 		</dl>
-
+--%>
 		<dl>
 			<dt>
-				<fmt:message key="label.platform.user.newusercode" />
+				<fmt:message key="label.platform.user.info" />
 			</dt>
 			<dd>
-				<input type="text" name="prpDuser.newUserCode" class="required" value="${prpDuser.newUserCode }" />
+				<input type="text" name="prpDuser.info" class="" value="${prpDuser.info }" />
 			</dd>
 		</dl>
 

@@ -141,8 +141,9 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-						  <li><a href="${ctx}/sinoMapAction/prepareAddLocationInfo.do" target="navTab" ><fmt:message key="label.domain.main.usermanage" /></a></li>									 
-		                  <li><a href="${ctx}/quartz/prepareQuery.do" target="navTab"><fmt:message key="label.domain.main.timeconfiguration" /></a></li>
+							<li><a href="${ctx}/user/query.do" target="navTab"><fmt:message key="label.domain.main.timeconfiguration" /></a></li>
+						  	<li><a href="${ctx}/sinoMapAction/prepareAddLocationInfo.do" target="navTab" ><fmt:message key="label.domain.main.usermanage" /></a></li>									 
+		                  	<li><a href="${ctx}/quartz/prepareQuery.do" target="navTab"><fmt:message key="label.domain.main.timeconfiguration" /></a></li>
 	                   </ul>
 					</div>
 					

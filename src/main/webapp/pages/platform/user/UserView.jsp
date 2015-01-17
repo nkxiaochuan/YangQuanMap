@@ -23,27 +23,27 @@
 		<dt>
 			<fmt:message key="label.platform.user.comcode" />
 		</dt>
-		<dd>${prpDuser.prpDcompany.comCode}</dd>
+		<dd>${prpDuser.prpAreaInfo.comCode}</dd>
 	</dl>
 	<dl>
 		<dt>
 			<fmt:message key="label.platform.user.comcname" />
 		</dt>
-		<dd>${prpDuser.prpDcompany.comCName}</dd>
+		<dd>${prpDuser.prpAreaInfo.comName}</dd>
 	</dl>
-	<dl>
+	<%--<dl>
 		<dt>
 			<fmt:message key="label.platform.user.comename" />
 		</dt>
 		<dd>${prpDuser.prpDcompany.comEName}</dd>
 	</dl>
-	<dl>
+	--%><dl>
 		<dt>
 			<fmt:message key="label.platform.user.password" />
 		</dt>
 		<dd>${prpDuser.password}</dd>
 	</dl>
-	<dl>
+	<%--<dl>
 		<dt>
 			<fmt:message key="label.platform.user.passwdsetdate" />
 		</dt>
@@ -71,7 +71,7 @@
 		</dt>
 		<dd>${prpDuser.newUserCode}</dd>
 	</dl>
-	<dl>
+	--%><dl>
 		<dt>
 			<fmt:message key="label.platform.user.validstatus" />
 		</dt>

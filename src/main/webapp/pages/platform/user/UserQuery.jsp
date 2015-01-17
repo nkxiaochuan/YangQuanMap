@@ -21,7 +21,7 @@
 					</td>
 					<td>	
 						<label><fmt:message key="label.platform.user.comcode" /></label> 
-						<input type="text" name="prpDuser.prpDcompany.comCode" value="${prpDuser.prpDcompany.comCode}"/> 
+						<input type="text" name="prpDuser.prpDcompany.comCode" value="${prpDuser.prpAreaInfo.comCode}"/> 
 					</td>
 				</tr>
 			</table>			 
