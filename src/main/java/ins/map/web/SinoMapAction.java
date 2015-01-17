@@ -38,22 +38,23 @@ public class SinoMapAction extends Struts2Action {
 				LocationInfoVo vo = new LocationInfoVo();
 				vo.setLngX(l.getLngX());
 				vo.setLatY(l.getLatY());
-				vo.setUserName(l.getName());
-				vo.setPhoneNumber(l.getInformation());
-				vo.setUpdateTimehis(df.format(l.getOperateTimeForHis()));
-				if((c.getTime().getTime() - l.getOperateTimeForHis().getTime())/(1000*60) > 30){
-					vo.setIsValid("0");
-				}else{
-					vo.setIsValid(l.getValidStatus());
-				}
+				vo.setName(l.getName());
+				vo.setCategory(l.getCategory());
+				vo.setInformation(l.getInformation());
+//				vo.setUpdateTimehis(df.format(l.getOperateTimeForHis()));
+//				if((c.getTime().getTime() - l.getOperateTimeForHis().getTime())/(1000*60) > 30){
+//					vo.setIsValid("0");
+//				}else{
+//					vo.setIsValid(l.getValidStatus());
+//				}
 				locationInfoVos.add(vo);
 			}
 		} catch (Exception e) {
 			log.error(e);
 			e.printStackTrace();
 		}
-		System.out.println(">>>>查询坐标情况");
-		writeJSONData(locationInfoVos, "lngX","latY","userName","phoneNumber","updateTimehis","isValid");
+		System.out.println(">>>>query locationInfo");
+		writeJSONData(locationInfoVos, "lngX","latY","name","category","information");
 		return null;
 	}
 
@@ -61,7 +62,7 @@ public class SinoMapAction extends Struts2Action {
 	public String prepareMap(){
 		getRequest().setAttribute("lanX", "113.60747");
 		getRequest().setAttribute("latY", "37.853347");
-		System.out.println(">>>>初始化地图页面");
+		System.out.println(">>>>init map");
 		return SUCCESS;
 	}
 	

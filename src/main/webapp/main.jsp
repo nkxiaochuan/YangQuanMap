@@ -11,6 +11,7 @@
 <link href="common/dwz/themes/css/core.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="common/dwz/themes/css/print.css" rel="stylesheet" type="text/css" media="print" />
 <link href="common/dwz/uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
 <!--[if IE]>
 <link href="common/dwz/themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
 <![endif]-->
@@ -23,8 +24,10 @@
 <script src="common/dwz/uploadify/scripts/swfobject.js" type="text/javascript"></script>
 <script src="common/dwz/uploadify/scripts/jquery.uploadify.v2.1.0.js" type="text/javascript"></script>
 <script src="common/dwz/bin/dwz.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=11aaaa7c886f33c506e1a65b05235518"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=11aaaa7c886f33c506e1a65b05235518"></script>
 <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>  
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+
 
 <%
 //默认简体中文
@@ -86,8 +89,6 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 					<li><a href="#">当前登陆用户：${userMsg.userCode }- ${userMsg.userName }</a></li>
 					<li><a href="${ctx}/prepareChangePassword.do" target="dialog" width="600"><fmt:message key="label.common.main.changepassword" /></a></li>
 					<li><a href="${ctx}/logout.do"><fmt:message key="label.common.main.exit" /></a></li>
-					<li><a href="pages/platform/user/ChangePassword.jsp" target="dialog" width="500"><fmt:message key="label.common.main.changepassword" /></a></li>
-					<li><a href="${ctx}/loginAction/logout.do" target="_parent"><fmt:message key="label.common.main.exit" /></a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div><fmt:message key="label.common.main.blue" /></div></li>
