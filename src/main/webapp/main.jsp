@@ -83,14 +83,11 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 			<div class="headerNav">
 				<a class="logo"></a>
 				<ul class="nav">
-<<<<<<< HEAD
 					<li><a href="#">当前登陆用户：${userMsg.userCode }- ${userMsg.userName }</a></li>
 					<li><a href="${ctx}/prepareChangePassword.do" target="dialog" width="600"><fmt:message key="label.common.main.changepassword" /></a></li>
 					<li><a href="${ctx}/logout.do"><fmt:message key="label.common.main.exit" /></a></li>
-=======
 					<li><a href="pages/platform/user/ChangePassword.jsp" target="dialog" width="500"><fmt:message key="label.common.main.changepassword" /></a></li>
 					<li><a href="${ctx}/loginAction/logout.do" target="_parent"><fmt:message key="label.common.main.exit" /></a></li>
->>>>>>> 2185ba9c89b8efee7765d1a1484427563055628e
 				</ul>
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div><fmt:message key="label.common.main.blue" /></div></li>
@@ -139,20 +136,13 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 		                  		<s:iterator value="menuList"  var="menu"><s:property value="menucode"/><s:property/>
 		                  			<li><a href='${ctx}<s:property value="menu.menuUrl"/>' target="<s:property value='menu.menuType'/>"><s:property value="menu.menuName"/></a></li>
 		                  		</s:iterator>
-=======
->>>>>>> 2185ba9c89b8efee7765d1a1484427563055628e
 								<li>
 									<a href="#">我的区域列表</a>
 									<ul>
 										<li>
 											<a
-<<<<<<< HEAD
-												href="${ctx}/sinoMapAction/prepareMap.do?areaID=${areaID}&roleType=${roleType}"
-												target="navTab" rel="12">${areaName}</a>
-=======
-												href="${ctx}/sinoMapAction/prepareMap.do?areaID=12&lanX=113.60747&latY=37.853347"
-												target="navTab" rel="12">阳泉市邮政城区</a>
->>>>>>> 2185ba9c89b8efee7765d1a1484427563055628e
+												href="${ctx}/sinoMapAction/prepareMap.do?areaID=${comCode}&roleType=${roleCode}"
+												target="navTab" rel="12">${comName}</a>
 										</li>
 										<li>
 											<a href="${ctx}/sinoMapAction/prepareMap.do?areaID=13&lanX=113.60747&latY=37.853347"
@@ -160,8 +150,7 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 										</li>
 									</ul>
 								</li>
-<<<<<<< HEAD
-								<c:if test="${roleType == '1'}">
+								<c:if test="${roleCode == '1'}">
 									<li>
 										<a href="#">数据维护</a>
 										<ul>
