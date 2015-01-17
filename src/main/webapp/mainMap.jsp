@@ -1,27 +1,40 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<html>
 <style type="text/css">  
 html{height:100%}  
 body{height:100%;margin:0px;padding:0px}  
-#container{height:100%}  
+#initMapDiv{height:100%}  
 </style>
-<div id="initMapDiv" class="navTab-panel tabsPageContent layoutBox" style='height: 476px;'></div> 
+<body>
+<div id="initMapDiv" class="navTab-panel tabsPageContent layoutBox"></div> 
 <input id="lanX" type="hidden" value="${lanX}">
 <input id="latY" type="hidden" value="${latY}">
+</body>
 <script type="text/javascript"> 
-var map = new BMap.Map("initMapDiv");          // ´´½¨µØÍ¼ÊµÀý  
-map.enableScrollWheelZoom();    //ÆôÓÃ¹öÂÖ·Å´óËõÐ¡£¬Ä¬ÈÏ½ûÓÃ
-map.enableContinuousZoom();    //ÆôÓÃµØÍ¼¹ßÐÔÍÏ×§£¬Ä¬ÈÏ½ûÓÃ
-map.addControl(new BMap.NavigationControl());
-map.addControl(new BMap.NavigationControl());    
-map.addControl(new BMap.ScaleControl());    
-map.addControl(new BMap.OverviewMapControl());    
-map.addControl(new BMap.MapTypeControl());    
-//var point = new BMap.Point(116.417854,39.921988);
-var lanX = document.getElementById("lanX").value;
-var latY = document.getElementById("latY").value;
-var point = new BMap.Point(lanX,latY);
-map.centerAndZoom(point, 15);
+function init(){
+	initDiv();
+	if (typeof(map) == "undefined"){
+	var map = new BMap.Map("initMapDiv");          // ´´½¨µØÍ¼ÊµÀý  
+	}
+	map.enableScrollWheelZoom();    //ÆôÓÃ¹öÂÖ·Å´óËõÐ¡£¬Ä¬ÈÏ½ûÓÃ
+	map.enableContinuousZoom();    //ÆôÓÃµØÍ¼¹ßÐÔÍÏ×§£¬Ä¬ÈÏ½ûÓÃ
+	map.addControl(new BMap.NavigationControl());
+	map.addControl(new BMap.NavigationControl());    
+	map.addControl(new BMap.ScaleControl());    
+	map.addControl(new BMap.OverviewMapControl());    
+	map.addControl(new BMap.MapTypeControl());    
+	//var point = new BMap.Point(116.417854,39.921988);
+	var lanX = document.getElementById("lanX").value;
+	var latY = document.getElementById("latY").value;
+	var point = new BMap.Point(lanX,latY);
+	map.centerAndZoom(point, 15);
+	getXYdata();
+}
 
+function initDiv(){
+	alert(document.getElementById("initMapDiv").parentNode.parentNode.style.height);
+	document.getElementById("initMapDiv").style.height = document.getElementById("initMapDiv").parentNode.parentNode.style.height;
+	}
 function getXYdata(){
 	var n=0;
 	$.ajax({
@@ -43,7 +56,7 @@ function getXYdata(){
 		   }
 		});
 }
-window.load = getXYdata();
+window.load = init();
 
 function GPStranslate(obj){
 	var pt = new BMap.Point(obj.lngX,obj.latY);
@@ -64,8 +77,9 @@ function GPStranslate(obj){
 	    
 }
 //¶¨Ê±Ë¢ÐÂ×ø±ê
-setInterval(function(){
-	map.clearOverlays();
-	getXYdata();
-},20000);
+//var timer = setInterval(function(){
+//	map.clearOverlays();
+//	getXYdata();
+//},20000);
 </script>  
+</html>

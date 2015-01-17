@@ -21,6 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession;
 
+import com.sinosoft.sysframework.common.util.StringUtils;
+
+import bsh.StringUtil;
+
 public class SessionFilter implements Filter {
 
 //	private static Logger logger = Logger.getLogger(SessionFilter.class);
@@ -28,6 +32,20 @@ public class SessionFilter implements Filter {
 	private static CacheService UserManager = CacheManager.getInstance("UserManager");
 	private Map<String, String> ignoreKeys;
 	private UserService userService;
+	/** è¦æ£€æŸ¥çš„ session çš„åç§° */
+    private String sessionKey;
+	public String getSessionKey() {
+		return sessionKey;
+	}
+
+
+
+	public void setSessionKey(String sessionKey) {
+		this.sessionKey = sessionKey;
+	}
+
+
+
 	public UserService getUserService() {
 		return userService;
 	}
@@ -41,30 +59,30 @@ public class SessionFilter implements Filter {
 		
 	}
 
-	/** Ğ£ÑéSESSIONÊÇ·ñÓĞĞ§£¬Ö÷ÒªÅĞ¶ÏsessionÀïÃæÊÇ·ñÓĞuser */
+	/** Ğ£ï¿½ï¿½SESSIONï¿½Ç·ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½Òªï¿½Ğ¶ï¿½sessionï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½user */
 	private boolean checkSession(HttpServletRequest request,
 			HttpServletResponse response) {
-		// Èç¹ûSessionÊ§Ğ§£¬·µ»Ønull;
+		// ï¿½ï¿½ï¿½SessionÊ§Ğ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½null;
 		HttpSession session = request.getSession(false);
 		String URI = request.getRequestURI();
 		
 //		String SCMS_VERSION = UtilVersion.getVersion();
 //		request.setAttribute("SCMS_VERSION", SCMS_VERSION);
 
-		// Èç¹ûÊÇÔÚµÇÂ½£¬Ôò²»½øĞĞ¼ì²é
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Â½ï¿½ï¿½ï¿½ò²»½ï¿½ï¿½Ğ¼ï¿½ï¿½
 		if (URI.contains("login.jsp") || URI.contains("login.do")){
 			return true;
 		}
-		// add by gjc Ö§³ÖURIºöÂÔ¹¦ÄÜ
+		// add by gjc Ö§ï¿½ï¿½URIï¿½ï¿½ï¿½Ô¹ï¿½ï¿½ï¿½
 		if (ignoreKeys.containsKey(URI.toUpperCase())) {
 			return true;
 		}
 		if (request.getParameter("j_username") != null
 				&& request.getParameter("j_username") != null) {
 			return true;
-		} else { // Èç¹û²»ÊÇÔÚµÇÂ½£¬ÔòĞèÒªÅĞ¶ÏÊÇ·ñÓĞuser
+		} else { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ğ¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½user
 			try {
-				// Èç¹ûSessionÊ§Ğ§£¬Ìø»ØµÇÂ¼Ò³Ãæ
+				// ï¿½ï¿½ï¿½SessionÊ§Ğ§ï¿½ï¿½ï¿½ï¿½Øµï¿½Â¼Ò³ï¿½ï¿½
 				if (session == null) {
 					response.sendRedirect("/sinoMap");
 					return false;
@@ -72,24 +90,21 @@ public class SessionFilter implements Filter {
 					String userCode = (String) session
 							.getAttribute("userCode");
 					PrpDuser prpDuser = null;
-//					String ZBCDComCode = (String) session.getAttribute("ZBCDComCode");//×Ü²¿³öµ¥»ú¹¹´úÂë
 					prpDuser = (PrpDuser) session
 							.getAttribute("userMsg");
 					String cacheKey = UserManager.generateCacheKey(userCode);
-//					UserDt zbcdUser = (UserDt)ZBCDUserDtManager.getCache(cacheKey);
 					if (null != userCode && !"".equals(userCode)
 							&& prpDuser == null) {
 						try {
-							// Çå³ı»º´æ
+							// ï¿½ï¿½ï¿½ï¿½
 //							String usercode = request.getParameter("userCode");
 							sessionCache = CacheManager.getInstance(userCode);
 							sessionCache.clearCache();
-							UserManager.clearCacheManager(cacheKey);//Çå³ı»º´æ
+							UserManager.clearCacheManager(cacheKey);//ï¿½ï¿½ï¿½ï¿½
 							
 							PrpDuser user = userService.findUserByUserCode(userCode);
-							session.setAttribute("user",
+							session.setAttribute("userMsg",
 									user);
-							
 							return true;
 
 						} catch (Exception e) {
@@ -114,15 +129,15 @@ public class SessionFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
 			ServletException {
 		
-		// ¶ÔSESSIONÊÇ·ñÓĞĞ§½øĞĞĞ£Ñé
-		/*¼¯³Éµ¥µã·Å¿ª´Ë´¦£¬begin*/
+		// ï¿½ï¿½SESSIONï¿½Ç·ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½
+		/*ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½Å¿ï¿½ï¿½Ë´ï¿½ï¿½ï¿½begin*/
 		boolean flag = checkSession((HttpServletRequest) request,
 				(HttpServletResponse) response);
 		if (flag){
 			chain.doFilter(request, response);
 		}
-		/*¼¯³Éµ¥µã·Å¿ª´Ë´¦£¬end*/
-		/*È¥µôµ¥µã·Å¿ª´Ë´¦£¬begin*/
+		/*ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½Å¿ï¿½ï¿½Ë´ï¿½ï¿½ï¿½end*/
+		/*È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¿ï¿½ï¿½Ë´ï¿½ï¿½ï¿½begin*/
 //		String SCMS_VERSION = UtilVersion.getVersion();
 //		request.setAttribute("SCMS_VERSION", SCMS_VERSION);
 //		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
@@ -151,7 +166,7 @@ public class SessionFilter implements Filter {
 //			return;
 //		}
 //		chain.doFilter(request, response);
-		/*È¥µôµ¥µã·Å¿ª´Ë´¦£¬end*/
+		/*È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¿ï¿½ï¿½Ë´ï¿½ï¿½ï¿½end*/
 		return;
 	}
 
@@ -165,7 +180,7 @@ public class SessionFilter implements Filter {
 				ignoreKeys.put(string.toUpperCase(), string.toUpperCase());
 			}
 		}
-		/*// µÇÂ¼ºó¼ÓÔØÅäÖÃÎÄ¼ş
+		/*// ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 		try {
 			String separator = java.io.File.separator;
 

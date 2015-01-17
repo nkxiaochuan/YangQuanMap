@@ -126,12 +126,12 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 									<ul>
 										<li>
 											<a
-												href="${ctx}/sinoMapAction/prepareMap.do?lanX=113.60747&latY=37.853347"
-												target="navTab" fresh="false">阳泉市邮政城区</a>
+												href="${ctx}/sinoMapAction/prepareMap.do?areaID=12&lanX=113.60747&latY=37.853347"
+												target="navTab" rel="12">阳泉市邮政城区</a>
 										</li>
 										<li>
-											<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
-												rel="234">阳泉市矿区</a>
+											<a href="${ctx}/sinoMapAction/prepareMap.do?areaID=13&lanX=113.60747&latY=37.853347"
+												target="navTab" rel="12">阳泉市矿区</a>
 										</li>
 									</ul>
 								</li>
