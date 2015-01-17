@@ -21,5 +21,7 @@
 		</action>
 		<action name="delete" class="userAction" method="delete">
 		</action>
+		<action name="changePassword" class="userAction" method="changePassword">
+		</action>
 	</package>
 </struts>
