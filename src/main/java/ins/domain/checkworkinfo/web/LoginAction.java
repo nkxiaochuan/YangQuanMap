@@ -1,15 +1,11 @@
 package ins.domain.checkworkinfo.web;
 
-import java.util.List;
 
 import ins.framework.web.Struts2Action;
+import ins.map.service.facade.PrpAreaInfoService;
 import ins.platform.schema.model.PrpDuser;
-import ins.platform.schema.model.PrpMenu;
-import ins.platform.schema.model.PrpRole;
 import ins.platform.service.facade.PrpRoleService;
 import ins.platform.service.facade.UserService;
-import ins.framework.cache.CacheManager;
-import ins.framework.cache.CacheService;
 import ins.framework.common.EncryptUtils;
 /**
  * ???
@@ -24,6 +20,19 @@ public class LoginAction extends Struts2Action {
 	private static final long serialVersionUID = 1L;
 	private UserService userService;
 	private PrpRoleService prpRoleService;
+	private PrpAreaInfoService prpAreaInfoService;
+	public PrpAreaInfoService getPrpAreaInfoService() {
+		return prpAreaInfoService;
+	}
+
+
+
+	public void setPrpAreaInfoService(PrpAreaInfoService prpAreaInfoService) {
+		this.prpAreaInfoService = prpAreaInfoService;
+	}
+
+
+
 	public PrpRoleService getPrpRoleService() {
 		return prpRoleService;
 	}
@@ -82,6 +91,9 @@ public class LoginAction extends Struts2Action {
 			getSession().setAttribute("userCode", user.getUserCode());
 			getRequest().setAttribute("login", "1");
 			getRequest().setAttribute("roleCode", user.getRoleCode());
+			
+			if(user.getRoleCode() !=null && "0".equals(user.getRoleCode().trim())){
+			}
 			getRequest().setAttribute("comCode", "111");
 			getRequest().setAttribute("comName", "阳泉测试区域菜单");
 			//初始化菜单  gebin
