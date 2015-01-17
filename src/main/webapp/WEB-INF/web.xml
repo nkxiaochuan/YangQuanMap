@@ -57,7 +57,7 @@
 			         还有一点需要说明的是，该参数的值不包含web应用的 ContextPath。 
 			     </description> 
 			     <param-name>excepUrlRegex</param-name> 
-			     <param-value>/login.do</param-value> 
+			     <param-value>/login.do,/logout.do</param-value> 
 			 </init-param> 
 	</filter> 
 	  

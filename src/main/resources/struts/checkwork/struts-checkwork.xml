@@ -11,7 +11,10 @@
 			<result name="error">login.jsp</result>
 		</action>
 		<action name="logout" class="loginAction" method="logout">
-			<result name="success">/index.jsp</result>
+			<result name="success">/login.jsp</result>
+		</action>
+		<action name="prepareChangePassword" class="loginAction" method="prepareChangePassword">
+			<result name="success">/pages/map/passwordEdit.jsp</result>
 		</action>
 	</package>
 </struts>

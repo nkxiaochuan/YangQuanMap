@@ -59,10 +59,8 @@ public class SinoMapAction extends Struts2Action {
 
 	//��ʼ����ͼҳ��
 	public String prepareMap(){
-		String lanX = (String) getRequest().getParameter("lanX");
-		String latY = (String) getRequest().getParameter("latY");
-		getRequest().setAttribute("lanX", lanX);
-		getRequest().setAttribute("latY", latY);
+		getRequest().setAttribute("lanX", "113.60747");
+		getRequest().setAttribute("latY", "37.853347");
 		System.out.println(">>>>初始化地图页面");
 		return SUCCESS;
 	}

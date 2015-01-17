@@ -83,8 +83,9 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 			<div class="headerNav">
 				<a class="logo"></a>
 				<ul class="nav">
-					<li><a href="${ctx}/loginAction/prepareChangePassword.do" target="dialog" width="600"><fmt:message key="label.common.main.changepassword" /></a></li>
-					<li><a href="${ctx}/loginAction/logout.do" target="_parent"><fmt:message key="label.common.main.exit" /></a></li>
+					<li><a href="#">当前登陆用户：${userMsg.userCode }- ${userMsg.userName }</a></li>
+					<li><a href="${ctx}/prepareChangePassword.do" target="dialog" width="600"><fmt:message key="label.common.main.changepassword" /></a></li>
+					<li><a href="${ctx}/logout.do"><fmt:message key="label.common.main.exit" /></a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div><fmt:message key="label.common.main.blue" /></div></li>
@@ -126,8 +127,8 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 									<ul>
 										<li>
 											<a
-												href="${ctx}/sinoMapAction/prepareMap.do?areaID=12&lanX=113.60747&latY=37.853347"
-												target="navTab" rel="12">阳泉市邮政城区</a>
+												href="${ctx}/sinoMapAction/prepareMap.do?areaID=${areaID}&roleType=${roleType}"
+												target="navTab" rel="12">${areaName}</a>
 										</li>
 										<li>
 											<a href="${ctx}/sinoMapAction/prepareMap.do?areaID=13&lanX=113.60747&latY=37.853347"
@@ -135,27 +136,29 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 										</li>
 									</ul>
 								</li>
-								<li>
-									<a href="#">数据维护</a>
-									<ul>
-										<li>
-											<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
-												rel="deviceBound">区域管理</a>
-										</li>
-										<li>
-											<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
-												rel="configInfo">操作员管理</a>
-										</li>
-										<li>
-											<a href="${ctx}/sinoMapAction/prepareMap.do" target="dialog"
-												rel="configInfo">备用</a>
-										</li>
-									</ul>
-								</li>
+								<c:if test="${roleType == '1'}">
+									<li>
+										<a href="#">数据维护</a>
+										<ul>
+											<li>
+												<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
+													rel="deviceBound">区域管理</a>
+											</li>
+											<li>
+												<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
+													rel="configInfo">操作员管理</a>
+											</li>
+											<li>
+												<a href="${ctx}/sinoMapAction/prepareMap.do" target="dialog"
+													rel="configInfo">备用</a>
+											</li>
+										</ul>
+									</li>
+								</c:if>
 							</ul>
 						</div> 
 					  
-					<!-- 可以添加一个权限可 -->
+					<!-- 可以添加一个权限可 --><%--
 					  <div class="accordionHeader"> 
 						<h2>
 							<span>Folder</span><fmt:message key="label.domain.main.systemmanage" />
@@ -168,7 +171,7 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 	                   </ul>
 					</div>
 					
-				</div>
+				--%></div>
 			</div>
 		</div>
 		<div id="container">
