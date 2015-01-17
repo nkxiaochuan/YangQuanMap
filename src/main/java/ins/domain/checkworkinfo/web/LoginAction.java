@@ -49,7 +49,8 @@ public class LoginAction extends SinoMapBaseAction {
 	}*/
 
 	public String logout() {    
-        getSession().removeAttribute("user");  
+        getSession().removeAttribute("user"); 
+        System.out.println("logout");
         return SUCCESS;  
     }
 	
