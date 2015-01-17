@@ -38,4 +38,9 @@ public class PrpRoleServiceImpl extends GenericDaoHibernate<PrpRole, String> imp
 		return (PrpRole) this.find(queryRule);
 	}
 
+	public PrpRole getRoleByRoleCode(String roleCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
