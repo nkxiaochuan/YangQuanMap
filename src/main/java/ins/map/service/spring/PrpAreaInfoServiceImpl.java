@@ -21,6 +21,7 @@ public class PrpAreaInfoServiceImpl extends GenericDaoHibernate<PrpAreaInfo, Str
 
 	public List<PrpAreaInfo> findAreaInfos() {
 		QueryRule queryRule = QueryRule.getInstance();
+		queryRule.addEqual("validStatus", "1");
 		queryRule.addSql(" 1=1");
 		return this.find(queryRule);
 	}

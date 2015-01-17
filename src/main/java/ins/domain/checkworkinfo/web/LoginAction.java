@@ -1,7 +1,13 @@
 package ins.domain.checkworkinfo.web;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.security.core.token.Sha512DigestUtils;
+
 import ins.framework.web.Struts2Action;
+import ins.map.schema.model.PrpAreaInfo;
 import ins.map.service.facade.PrpAreaInfoService;
 import ins.platform.schema.model.PrpDuser;
 import ins.platform.service.facade.PrpRoleService;
@@ -21,6 +27,23 @@ public class LoginAction extends Struts2Action {
 	private UserService userService;
 	private PrpRoleService prpRoleService;
 	private PrpAreaInfoService prpAreaInfoService;
+	
+	private List<PrpAreaInfo> prpAreaInfos;
+
+
+
+	public List<PrpAreaInfo> getPrpAreaInfos() {
+		return prpAreaInfos;
+	}
+
+
+
+	public void setPrpAreaInfos(List<PrpAreaInfo> prpAreaInfos) {
+		this.prpAreaInfos = prpAreaInfos;
+	}
+
+
+
 	public PrpAreaInfoService getPrpAreaInfoService() {
 		return prpAreaInfoService;
 	}
@@ -85,24 +108,20 @@ public class LoginAction extends Struts2Action {
 	public String login(){
 //		CacheService cache = CacheManager.getInstance("config");
 		PrpDuser user = userService.findUserByUserName(j_username);
-		String enpass = EncryptUtils.md5(j_password);
+		String enpass = Sha512DigestUtils.shaHex(j_password);
 		if (null != user&&enpass.equals(user.getPassword())) {
 			getSession().setAttribute("userMsg", user);
 			getSession().setAttribute("userCode", user.getUserCode());
 			getRequest().setAttribute("login", "1");
 			getRequest().setAttribute("roleCode", user.getRoleCode());
 			
+			
+			prpAreaInfos = new ArrayList<PrpAreaInfo>();
 			if(user.getRoleCode() !=null && "0".equals(user.getRoleCode().trim())){
+				prpAreaInfos.add(user.getPrpAreaInfo());
+			}else{
+				prpAreaInfos = prpAreaInfoService.findAreaInfos();
 			}
-			getRequest().setAttribute("comCode", "111");
-			getRequest().setAttribute("comName", "阳泉测试区域菜单");
-			//初始化菜单  gebin
-//			PrpRole prpRole = prpRoleService.findRlolesByRoleCode(user.getRoleCode());
-//			List<PrpMenu> allMenus = menuService.getMenuList(prpRole.getMenuCodeArray());
-//			for(PrpMenu menu:allMenus){
-//				
-//			}
-			//初始化菜单  end
 			return "login";
 		}
 		getRequest().setAttribute("login", "0");
