@@ -86,8 +86,6 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 					<li><a href="#">当前登陆用户：${userMsg.userCode }- ${userMsg.userName }</a></li>
 					<li><a href="${ctx}/prepareChangePassword.do" target="dialog" width="600"><fmt:message key="label.common.main.changepassword" /></a></li>
 					<li><a href="${ctx}/logout.do"><fmt:message key="label.common.main.exit" /></a></li>
-					<li><a href="pages/platform/user/ChangePassword.jsp" target="dialog" width="500"><fmt:message key="label.common.main.changepassword" /></a></li>
-					<li><a href="${ctx}/loginAction/logout.do" target="_parent"><fmt:message key="label.common.main.exit" /></a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div><fmt:message key="label.common.main.blue" /></div></li>
