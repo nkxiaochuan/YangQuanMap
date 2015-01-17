@@ -3,7 +3,6 @@ package ins.domain.checkworkinfo.web;
 import java.util.List;
 
 import ins.framework.web.Struts2Action;
-import ins.map.service.facade.MenuService;
 import ins.platform.schema.model.PrpDuser;
 import ins.platform.schema.model.PrpMenu;
 import ins.platform.schema.model.PrpRole;
@@ -24,7 +23,6 @@ public class LoginAction extends Struts2Action {
 	 */
 	private static final long serialVersionUID = 1L;
 	private UserService userService;
-	private MenuService menuService;
 	private PrpRoleService prpRoleService;
 	public PrpRoleService getPrpRoleService() {
 		return prpRoleService;
@@ -35,20 +33,6 @@ public class LoginAction extends Struts2Action {
 	public void setPrpRoleService(PrpRoleService prpRoleService) {
 		this.prpRoleService = prpRoleService;
 	}
-
-
-
-	public MenuService getMenuService() {
-		return menuService;
-	}
-
-
-
-	public void setMenuService(MenuService menuService) {
-		this.menuService = menuService;
-	}
-
-
 
 	public UserService getUserService() {
 		return userService;
