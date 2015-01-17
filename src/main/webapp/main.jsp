@@ -136,10 +136,12 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 								<li>
 									<a href="#">我的区域列表</a>
 									<ul>
-										<li>
-											<a href="${ctx}/sinoMapAction/prepareMap.do?areaID=${comCode}&roleType=${roleCode}"
-												target="navTab" rel="12">${comName}</a>
-										</li>
+										<c:forEach var="prpAreaInfo" items="${prpAreaInfos}">
+											<li>
+												<a href="${ctx}/sinoMapAction/prepareMap.do?areaID=${prpAreaInfo.comCode}"
+													target="navTab" rel="12">${prpAreaInfo.comName}</a>
+											</li>
+										</c:forEach>
 									</ul>
 								</li>
 								<c:if test="${roleCode == '1'}">
