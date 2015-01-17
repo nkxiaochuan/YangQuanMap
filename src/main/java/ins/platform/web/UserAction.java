@@ -13,6 +13,8 @@ import ins.platform.service.facade.UserService;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.security.core.token.Sha512DigestUtils;
+
 import net.sf.json.JSONObject;
 
 public class UserAction extends SinoMapBaseAction {
@@ -22,10 +24,18 @@ public class UserAction extends SinoMapBaseAction {
 	private PrpDuser prpDuser;
 	private String userCode;
 	private String newPassword;
+	private String password;
 	private List<PrpDuser> userList;
 	private List<PrpRole> roleList;
 	private List<PrpAreaInfo> areaInfoList;
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public PrpAreaInfoService getPrpAreaInfoService() {
 		return prpAreaInfoService;
 	}
@@ -179,10 +189,22 @@ public class UserAction extends SinoMapBaseAction {
 	}
 
 	public String changePassword() {
-		this.userService.changePassword(this.prpDuser.getUserCode(),
-				this.prpDuser.getPassword(), this.newPassword);
-
-		return "success";
+		try {
+			PrpDuser user = (PrpDuser) userService.findUserByUserName(userCode);
+			String pd = Sha512DigestUtils.shaHex(password);
+			if(pd != null && pd.equals(user.getPassword())) {
+				user.setPassword(newPassword);
+				userService.update(user);
+				renderJSON(successClose("修改成功!"));
+			}else {
+				renderJSON(feilure("用户名密码不匹配!"));
+			}
+		}catch(Exception e) {
+			logger.equals(e);
+			e.printStackTrace();
+			renderJSON(feilure("修改失败!"));
+		}
+		return null;
 	}
 
 	public String view() {
