@@ -121,6 +121,7 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 					</div>
 					<div class="accordionContent">
 							<ul class="tree treeFolder">
+<<<<<<< HEAD
 								 <%--<li><a href="${ctx}/sinoMapAction/prepareMap.do?lanX=113.60747&latY=37.853347" target="navTab" rel="initMap">阳泉市邮政城区</a></li>
 								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab" rel="initMap">阳泉市矿区</a></li>
 								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab" rel="deviceBound">区域管理</a></li>
@@ -130,8 +131,41 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 		                  		<s:iterator value="menuList"  var="menu"><s:property value="menucode"/><s:property/>
 		                  			<li><a href='${ctx}<s:property value="menu.menuUrl"/>' target="<s:property value='menu.menuType'/>"><s:property value="menu.menuName"/></a></li>
 		                  		</s:iterator>
+=======
+								<li>
+									<a href="#">我的区域列表</a>
+									<ul>
+										<li>
+											<a
+												href="${ctx}/sinoMapAction/prepareMap.do?areaID=12&lanX=113.60747&latY=37.853347"
+												target="navTab" rel="12">阳泉市邮政城区</a>
+										</li>
+										<li>
+											<a href="${ctx}/sinoMapAction/prepareMap.do?areaID=13&lanX=113.60747&latY=37.853347"
+												target="navTab" rel="12">阳泉市矿区</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="#">数据维护</a>
+									<ul>
+										<li>
+											<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
+												rel="deviceBound">区域管理</a>
+										</li>
+										<li>
+											<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
+												rel="configInfo">操作员管理</a>
+										</li>
+										<li>
+											<a href="${ctx}/sinoMapAction/prepareMap.do" target="dialog"
+												rel="configInfo">备用</a>
+										</li>
+									</ul>
+								</li>
+>>>>>>> 0ae112f813e5549a0e122b7109b0614ff8dec595
 							</ul>
-					</div> 
+						</div> 
 					  
 					<!-- 可以添加一个权限可 -->
 					  <div class="accordionHeader"> 

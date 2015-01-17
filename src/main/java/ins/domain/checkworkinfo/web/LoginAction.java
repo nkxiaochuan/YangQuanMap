@@ -1,18 +1,15 @@
 package ins.domain.checkworkinfo.web;
 
+import ins.framework.common.EncryptUtils;
 import ins.platform.common.web.SinoMapBaseAction;
 import ins.platform.schema.model.PrpDuser;
 import ins.platform.schema.model.PrpMenu;
-import ins.platform.schema.model.PrpRole;
 import ins.platform.service.facade.PrpMenuService;
 import ins.platform.service.facade.PrpRoleService;
 import ins.platform.service.facade.UserService;
 
 import java.util.List;
 
-import net.sf.json.JSONObject;
-
-import org.apache.log4j.Logger;
 import org.springframework.security.core.token.Sha512DigestUtils;
 /**
  * 登录
@@ -36,7 +33,7 @@ public class LoginAction extends SinoMapBaseAction {
 
 
 
-	public String login(){
+/*	public String login(){
 		PrpDuser user = userService.findUserByUserName(j_username);
 		String enpass = Sha512DigestUtils.shaHex(j_password);
 		if (null != user&&enpass.equals(user.getPassword())) {
@@ -49,7 +46,7 @@ public class LoginAction extends SinoMapBaseAction {
 		getRequest().setAttribute("login", "0");
 		getRequest().setAttribute("login_em", "用户名密码不匹配！");
 		return "error";
-	}
+	}*/
 
 	public String logout() {    
         getSession().removeAttribute("user");  
@@ -122,6 +119,20 @@ public class LoginAction extends SinoMapBaseAction {
 
 	public String getNewPassword() {
 		return newPassword;
+	}
+	public String login(){
+//		CacheService cache = CacheManager.getInstance("config");
+		PrpDuser user = userService.findUserByUserName(j_username);
+		String enpass = EncryptUtils.md5(j_password);
+		if (null != user&&enpass.equals(user.getPassword())) {
+			getSession().setAttribute("userMsg", user);
+			getSession().setAttribute("userCode", user.getUserCode());
+			getRequest().setAttribute("login", "1");
+			return "login";
+		}
+		getRequest().setAttribute("login", "0");
+		getRequest().setAttribute("login_em", "用户名密码不匹配！");
+		return "error";
 	}
 
 	public void setNewPassword(String newPassword) {

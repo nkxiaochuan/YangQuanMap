@@ -52,17 +52,18 @@ public class SinoMapAction extends Struts2Action {
 			log.error(e);
 			e.printStackTrace();
 		}
+		System.out.println("");
 		writeJSONData(locationInfoVos, "lngX","latY","userName","phoneNumber","updateTimehis","isValid");
 		return null;
 	}
 
-	//놓迦뺏뒈暠女충
+	//
 	public String prepareMap(){
 		String lanX = (String) getRequest().getParameter("lanX");
 		String latY = (String) getRequest().getParameter("latY");
-		getRequest().setAttribute("webTime", "10000");
 		getRequest().setAttribute("lanX", lanX);
 		getRequest().setAttribute("latY", latY);
+		System.out.println("");
 		return SUCCESS;
 	}
 	
@@ -114,7 +115,7 @@ public class SinoMapAction extends Struts2Action {
 		SinoMapAction action = new SinoMapAction();
 		LocationInfo info = new LocationInfo();
 		info.setCategory("1");
-		info.setInformation("댕소봤가가가가가가가가가가가가가가가가가가가가가가가가가가가가가");
+		info.setInformation(");
 		info.setInsertTimeForHis(new Date());
 		info.setLatY("1232.232");
 		info.setLngX("12343");
