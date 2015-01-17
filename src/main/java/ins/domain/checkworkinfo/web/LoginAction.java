@@ -81,9 +81,9 @@ public class LoginAction extends Struts2Action {
 			getSession().setAttribute("userMsg", user);
 			getSession().setAttribute("userCode", user.getUserCode());
 			getRequest().setAttribute("login", "1");
-			getRequest().setAttribute("roleType", "1");
-			getRequest().setAttribute("areaID", "111");
-			getRequest().setAttribute("areaName", "—Ù»™≤‚ ‘«¯”Ú≤Àµ•");
+			getRequest().setAttribute("roleCode", user.getRoleCode());
+			getRequest().setAttribute("comCode", "111");
+			getRequest().setAttribute("comName", "—Ù»™≤‚ ‘«¯”Ú≤Àµ•");
 			//≥ı ºªØ≤Àµ•  gebin
 //			PrpRole prpRole = prpRoleService.findRlolesByRoleCode(user.getRoleCode());
 //			List<PrpMenu> allMenus = menuService.getMenuList(prpRole.getMenuCodeArray());
