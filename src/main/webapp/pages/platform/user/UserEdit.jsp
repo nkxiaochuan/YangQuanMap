@@ -13,7 +13,7 @@
 	<fmt:message key="label.platform.user.manage" />
 </h2>
 <form action="${url}" method="post" class="required-validate pageForm"
-	onsubmit="return validateCallback(this, dialogAjaxDone);">
+	onsubmit="return validateCallback(this, navTabAjaxDone);">
 	<%-- callbackType为回调方法入口，当callbackType="closeCurrent"时会关闭当前tab,callbackType="forward"时需要forwardUrl值   --%>
 	<input type="hidden" name="callbackType" value="closeCurrent" />
 	<div class="pageFormContent" layoutH="97">

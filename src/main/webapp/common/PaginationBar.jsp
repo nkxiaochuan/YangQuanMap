@@ -1,7 +1,5 @@
-<%--
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%--<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>--%>
 <%@ include file="/common/taglibs.jsp"%>
- --%>
 <%-- 分页组件，需要Action中存在totalCount及对应getter/setter方法，并在使用前赋值 --%>
 <div class="panelBar">
 	<div class="pages">
@@ -11,7 +9,7 @@
 				<option value="${s.index}" ${pageSize eq s.index ? 'selected="selected"' : ''}>${s.index}</option>
 			</c:forEach>
 		</select> 
-		<span><fmt:message key="label.common.pagination.records" />&nbsp;,&nbsp;</span>
+		<span><fmt:message key="label.common.pagination.records" />&nbsp;&nbsp;</span>
 		<span><fmt:message key="label.common.pagination.total" />&nbsp;${totalCount}&nbsp; </span>
 		<span><fmt:message key="label.common.pagination.records" /> </span>
 	</div>
