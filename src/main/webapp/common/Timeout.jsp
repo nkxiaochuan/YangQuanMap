@@ -3,5 +3,5 @@
 <h2 class="contentTitle">Session Timeout,Please ReLogin</h2>
 
 <div class="pageFormContent" layoutH="60">
-	<a class="button" href="${ctx}/user/logout.do" target="_parent"><span>Login</span> </a>
+	<a class="button" href="${ctx}/login.do" target="_parent"><span>Login</span> </a>
 </div>
