@@ -11,6 +11,7 @@
 <link href="common/dwz/themes/css/core.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="common/dwz/themes/css/print.css" rel="stylesheet" type="text/css" media="print" />
 <link href="common/dwz/uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
 <!--[if IE]>
 <link href="common/dwz/themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
 <![endif]-->
@@ -23,8 +24,10 @@
 <script src="common/dwz/uploadify/scripts/swfobject.js" type="text/javascript"></script>
 <script src="common/dwz/uploadify/scripts/jquery.uploadify.v2.1.0.js" type="text/javascript"></script>
 <script src="common/dwz/bin/dwz.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=11aaaa7c886f33c506e1a65b05235518"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=11aaaa7c886f33c506e1a65b05235518"></script>
 <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>  
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+
 
 <%
 //默认简体中文
@@ -137,7 +140,7 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 										<c:forEach var="prpAreaInfo" items="${prpAreaInfos}">
 											<li>
 												<a href="${ctx}/sinoMapAction/prepareMap.do?areaID=${prpAreaInfo.comCode}"
-													target="navTab" rel="12">${prpAreaInfo.comName}</a>
+													target="navTab" rel="areaList">${prpAreaInfo.comName}</a>
 											</li>
 										</c:forEach>
 									</ul>
@@ -148,11 +151,11 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 										<ul>
 											<li>
 												<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
-													rel="deviceBound">区域管理</a>
+													rel="areaManage">区域管理</a>
 											</li>
 											<li>
 												<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
-													rel="configInfo">人员管理</a>
+													rel="userManage">人员管理</a>
 											</li>
 										</ul>
 									</li>

@@ -7,11 +7,29 @@ public class LocationInfoVo {
 	private String id;
 	private String lngX;
 	private String latY;
-	private String userCode;
-	private String userName;
-	private String phoneNumber;
+	private String name;
+	private String category;
+	private String information;
 	private String insertTimeHis;
 	private String updateTimehis;
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getInformation() {
+		return information;
+	}
+	public void setInformation(String information) {
+		this.information = information;
+	}
 	public String getId() {
 		return id;
 	}
@@ -29,24 +47,6 @@ public class LocationInfoVo {
 	}
 	public void setLatY(String latY) {
 		this.latY = latY;
-	}
-	public String getUserCode() {
-		return userCode;
-	}
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
 	}
 	public String getInsertTimeHis() {
 		return insertTimeHis;
