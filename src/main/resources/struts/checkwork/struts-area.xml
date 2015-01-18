@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="area" extends="struts-default" namespace="/">
+		<action name="query" class="prpAreaInfoAction" method="query">
+			<result name="success">/pages/platform/area/PrpAreaInfoQuery.jsp</result>
+		</action>
+		<action name="prepareAdd" class="prpAreaInfoAction" method="prepareAdd">
+			<result name="success">/pages/platform/area/PrpAreaInfoEdit.jsp</result>
+		</action>
+		<action name="prepareUpdate" class="prpAreaInfoAction" method="prepareUpdate">
+			<result name="success">/pages/platform/area/PrpAreaInfoEdit.jsp</result>
+		</action>
+		<action name="add" class="prpAreaInfoAction" method="add">
+			<result name="success">/pages/platform/area/PrpAreaInforQuery.jsp</result>
+		</action>
+		<action name="update" class="prpAreaInfoAction" method="update">
+		</action>
+		<action name="delete" class="prpAreaInfoAction" method="delete">
+		</action>
+		<action name="view" class="prpAreaInfoAction" method="view">
+			<result name="success">/pages/platform/area/PrpAreaInfoView.jsp</result>
+		</action>
+	</package>
+</struts>

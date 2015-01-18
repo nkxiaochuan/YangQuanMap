@@ -32,7 +32,7 @@ public class PrpDuser implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "USERCODE", unique = true, nullable = false, length = 10)
+	@Column(name = "USERCODE", unique = true, nullable = false, length = 6)
 	public String getUserCode() {
 		return this.userCode;
 	}

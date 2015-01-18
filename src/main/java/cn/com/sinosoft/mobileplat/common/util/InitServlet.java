@@ -4,7 +4,6 @@ package cn.com.sinosoft.mobileplat.common.util;
 import ins.framework.cache.CacheManager;
 import ins.framework.cache.CacheService;
 import ins.framework.common.ServiceFactory;
-import ins.map.schema.model.SimpConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,12 +18,12 @@ public class InitServlet extends HttpServlet
   public void init() throws ServletException {
 ///* 38 */    this.logger.debug("start...");
 ///* 39 */    ServiceFactory.initServiceFactory(getServletContext());
-//			System.out.println("Ð´Èë»º´æstart...");
+//			System.out.println("Ð´ï¿½ë»ºï¿½ï¿½start...");
 //			SimpConfigService simpConfigService = (SimpConfigService) ServiceFactory.getService("simpConfigService");
 //			List<SimpConfig> configList = simpConfigService.findSimpConfigs();
 //			for(SimpConfig s : configList){
 //				cacheManager.putCache(s.getConfigCode(), s.getConfigValue());
 //			}
-//			System.out.println("Ð´Èë»º´æend...");
+//			System.out.println("Ð´ï¿½ë»ºï¿½ï¿½end...");
  }
 }

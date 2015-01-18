@@ -12,11 +12,11 @@
 	<!-- 员工管理 -->
 	<bean id="userAction" class="ins.platform.web.UserAction"
 		scope="prototype" />
-<!--
-	 机构管理 
-	<bean id="companyAction" class="ins.platform.web.CompanyAction"
+
+	<!-- 机构管理 -->
+	<bean id="prpAreaInfoAction" class="ins.map.web.PrpAreaInfoAction"
 		scope="prototype" />
- 
+ <!--
 	 证书认证 
 	<bean id="licenseAction" class="ins.platform.web.LicenseAction"
 		scope="prototype" />

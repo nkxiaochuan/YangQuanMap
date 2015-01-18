@@ -10,6 +10,7 @@ import ins.platform.schema.model.PrpRole;
 import ins.platform.service.facade.PrpRoleService;
 import ins.platform.service.facade.UserService;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -123,6 +124,14 @@ public class UserAction extends SinoMapBaseAction {
 				(!("".equals(this.prpDuser.getPrpAreaInfo().getComCode())))) {
 			queryRule.addEqual("prpAreaInfo.comCode", this.prpDuser.getPrpAreaInfo().getComCode());
 		}
+		
+		PrpDuser user = (PrpDuser) getSession().getAttribute("userMsg");
+		if(user != null && !"100000".equals(user.getUserCode())) {//not super maneger
+			queryRule.addEqual("prpAreaInfo.comCode", user.getPrpAreaInfo().getComCode());
+			queryRule.addEqual("roleCode", "0");
+		}else {
+			queryRule.addNotEqual("userCode", "100000");
+		}
 		Page page = this.userService.findUser(queryRule, this.pageNo,
 				this.pageSize);
 		this.userList = page.getResult();
@@ -145,16 +154,7 @@ public class UserAction extends SinoMapBaseAction {
 
 	public String prepareUpdate() {
 		this.prpDuser = this.userService.getUser(this.userCode);
-		roleList = (List<PrpRole>) getCache().get("roleList");
-		if(roleList == null) {
-			roleList = prpRoleService.findRoles();
-			getCache().put("roleList", roleList);
-		}
-		areaInfoList = (List<PrpAreaInfo>) getCache().get("areaInfoList");
-		if(areaInfoList == null) {
-			areaInfoList = prpAreaInfoService.findAreaInfos();
-			getCache().put("areaInfoList", areaInfoList);
-		}
+		autoPackList();
 		return "success";
 	}
 
@@ -174,28 +174,46 @@ public class UserAction extends SinoMapBaseAction {
 	}
 
 	public String prepareAdd() {
-		roleList = (List<PrpRole>) getCache().get("roleList");
-		if(roleList == null) {
-			roleList = prpRoleService.findRoles();
-			getCache().put("roleList", roleList);
-		}
-		areaInfoList = (List<PrpAreaInfo>) getCache().get("areaInfoList");
-		if(areaInfoList == null) {
-			areaInfoList = prpAreaInfoService.findAreaInfos();
-			getCache().put("areaInfoList", areaInfoList);
-		}
+		autoPackList();
 		return "success";
 	}
 
+	private void autoPackList() {
+		PrpDuser user = (PrpDuser) getSession().getAttribute("userMsg");
+		if(user != null && !"100000".equals(user.getUserCode())) {//super user
+			PrpRole role = new PrpRole();
+			role.setRoleCode("0");//operator
+			role.setInfo(getText("label.platform.user.operator"));
+			roleList = new ArrayList<PrpRole>();
+			roleList.add(role);
+			areaInfoList = new ArrayList<PrpAreaInfo>();
+			PrpAreaInfo areaInfo = new PrpAreaInfo();
+			areaInfo.setComName(user.getPrpAreaInfo().getComName());
+			areaInfo.setComCode(user.getPrpAreaInfo().getComCode());
+			areaInfoList.add(areaInfo);
+		}else {
+			roleList = (List<PrpRole>) getCache().get("roleList");
+			if(roleList == null) {
+				roleList = prpRoleService.findRoles();
+				getCache().put("roleList", roleList);
+			}
+			areaInfoList = (List<PrpAreaInfo>) getCache().get("areaInfoList");
+			if(areaInfoList == null) {
+				areaInfoList = prpAreaInfoService.findAreaInfos();
+				getCache().put("areaInfoList", areaInfoList);
+			}
+		}
+	}
+	
 	public String delete() {
 		try {
-		String usercode = getRequest().getParameter("userCode");
-		this.userService.delete(usercode);
-		renderJSON(success(getText("action.deleteSuccess"),"userManage","","",""));
+			String usercode = getRequest().getParameter("userCode");
+			this.userService.delete(usercode);
+			renderJSON(success(getText("action.deleteSuccess"),"userManage","","",""));
 		}catch(Exception e) {
 			logger.error(e);
 			e.printStackTrace();
-			renderJSON(success(getText("action.deleteFeilure"),"userManage"));
+			renderJSON(feilure(getText("action.deleteFeilure")));
 		}
 		return null;
 	}

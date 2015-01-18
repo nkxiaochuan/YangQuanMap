@@ -141,12 +141,16 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 										<a href="#">数据维护</a>
 										<ul>
 											<li>
-												<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
+												<a href="${ctx}/prpAreaInfoAction/query.do" target="navTab"
 													rel="areaManage">区域管理</a>
 											</li>
 											<li>
 												<a href="${ctx}/userAction/query.do" target="navTab"
 													rel="userManage">人员管理</a>
+											</li>
+											<li>
+												<a href="${ctx}/locationAction/query.do" target="navTab"
+													rel="locationManage">地点管理</a>
 											</li>
 										</ul>
 									</li>

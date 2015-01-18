@@ -46,17 +46,6 @@ public class SinoMapBaseAction extends Struts2Action {
         return jsonObject.toString();
 	}
 	
-	public String success(String successReason,String navTabId) {
-		JSONObject jsonObject = new JSONObject();
-        jsonObject.put("statusCode", "200");
-        jsonObject.put("message", successReason);
-        jsonObject.put("navTabId", navTabId);
-        jsonObject.put("rel", "");
-        jsonObject.put("callbackType", "");
-        jsonObject.put("forwardUrl", "");
-        return jsonObject.toString();
-	}
-	
 	public String feilure(String feilureReason) {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("statusCode", "300");
