@@ -57,9 +57,12 @@ public class LocationInfoServiceImpl extends
 		
 	}
 
-	public List<LocationInfo> findLocationInfos() {
+	public List<LocationInfo> findLocationInfos(String roleCode,String comCode) {
 		QueryRule queryRule = QueryRule.getInstance();
 		queryRule.addSql(" 1=1");
+		if(comCode !=null){
+			queryRule.addEqual("prpAreaInfo.comCode", comCode.trim());
+		}
 		log.info("test");
 		return this.find(queryRule);
 	}

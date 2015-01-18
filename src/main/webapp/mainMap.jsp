@@ -7,8 +7,7 @@ body{height:100%;margin:0px;padding:0px}
 </style>
 <body>
 <div id="initMapDiv" class="navTab-panel tabsPageContent layoutBox"></div> 
-<input id="lanX" type="hidden" value="${lanX}">
-<input id="latY" type="hidden" value="${latY}">
+<input id="comCode" type="hidden" value="${comCode}">
 </body>
 <script type="text/javascript"> 
 initDiv();
@@ -51,10 +50,12 @@ function initDiv(){
 	}
 function getXYdata(){
 	var n=0;
+	var comCode = document.getElementById("comCode").value;
 	$.ajax({
 		   type: "POST",
 		   url: "/sinoMap/sinoMapAction/getXYdata.do",
 		   dataType:"json",
+		   data:"comCode="+comCode,
 		   success: function(res){
 			   if(res.data.length ==0){
 				   //
