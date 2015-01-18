@@ -16,7 +16,5 @@
 		<action name="prepareChangePassword" class="loginAction" method="prepareChangePassword">
 			<result name="success">/pages/map/passwordEdit.jsp</result>
 		</action>
-		<action name="changePassword" class="loginAction" method="changePassword">
-		</action>
 	</package>
 </struts>

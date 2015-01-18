@@ -6,8 +6,10 @@ import ins.platform.schema.model.PrpDuser;
 import ins.platform.service.facade.UserService;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -34,6 +36,11 @@ public class SessionFilter implements Filter {
 	private UserService userService;
 	/** 要检查的 session 的名称 */
     private String sessionKey;
+    /** 需要排除（不拦截）的URL的正则表达式 */
+    private String excepUrlRegex;
+     
+    /** 检查不通过时，转发的URL */
+    private String forwardUrl;
 	public String getSessionKey() {
 		return sessionKey;
 	}
@@ -59,30 +66,25 @@ public class SessionFilter implements Filter {
 		
 	}
 
-	/** У��SESSION�Ƿ���Ч����Ҫ�ж�session�����Ƿ���user */
 	private boolean checkSession(HttpServletRequest request,
 			HttpServletResponse response) {
-		// ���SessionʧЧ������null;
 		HttpSession session = request.getSession(false);
 		String URI = request.getRequestURI();
 		
 //		String SCMS_VERSION = UtilVersion.getVersion();
 //		request.setAttribute("SCMS_VERSION", SCMS_VERSION);
 
-		// ������ڵ�½���򲻽��м��
 		if (URI.contains("login.jsp") || URI.contains("login.do")){
 			return true;
 		}
-		// add by gjc ֧��URI���Թ���
 		if (ignoreKeys.containsKey(URI.toUpperCase())) {
 			return true;
 		}
 		if (request.getParameter("j_username") != null
 				&& request.getParameter("j_username") != null) {
 			return true;
-		} else { // ������ڵ�½������Ҫ�ж��Ƿ���user
+		} else { 
 			try {
-				// ���SessionʧЧ����ص�¼ҳ��
 				if (session == null) {
 					response.sendRedirect("/sinoMap");
 					return false;
@@ -96,11 +98,10 @@ public class SessionFilter implements Filter {
 					if (null != userCode && !"".equals(userCode)
 							&& prpDuser == null) {
 						try {
-							// ����
 //							String usercode = request.getParameter("userCode");
 							sessionCache = CacheManager.getInstance(userCode);
 							sessionCache.clearCache();
-							UserManager.clearCacheManager(cacheKey);//����
+							UserManager.clearCacheManager(cacheKey);
 							
 							PrpDuser user = userService.findUserByUserCode(userCode);
 							session.setAttribute("userMsg",
@@ -126,47 +127,58 @@ public class SessionFilter implements Filter {
 		}
 	}
 	
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
-			ServletException {
-		
-		// ��SESSION�Ƿ���Ч����У��
-		/*���ɵ���ſ��˴���begin*/
-		boolean flag = checkSession((HttpServletRequest) request,
-				(HttpServletResponse) response);
-		if (flag){
-			chain.doFilter(request, response);
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException,
+ ServletException {
+
+		// 如果 sessionKey 为空，则直接放行
+		if (org.apache.commons.lang.StringUtils.isBlank(sessionKey)) {
+			chain.doFilter(req, res);
+			return;
 		}
-		/*���ɵ���ſ��˴���end*/
-		/*ȥ������ſ��˴���begin*/
-//		String SCMS_VERSION = UtilVersion.getVersion();
-//		request.setAttribute("SCMS_VERSION", SCMS_VERSION);
-//		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-//		String requestURI = httpServletRequest.getRequestURI();
-//		HttpSession session = httpServletRequest.getSession(false);
-//		String servletPath = httpServletRequest.getServletPath();
-//		if ((servletPath != null)) {
-//			chain.doFilter(request, response);
-//			return;
-//		}
-//		if (session == null) {
-//			if (requestURI.indexOf("login.do") != -1) {
-//				chain.doFilter(request, response);
-//				return;
-//			}
-//			request.getRequestDispatcher("login.jsp").forward(request, response);
-//			return;
-//		}
-//		if (session.getAttribute("userCode") == null) {
-//			if (requestURI.indexOf("login.do") != -1) {
-//				chain.doFilter(request, response);
-//				return;
-//			}
-//
-//			request.getRequestDispatcher("login.jsp").forward(request, response);
-//			return;
-//		}
-//		chain.doFilter(request, response);
-		/*ȥ������ſ��˴���end*/
+		// * 请求 http://127.0.0.1:8080/webApp/home.jsp?&a=1&b=2 时
+		// * request.getRequestURL()： http://127.0.0.1:8080/webApp/home.jsp
+		// * request.getContextPath()： /webApp
+		// * request.getServletPath()：/home.jsp
+		// * request.getRequestURI()： /webApp/home.jsp
+		// * request.getQueryString()：a=1&b=2
+		HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletResponse response = (HttpServletResponse) res;
+		String servletPath = request.getServletPath();
+
+		// 如果请求的路径与forwardUrl相同，或请求的路径是排除的URL时，则直接放行
+		if (servletPath.equals(forwardUrl)
+				|| excepUrlRegex.indexOf(servletPath) >=0) {
+			chain.doFilter(req, res);
+			return;
+		}
+
+		Object sessionObj = request.getSession().getAttribute(sessionKey);
+		// 如果Session为空，则跳转到指定页面
+		if (sessionObj == null) {
+			String contextPath = request.getContextPath();
+//			String redirect = servletPath + "?"
+//					+ org.apache.commons.lang.StringUtils.defaultString(request.getQueryString());
+			/*
+			 * login.jsp 的 <form> 表单中新增一个隐藏表单域： <input type="hidden"
+			 * name="redirect" value="${param.redirect }">
+			 * 
+			 * LoginServlet.java 的 service 的方法中新增如下代码： String redirect =
+			 * request.getParamter("redirect"); if(loginSuccess){ if(redirect ==
+			 * null || redirect.length() == 0){ // 跳转到项目主页（home.jsp） }else{ //
+			 * 跳转到登录前访问的页面（java.net.URLDecoder.decode(s, "UTF-8")） } }
+			 */
+			response.sendRedirect(contextPath
+					+ org.apache.commons.lang.StringUtils.defaultIfEmpty(forwardUrl, "/")
+//					+ "?redirect=" + URLEncoder.encode(redirect, "UTF-8")
+					);
+		} else {
+			chain.doFilter(req, res);
+		}
+		// boolean flag = checkSession((HttpServletRequest) request,
+		// (HttpServletResponse) response);
+		// if (flag){
+		// chain.doFilter(request, response);
+		// }
 		return;
 	}
 
@@ -180,21 +192,14 @@ public class SessionFilter implements Filter {
 				ignoreKeys.put(string.toUpperCase(), string.toUpperCase());
 			}
 		}
-		/*// ��¼����������ļ�
-		try {
-			String separator = java.io.File.separator;
-
-			String sysConstConfig = (String) filterConfig.getServletContext()
-					.getRealPath("/")
-					+ separator
-					+ "WEB-INF"
-					+ separator
-					+ "config"
-					+ separator
-					+ "appconfig" + separator + "SysConstConfig.xml";
-			SysConst.init(sysConstConfig, true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
+		
+		sessionKey = filterConfig.getInitParameter("sessionKey");
+		 
+        excepUrlRegex = filterConfig.getInitParameter("excepUrlRegex");
+//        if (!org.apache.commons.lang.StringUtils.isBlank(excepUrlRegex)) {
+//            excepUrlPattern = Pattern.compile(excepUrlRegex);
+//        }
+ 
+        forwardUrl = filterConfig.getInitParameter("forwardUrl");
 	}
 }
