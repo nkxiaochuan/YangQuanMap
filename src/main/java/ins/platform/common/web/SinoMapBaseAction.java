@@ -16,6 +16,9 @@ public class SinoMapBaseAction extends Struts2Action {
 	
 	private Map cache = new HashMap();
 
+	public SinoMapBaseAction() {
+		this.pageSize = 15;
+	}
 	public Map getCache() {
 		return cache;
 	}

@@ -125,7 +125,7 @@ public class LoginAction extends Struts2Action {
 			return "login";
 		}
 		getRequest().setAttribute("login", "0");
-		getRequest().setAttribute("login_em", "用户或密码输入错误！");
+		getRequest().setAttribute("login_em", "鐢ㄦ埛鎴栧瘑鐮佽緭鍏ラ敊璇紒");
 		return "error";
 	}
 	

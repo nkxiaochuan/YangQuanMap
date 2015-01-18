@@ -12,16 +12,16 @@
 			<table class="searchContent">
 				<tr>
 					<td>
-						<label><fmt:message key="label.platform.user.usercode" /></label> 
+						<label><fmt:message key="label.platform.user.userCode" /></label> 
 						<input type="text" name="prpDuser.userCode" value="${prpDuser.userCode}"/> 
 					</td>
 					<td>	
-						<label><fmt:message key="label.platform.user.username" /></label> 
+						<label><fmt:message key="label.platform.user.userName" /></label> 
 						<input type="text" name="prpDuser.userName" value="${prpDuser.userName}"/> 
 					</td>
 					<td>	
-						<label><fmt:message key="label.platform.user.comcode" /></label> 
-						<input type="text" name="prpDuser.prpDcompany.comCode" value="${prpDuser.prpAreaInfo.comCode}"/> 
+						<label><fmt:message key="label.platform.user.comCode" /></label> 
+						<input type="text" name="prpDuser.prpAreaInfo.comCode" value="${prpDuser.prpAreaInfo.comCode}"/> 
 					</td>
 				</tr>
 			</table>			 
@@ -49,21 +49,30 @@
 		<thead>
 			<tr> 			  
 				<th width="50" align="right"><fmt:message key="label.common.main.serialno" /></th> 
-				<th width="200" orderField="userCode" class="${param.orderField eq 'userCode' ? param.orderDirection : ''}"><fmt:message key="label.platform.user.usercode" /></th>
-				<th width="260" orderField="userName" class="${param.orderField eq 'userName' ? param.orderDirection : ''}"><fmt:message key="label.platform.user.username" /></th>
-				<th width="200" orderField="comCode" class="${param.orderField eq 'comCode' ? param.orderDirection : ''}"><fmt:message key="label.platform.user.comcode" /></th> 
-				<th width="200" orderField="comCName" class="${param.orderField eq 'comCName' ? param.orderDirection : ''}"><fmt:message key="label.platform.user.comcname" /></th> 
+				<th width="200" orderField="userCode"><fmt:message key="label.platform.user.userCode" /></th>
+				<th width="200" orderField="userName"><fmt:message key="label.platform.user.userName" /></th>
+				<th width="200" orderField="comCode"><fmt:message key="label.platform.user.comCode" /></th> 
+				<th width="200" orderField="comName"><fmt:message key="label.platform.user.comName" /></th> 
+				<th width="60" orderField="roleCode"><fmt:message key="label.platform.user.roleCode" /></th> 
 				<th width="80"><fmt:message key="label.common.main.operate" /></th>
 			</tr> 
 		</thead>
 		<tbody>
-			<c:forEach items="${resultList}" var="obj" varStatus="status">
-			<tr target="userCode" rel="${obj.userCode}">
+			<c:forEach items="${userList}" var="obj" varStatus="status">
+				<tr target="userCode" rel="${obj.userCode}">
 				<td>${status.index+1}</td>				  
 				<td>${obj.userCode}</td> 
 				<td>${obj.userName }</td>
-				<td>${obj.prpDcompany.comCode }</td> 
-				<td>${obj.prpDcompany.comCName }</td> 
+				<td>${obj.prpAreaInfo.comCode }</td> 
+				<td>${obj.prpAreaInfo.comName }</td> 
+				<c:choose>
+					<c:when test="${obj.roleCode == '1'}">
+						<td><fmt:message key="label.platform.user.manager"/></td>
+					</c:when>
+					<c:otherwise>
+						<td><fmt:message key="label.platform.user.operator"/></td>
+					</c:otherwise>
+				</c:choose>
 				<td>
 					<a title="View" target="navTab" href="${ctx}/user/view.do?userCode=${obj.userCode}" rel="viewUser${obj.userCode}" class="btnView">${(status.index+1)}</a> 
 					<a title="Edit" target="navTab" href="${ctx}/user/prepareUpdate.do?userCode=${obj.userCode}" rel="editUser${obj.userCode}" class="btnEdit"><fmt:message key="label.common.main.edit" /></a>
@@ -74,7 +83,7 @@
 		</tbody>
 	</table>
 	
-	<c:import url="/common/PaginationBar.jsp"></c:import>
+	<c:import url="/common/PaginationBar.jsp" charEncoding="UTF-8"></c:import>
 	
 </div>
 

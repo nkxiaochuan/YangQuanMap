@@ -15,8 +15,6 @@ import java.util.List;
 
 import org.springframework.security.core.token.Sha512DigestUtils;
 
-import net.sf.json.JSONObject;
-
 public class UserAction extends SinoMapBaseAction {
 	private UserService userService;
 	private PrpRoleService prpRoleService;
@@ -112,18 +110,21 @@ public class UserAction extends SinoMapBaseAction {
 
 	public String query() {
 		QueryRule queryRule = QueryRule.getInstance();
-		/*if ((this.prpDuser.getUserCode() != null)
+		if (this.prpDuser != null && (this.prpDuser.getUserCode() != null)
 				&& (!("".equals(this.prpDuser.getUserCode())))) {
 			queryRule.addEqual("userCode", this.prpDuser.getUserCode());
 		}
-		if ((this.prpDuser.getUserName() != null)
+		if (this.prpDuser != null && (this.prpDuser.getUserName() != null)
 				&& (!("".equals(this.prpDuser.getUserName())))) {
 			queryRule.addLike("userName", this.prpDuser.getUserName());
-		}*/
-
+		}
+		if (this.prpDuser != null && (this.prpDuser.getPrpAreaInfo() != null) &&
+				(this.prpDuser.getPrpAreaInfo().getComCode() != null)	&& 
+				(!("".equals(this.prpDuser.getPrpAreaInfo().getComCode())))) {
+			queryRule.addEqual("comCode", this.prpDuser.getPrpAreaInfo().getComCode());
+		}
 		Page page = this.userService.findUser(queryRule, this.pageNo,
 				this.pageSize);
-
 		this.userList = page.getResult();
 		this.totalCount = (int) page.getTotalCount();
 		return "success";
@@ -146,14 +147,13 @@ public class UserAction extends SinoMapBaseAction {
 			prpDuser.setInsertTimeForHis(new Date());
 			prpDuser.setOperateTimeForHis(new Date());
 			this.userService.save(this.prpDuser);
-			renderJSON(successClose("添加成功"));
-			return null;
+			renderJSON(successClose("娣诲姞鎴愬姛"));
 		}catch(Exception e) {
 			logger.equals(e);
 			e.printStackTrace();
-			renderJSON(feilure("添加不成功！"));
-			return null;
+			renderJSON(feilure("娣诲姞澶辫触"));
 		}
+		return null;
 	}
 
 	public String prepareAdd() {
@@ -171,9 +171,16 @@ public class UserAction extends SinoMapBaseAction {
 	}
 
 	public String delete() {
-		this.userService.delete(this.userCode);
-
-		return "success";
+		try {
+		String usercode = getRequest().getParameter("userCode");
+		this.userService.delete(usercode);
+		renderJSON(successClose("鍒犻櫎鎴愬姛"));
+		}catch(Exception e) {
+			logger.error(e);
+			e.printStackTrace();
+			renderJSON(successClose("鍒犻櫎澶辫触"));
+		}
+		return null;
 	}
 
 	public String prepareQuery() {
@@ -195,14 +202,14 @@ public class UserAction extends SinoMapBaseAction {
 			if(pd != null && pd.equals(user.getPassword())) {
 				user.setPassword(newPassword);
 				userService.update(user);
-				renderJSON(successClose("修改成功!"));
+				renderJSON(successClose("淇敼鎴愬姛!"));
 			}else {
-				renderJSON(feilure("用户名密码不匹配!"));
+				renderJSON(feilure("鐢ㄦ埛鍚嶅瘑鐮佷笉鍖归厤!"));
 			}
 		}catch(Exception e) {
 			logger.equals(e);
 			e.printStackTrace();
-			renderJSON(feilure("修改失败!"));
+			renderJSON(feilure("淇敼澶辫触!"));
 		}
 		return null;
 	}

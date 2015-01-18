@@ -125,15 +125,6 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 					</div>
 					<div class="accordionContent">
 							<ul class="tree treeFolder">
-								 <%--<li><a href="${ctx}/sinoMapAction/prepareMap.do?lanX=113.60747&latY=37.853347" target="navTab" rel="initMap">阳泉市邮政城区</a></li>
-								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab" rel="initMap">阳泉市矿区</a></li>
-								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab" rel="deviceBound">区域管理</a></li>
-								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab" rel="configInfo">操作员管理</a></li>
-								 <li><a href="${ctx}/sinoMapAction/prepareMap.do" target="dialog" rel="configInfo">备用</a></li>
-		                  		--%>
-		                  		<s:iterator value="menuList"  var="menu"><s:property value="menucode"/><s:property/>
-		                  			<li><a href='${ctx}<s:property value="menu.menuUrl"/>' target="<s:property value='menu.menuType'/>"><s:property value="menu.menuName"/></a></li>
-		                  		</s:iterator>
 								<li>
 									<a href="#">我的区域列表</a>
 									<ul>
@@ -154,8 +145,8 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 													rel="areaManage">区域管理</a>
 											</li>
 											<li>
-												<a href="${ctx}/sinoMapAction/prepareMap.do" target="navTab"
-													rel="userManage">人员管理</a>
+												<a href="${ctx}/userAction/query.do" target="navTab"
+													rel="configInfo">人员管理</a>
 											</li>
 										</ul>
 									</li>

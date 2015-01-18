@@ -16,6 +16,7 @@
 			<result name="success">/pages/platform/user/UserEdit.jsp</result>
 		</action>
 		<action name="add" class="userAction" method="add">
+			<result name="success">/pages/platform/user/UserQuery.jsp</result>
 		</action>
 		<action name="update" class="userAction" method="update">
 		</action>
