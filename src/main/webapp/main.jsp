@@ -130,7 +130,7 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 									<ul>
 										<c:forEach var="prpAreaInfo" items="${prpAreaInfos}">
 											<li>
-												<a href="${ctx}/sinoMapAction/prepareMap.do?areaID=${prpAreaInfo.comCode}"
+												<a href="${ctx}/sinoMapAction/prepareMap.do?comCode=${prpAreaInfo.comCode}"
 													target="navTab" rel="areaList">${prpAreaInfo.comName}</a>
 											</li>
 										</c:forEach>
