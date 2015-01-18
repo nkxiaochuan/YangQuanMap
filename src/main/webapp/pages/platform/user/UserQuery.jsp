@@ -38,8 +38,8 @@
 
 	<div class="panelBar">
 		<ul class="toolBar"> 
-			<li><a class="add" target="navTab" rel="userNav" href="${ctx}/user/prepareAdd.do"><span><fmt:message key="label.common.main.add" /></span></a></li>
-			<li><a class="edit" target="navTab" rel="userNav" href="${ctx}/user/prepareUpdate.do?userCode={userCode}" ><span><fmt:message key="label.common.main.edit" /></span></a></li> 
+			<li><a class="add" target="dialog" width="800" rel="userNav" href="${ctx}/user/prepareAdd.do"><span><fmt:message key="label.common.main.add" /></span></a></li>
+			<li><a class="edit" target="dialog" width="800" rel="userNav" href="${ctx}/user/prepareUpdate.do?userCode={userCode}" ><span><fmt:message key="label.common.main.edit" /></span></a></li> 
 			<li class="line">line</li> 
 			<li><a class="delete" target="ajaxTodo" rel="userCode" href="${ctx}/user/delete.do?userCode={userCode}" title="<fmt:message key="title.common.delete" />"><span><fmt:message key="label.common.main.delete" /></span></a></li>			
 		</ul>
@@ -74,8 +74,8 @@
 					</c:otherwise>
 				</c:choose>
 				<td>
-					<a title="View" target="navTab" href="${ctx}/user/view.do?userCode=${obj.userCode}" rel="viewUser${obj.userCode}" class="btnView">${(status.index+1)}</a> 
-					<a title="Edit" target="navTab" href="${ctx}/user/prepareUpdate.do?userCode=${obj.userCode}" rel="editUser${obj.userCode}" class="btnEdit"><fmt:message key="label.common.main.edit" /></a>
+					<a title="View" target="dialog" width="800" href="${ctx}/user/view.do?userCode=${obj.userCode}" rel="viewUser${obj.userCode}" class="btnView">${(status.index+1)}</a> 
+					<a title="Edit" target="dialog" width="800" href="${ctx}/user/prepareUpdate.do?userCode=${obj.userCode}" rel="editUser${obj.userCode}" class="btnEdit"><fmt:message key="label.common.main.edit" /></a>
 					<a title="Delete" target="ajaxTodo" href="${ctx}/user/delete.do?userCode=${obj.userCode}" class="btnDel" title="<fmt:message key="title.common.delete" />"><fmt:message key="label.common.main.delete" /></a>
 				</td>
 			</tr>

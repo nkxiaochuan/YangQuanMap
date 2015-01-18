@@ -13,7 +13,7 @@
 	<fmt:message key="label.platform.user.manage" />
 </h2>
 <form action="${url}" method="post" class="required-validate pageForm"
-	onsubmit="return validateCallback(this, navTabAjaxDone);">
+	onsubmit="return validateCallback(this, dialogAjaxDone);">
 	<%-- callbackType为回调方法入口，当callbackType="closeCurrent"时会关闭当前tab,callbackType="forward"时需要forwardUrl值   --%>
 	<input type="hidden" name="callbackType" value="closeCurrent" />
 	<div class="pageFormContent" layoutH="97">
@@ -53,17 +53,7 @@
 				<s:select list="areaInfoList" name="prpDuser.prpAreaInfo.comCode" listKey="comCode" listValue="comName"></s:select>
 			</dd>
 		</dl>
-
-		<%--<dl>
-			<dt>
-				<fmt:message key="label.platform.user.comcname" />
-			</dt>
-			<dd>
-				<input type="text" name="prpDuser.prpAreaInfo.comName" class="readonly" readonly="readonly"
-					value="${prpDuser.prpAreaInfo.comName}" />
-			</dd>
-		</dl>
-		--%><dl>
+		<dl>
 			<dt>
 				<fmt:message key="label.platform.user.roleCode" />
 			</dt>
@@ -80,7 +70,7 @@
 			<dd>
 				<c:choose>
 					<c:when test="${prpDuser.userCode == null}">
-						<input type="password" name="prpDuser.password" class="required" />
+						<input type="password" name="prpDuser.password" class="required alphanumeric" minlength="6" maxlength="20" size="30" />
 					</c:when>
 					<c:otherwise>
 							******
@@ -88,38 +78,6 @@
 				</c:choose>
 			</dd>
 		</dl>
-
-		<%--<dl>
-			<dt>
-				<fmt:message key="label.platform.user.passwdsetdate" />
-			</dt>
-			<dd>
-				<input type="text" name="prpDuser.passwdSetDate" format="yyyy-MM-dd"
-					value='<fmt:formatDate pattern="yyyy-MM-dd" value="${prpDuser.passwdSetDate}"/>' class="date required"
-					yearstart="-10" yearend="2" /> <a class="inputDateButton" href="#">Choose</a>
-			</dd>
-		</dl>
-
-		<dl>
-			<dt>
-				<fmt:message key="label.platform.user.passwdexpiredate" />
-			</dt>
-			<dd>
-				<input type="text" name="prpDuser.passwdExpireDate" format="yyyy-MM-dd"
-					value='<fmt:formatDate pattern="yyyy-MM-dd" value="${prpDuser.passwdExpireDate}"/>' class="date required"
-					yearstart="-10" /> <a class="inputDateButton" href="#">Choose</a>
-			</dd>
-		</dl>
-
-		<dl>
-			<dt>
-				<fmt:message key="label.platform.user.articlecode" />
-			</dt>
-			<dd>
-				<input type="text" name="prpDuser.articleCode" class="required" value="${prpDuser.articleCode}" />
-			</dd>
-		</dl>
---%>
 		<dl>
 			<dt>
 				<fmt:message key="label.platform.user.info" />

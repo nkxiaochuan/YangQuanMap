@@ -52,23 +52,23 @@ public class UserServiceSpringImpl extends
 	}
 
 	public PrpDuser getUser(String userCode) {
-		logger.debug("»ñÈ¡¹¤ºÅÎª" + userCode + "µÄÔ±¹¤ÐÅÏ¢");
+		logger.debug("ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Îª" + userCode + "ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ï¢");
 		return ((PrpDuser) super.get(userCode));
 	}
 
 	public Page findUser(QueryRule queryRule, int pageNo, int pageSize) {
-		logger.debug("»ñÈ¡Ô±¹¤ÐÅÏ¢ÁÐ±í");
+		logger.debug("finduser");
 		return super.find(queryRule, pageNo, pageSize);
 	}
 
 	@Transactional(propagation = Propagation.NEVER)
 	public void delete(String userCode) {
-		logger.debug("„h³ý¹¤ºÅÎª" + userCode + "µÄÔ±¹¤ÐÅÏ¢");
+		logger.debug("ï¿½hï¿½ï¿½ï¿½Îª" + userCode + "ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ï¢");
 		super.deleteByPK(userCode);
 	}
 
 	public void save(PrpDuser prpDuser) {
-		logger.debug("±£´æÔ±¹¤ÐÅÏ¢");
+		logger.debug("ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ï¢");
 		prpDuser.setPassword(Sha512DigestUtils.shaHex(prpDuser.getPassword()));
 
 		if ((prpDuser.getValidStatus() == null)
@@ -127,11 +127,11 @@ public class UserServiceSpringImpl extends
 		queryRule.addLike("userCode", userCode);
 		PrpDuser user = (PrpDuser) findUnique(queryRule);
 		if (user == null) {
-			throw new BusinessException("Ã»ÓÐÕÒµ½Ô±¹¤" + userCode + "µÄÐÅÏ¢£¬ÇëºËÊµºóÔÚ´Ë²éÑ¯",
+			throw new BusinessException("Ã»ï¿½ï¿½ï¿½Òµï¿½Ô±ï¿½ï¿½" + userCode + "ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ú´Ë²ï¿½Ñ¯",
 					false);
 		}
 		if (user.getPrpDcompany() == null) {
-			throw new BusinessException("Ã»ÓÐÕÒµ½Ô±¹¤" + userCode + "µÄ»ú¹¹ÐÅÏ¢£¬ÇëºËÊµºóÔÚ´Ë²éÑ¯",
+			throw new BusinessException("Ã»ï¿½ï¿½ï¿½Òµï¿½Ô±ï¿½ï¿½" + userCode + "ï¿½Ä»ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ú´Ë²ï¿½Ñ¯",
 					false);
 		}
 

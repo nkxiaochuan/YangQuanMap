@@ -26,14 +26,33 @@ public class SinoMapBaseAction extends Struts2Action {
 	public void setCache(Map cache) {
 		this.cache = cache;
 	}
-
-	public String successClose(String successReason) {
+	/**
+	 * 
+	 * @param message
+	 * @param navTabId
+	 * @param rel
+	 * @param callbackType
+	 * @param forwarUrl
+	 * @return
+	 */
+	public String success(String message, String navTabId, String rel, String callbackType, String forwarUrl) {
+		JSONObject jsonObject = new JSONObject();
+        jsonObject.put("statusCode", "200");
+        jsonObject.put("message", message);
+        jsonObject.put("navTabId", navTabId);
+        jsonObject.put("rel", rel);
+        jsonObject.put("callbackType", callbackType);
+        jsonObject.put("forwardUrl", forwarUrl);
+        return jsonObject.toString();
+	}
+	
+	public String success(String successReason,String navTabId) {
 		JSONObject jsonObject = new JSONObject();
         jsonObject.put("statusCode", "200");
         jsonObject.put("message", successReason);
-        jsonObject.put("navTabId", "");
+        jsonObject.put("navTabId", navTabId);
         jsonObject.put("rel", "");
-        jsonObject.put("callbackType", "closeCurrent");
+        jsonObject.put("callbackType", "");
         jsonObject.put("forwardUrl", "");
         return jsonObject.toString();
 	}

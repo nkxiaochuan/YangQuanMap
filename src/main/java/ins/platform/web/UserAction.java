@@ -121,7 +121,7 @@ public class UserAction extends SinoMapBaseAction {
 		if (this.prpDuser != null && (this.prpDuser.getPrpAreaInfo() != null) &&
 				(this.prpDuser.getPrpAreaInfo().getComCode() != null)	&& 
 				(!("".equals(this.prpDuser.getPrpAreaInfo().getComCode())))) {
-			queryRule.addEqual("comCode", this.prpDuser.getPrpAreaInfo().getComCode());
+			queryRule.addEqual("prpAreaInfo.comCode", this.prpDuser.getPrpAreaInfo().getComCode());
 		}
 		Page page = this.userService.findUser(queryRule, this.pageNo,
 				this.pageSize);
@@ -131,14 +131,30 @@ public class UserAction extends SinoMapBaseAction {
 	}
 
 	public String update() {
-		this.userService.update(this.prpDuser);
-
-		return "success";
+		
+		try {
+			this.userService.update(this.prpDuser);
+			renderJSON(success(getText("action.editSuccess"),"userManage","","closeCurrent",""));
+		}catch(Exception e) {
+			logger.equals(e);
+			e.printStackTrace();
+			renderJSON(feilure(getText("action.editFeilure")));
+		}
+		return null;
 	}
 
 	public String prepareUpdate() {
 		this.prpDuser = this.userService.getUser(this.userCode);
-
+		roleList = (List<PrpRole>) getCache().get("roleList");
+		if(roleList == null) {
+			roleList = prpRoleService.findRoles();
+			getCache().put("roleList", roleList);
+		}
+		areaInfoList = (List<PrpAreaInfo>) getCache().get("areaInfoList");
+		if(areaInfoList == null) {
+			areaInfoList = prpAreaInfoService.findAreaInfos();
+			getCache().put("areaInfoList", areaInfoList);
+		}
 		return "success";
 	}
 
@@ -147,11 +163,12 @@ public class UserAction extends SinoMapBaseAction {
 			prpDuser.setInsertTimeForHis(new Date());
 			prpDuser.setOperateTimeForHis(new Date());
 			this.userService.save(this.prpDuser);
-			renderJSON(successClose("添加成功"));
+			renderJSON(success(getText("action.addSuccess"),"userManage","","closeCurrent",""));
 		}catch(Exception e) {
 			logger.equals(e);
 			e.printStackTrace();
-			renderJSON(feilure("添加失败"));
+			renderJSON(feilure(getText("action.addFeilure")));
+			
 		}
 		return null;
 	}
@@ -174,11 +191,11 @@ public class UserAction extends SinoMapBaseAction {
 		try {
 		String usercode = getRequest().getParameter("userCode");
 		this.userService.delete(usercode);
-		renderJSON(successClose("删除成功"));
+		renderJSON(success(getText("action.deleteSuccess"),"userManage","","",""));
 		}catch(Exception e) {
 			logger.error(e);
 			e.printStackTrace();
-			renderJSON(successClose("删除失败"));
+			renderJSON(success(getText("action.deleteFeilure"),"userManage"));
 		}
 		return null;
 	}
@@ -202,14 +219,14 @@ public class UserAction extends SinoMapBaseAction {
 			if(pd != null && pd.equals(user.getPassword())) {
 				user.setPassword(newPassword);
 				userService.update(user);
-				renderJSON(successClose("修改成功!"));
+				renderJSON(success(getText("action.editSuccess"),"","","closeCurrent",""));
 			}else {
-				renderJSON(feilure("用户名密码不匹配!"));
+				renderJSON(feilure(getText("action.passwordError")));
 			}
 		}catch(Exception e) {
 			logger.equals(e);
 			e.printStackTrace();
-			renderJSON(feilure("修改失败!"));
+			renderJSON(feilure(getText("action.editFeilure")));
 		}
 		return null;
 	}

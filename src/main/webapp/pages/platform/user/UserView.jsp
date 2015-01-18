@@ -4,16 +4,16 @@
 <h2 class="contentTitle">
 	<fmt:message key="label.platform.user.manage" />
 </h2>
-<div class="pageFormContent" layoutH="97">
+<div class="pageFormContent" layoutH="90">
 	<dl>
 		<dt>
-			<fmt:message key="label.platform.user.usercode" />
+			<fmt:message key="label.platform.user.userCode" />
 		</dt>
 		<dd>${prpDuser.userCode}</dd>
 	</dl>
-	<dl style="width: 700px">
+	<dl>
 		<dt>
-			<fmt:message key="label.platform.user.username" />
+			<fmt:message key="label.platform.user.userName" />
 		</dt>
 		<dd>${prpDuser.userName}</dd>
 	</dl>
@@ -21,13 +21,13 @@
 	<div class="divider"></div>
 	<dl>
 		<dt>
-			<fmt:message key="label.platform.user.comcode" />
+			<fmt:message key="label.platform.user.comCode" />
 		</dt>
 		<dd>${prpDuser.prpAreaInfo.comCode}</dd>
 	</dl>
 	<dl>
 		<dt>
-			<fmt:message key="label.platform.user.comcname" />
+			<fmt:message key="label.platform.user.comName" />
 		</dt>
 		<dd>${prpDuser.prpAreaInfo.comName}</dd>
 	</dl>
@@ -41,37 +41,10 @@
 		<dt>
 			<fmt:message key="label.platform.user.password" />
 		</dt>
-		<dd>${prpDuser.password}</dd>
+		<dd>********</dd>
 	</dl>
-	<%--<dl>
-		<dt>
-			<fmt:message key="label.platform.user.passwdsetdate" />
-		</dt>
-		<dd>
-			<fmt:formatDate pattern="yyyy-MM-dd" value="${prpDuser.passwdSetDate}" />
-		</dd>
-	</dl>
+
 	<dl>
-		<dt>
-			<fmt:message key="label.platform.user.passwdsetdate" />
-		</dt>
-		<dd>
-			<fmt:formatDate pattern="yyyy-MM-dd" value="${prpDuser.passwdExpireDate}" />
-		</dd>
-	</dl>
-	<dl>
-		<dt>
-			<fmt:message key="label.platform.user.articlecode" />
-		</dt>
-		<dd>${prpDuser.articleCode}</dd>
-	</dl>
-	<dl>
-		<dt>
-			<fmt:message key="label.platform.user.newusercode" />
-		</dt>
-		<dd>${prpDuser.newUserCode}</dd>
-	</dl>
-	--%><dl>
 		<dt>
 			<fmt:message key="label.platform.user.validstatus" />
 		</dt>

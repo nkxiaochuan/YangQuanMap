@@ -22,6 +22,9 @@
 		</action>
 		<action name="delete" class="userAction" method="delete">
 		</action>
+		<action name="view" class="userAction" method="view">
+			<result name="success">/pages/platform/user/UserView.jsp</result>
+		</action>
 		<action name="changePassword" class="userAction" method="changePassword">
 		</action>
 	</package>

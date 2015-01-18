@@ -146,7 +146,7 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 											</li>
 											<li>
 												<a href="${ctx}/userAction/query.do" target="navTab"
-													rel="configInfo">人员管理</a>
+													rel="userManage">人员管理</a>
 											</li>
 										</ul>
 									</li>
