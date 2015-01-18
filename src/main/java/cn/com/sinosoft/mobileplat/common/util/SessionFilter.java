@@ -2,12 +2,16 @@ package cn.com.sinosoft.mobileplat.common.util;
 
 import ins.framework.cache.CacheManager;
 import ins.framework.cache.CacheService;
+import ins.map.schema.model.PrpAreaInfo;
+import ins.map.service.facade.PrpAreaInfoService;
 import ins.platform.schema.model.PrpDuser;
 import ins.platform.service.facade.UserService;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -22,6 +26,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import javax.servlet.http.HttpSession;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.sinosoft.sysframework.common.util.StringUtils;
 
@@ -172,13 +179,22 @@ public class SessionFilter implements Filter {
 //					+ "?redirect=" + URLEncoder.encode(redirect, "UTF-8")
 					);
 		} else {
+			if(servletPath.indexOf(".jsp")>=0){
+				ApplicationContext ac2 = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
+				PrpAreaInfoService prpAreaInfoService = (PrpAreaInfoService) ac2.getBean("prpAreaInfoService");
+				List<PrpAreaInfo> prpAreaInfos = new ArrayList();
+				PrpDuser user = (PrpDuser) sessionObj;
+				if(user.getRoleCode() !=null && "0".equals(user.getRoleCode().trim())){
+					prpAreaInfos.add(user.getPrpAreaInfo());
+				}else{
+					prpAreaInfos = prpAreaInfoService.findAreaInfos();
+				}
+				request.setAttribute("roleCode", user.getRoleCode());
+				request.setAttribute("prpAreaInfos", prpAreaInfos);
+			}
 			chain.doFilter(req, res);
 		}
-		// boolean flag = checkSession((HttpServletRequest) request,
-		// (HttpServletResponse) response);
-		// if (flag){
-		// chain.doFilter(request, response);
-		// }
+		
 		return;
 	}
 
