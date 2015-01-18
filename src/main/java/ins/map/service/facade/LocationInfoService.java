@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LocationInfoService {
 
-	public List<LocationInfo> findLocationInfos();
+	public List<LocationInfo> findLocationInfos(String roleCode,String comCode);
 	public abstract LocationInfo findLocationById(String id) ;
 	public abstract List<LocationInfo> findLocationByComCode(String comCode);
 	

@@ -5,6 +5,7 @@ import ins.map.schema.model.LocationInfo;
 import ins.map.schema.model.PrpAreaInfo;
 import ins.map.service.facade.LocationInfoService;
 import ins.map.service.facade.SinoMapService;
+import ins.platform.schema.model.PrpDuser;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,12 +28,27 @@ public class SinoMapAction extends Struts2Action {
 	private List<LocationInfo> locationInfoList;
 	private SinoMapService sinoMapService;
 	private LocationInfoService locationInfoService;
+	private String comCode;
+	
+	
+	
+	public String getComCode() {
+		return comCode;
+	}
+
+	public void setComCode(String comCode) {
+		this.comCode = comCode;
+	}
+
 	public String getXYdata(){
 		List<LocationInfo> locationInfos = new ArrayList(0);
 		List<LocationInfoVo> locationInfoVos = new ArrayList(0);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
-			locationInfos = locationInfoService.findLocationInfos();
+			PrpDuser user = (PrpDuser) getSession().getAttribute("userMsg");
+			if(user !=null){
+				locationInfos = locationInfoService.findLocationInfos(user.getRoleCode(),(String) getRequest().getParameter("comCode"));
+			}
 			Calendar c = Calendar.getInstance();
 			for(LocationInfo l : locationInfos){
 				LocationInfoVo vo = new LocationInfoVo();
@@ -41,12 +57,6 @@ public class SinoMapAction extends Struts2Action {
 				vo.setName(l.getName());
 				vo.setCategory(l.getCategory());
 				vo.setInformation(l.getInformation());
-//				vo.setUpdateTimehis(df.format(l.getOperateTimeForHis()));
-//				if((c.getTime().getTime() - l.getOperateTimeForHis().getTime())/(1000*60) > 30){
-//					vo.setIsValid("0");
-//				}else{
-//					vo.setIsValid(l.getValidStatus());
-//				}
 				locationInfoVos.add(vo);
 			}
 		} catch (Exception e) {
@@ -60,9 +70,9 @@ public class SinoMapAction extends Struts2Action {
 
 	//
 	public String prepareMap(){
-		getRequest().setAttribute("lanX", "113.60747");
-		getRequest().setAttribute("latY", "37.853347");
-		System.out.println(">>>>init map");
+//		PrpDuser user = (PrpDuser) getSession().getAttribute("userMsg");
+		getRequest().setAttribute("comCode", comCode);
+		System.out.println(">>>>init  map >>>>" + comCode);
 		return SUCCESS;
 	}
 	
@@ -71,7 +81,8 @@ public class SinoMapAction extends Struts2Action {
 	}
 	
 	public String getLocationInfos() {
-		locationInfoList = locationInfoService.findLocationInfos();
+		//the manager query locationInfos
+		locationInfoList = locationInfoService.findLocationInfos("1","");
 		return SUCCESS;
 	}
 	
