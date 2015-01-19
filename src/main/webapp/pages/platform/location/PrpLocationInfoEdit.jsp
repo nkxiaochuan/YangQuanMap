@@ -1,16 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <c:choose>
-	<c:when test="${prpDuser.userCode == null}">
-		<c:set var="url" value="${ctx}/user/add.do"></c:set>
+	<c:when test="${locationInfo.id == null}">
+		<c:set var="url" value="${ctx}/location/add.do"></c:set>
 	</c:when>
 	<c:otherwise>
-		<c:set var="url" value="${ctx}/user/update.do"></c:set>
+		<c:set var="url" value="${ctx}/location/update.do"></c:set>
 	</c:otherwise>
 </c:choose>
 
 <h2 class="contentTitle">
-	<fmt:message key="label.platform.user.manage" />
+	<fmt:message key="label.platform.location.manage" />
 </h2>
 <form action="${url}" method="post" class="required-validate pageForm"
 	onsubmit="return validateCallback(this, dialogAjaxDone);">
@@ -19,71 +19,66 @@
 	<div class="pageFormContent" layoutH="97">
 		<dl>
 			<dt>
-				<fmt:message key="label.platform.user.userCode" />
+				<fmt:message key="label.platform.location.id" />
 			</dt>
 			<dd>
 				<c:choose>
-					<c:when test="${prpDuser.userCode == null}">
+					<c:when test="${locationInfo.id == null}">
 						<%--<input type="text" name="prpDuser.userCode" class="required" maxlength="20" value="${prpDuser.userCode}" />
 					--%></c:when>
 					<c:otherwise>
-							${prpDuser.userCode}<input type="hidden" name="prpDuser.userCode" value="${prpDuser.userCode }" />
+							${locationInfo.id}<input type="hidden" name="locationInfo.id" value="${locationInfo.id }" />
 					</c:otherwise>
 				</c:choose>
 			</dd>
 		</dl>
-
 		<dl>
 			<dt>
-				<fmt:message key="label.platform.user.userName" />
+				<fmt:message key="label.platform.location.name" />
 			</dt>
 			<dd>
-				<input type="text" name="prpDuser.userName" class="required" maxlength="20" value="${prpDuser.userName }" />
+				<input type="text" name="locationInfo.name" class="required" maxlength="24" value="${locationInfo.name }" />
 			</dd>
 		</dl>
-
 		<div class="divider"></div>
-
+		<dl>
+			<dt>
+				<fmt:message key="label.platform.location.lngX" />
+			</dt>
+			<dd>
+				<input type="text" name="locationInfo.lngX" class="required number" maxlength="24" value="${locationInfo.lngX}" />
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<fmt:message key="label.platform.location.latY" />
+			</dt>
+			<dd>
+				<input type="text" name="locationInfo.latY" class="required number" maxlength="24" value="${locationInfo.latY}" />
+			</dd>
+		</dl>
 		<dl>
 			<dt>
 				<fmt:message key="label.platform.user.comCode" />
 			</dt>
 			<dd>
-				<%--<input type="text" name="prpDuser.prpAreaInfo.comCode" class="required" value="${prpDuser.prpAreaInfo.comCode }" />--%>
-				<s:select list="areaInfoList" name="prpDuser.prpAreaInfo.comCode" listKey="comCode" listValue="comName"></s:select>
+				<s:select list="areaInfoList" name="locationInfo.prpAreaInfo.comCode" listKey="comCode" listValue="comName"></s:select>
 			</dd>
 		</dl>
 		<dl>
 			<dt>
-				<fmt:message key="label.platform.user.roleCode" />
+				<fmt:message key="label.platform.location.category" />
 			</dt>
 			<dd>
-				<s:select list="roleList" name="prpDuser.roleCode" listKey="roleCode" listValue="info"></s:select>
-			</dd>
-		</dl>
-
-
-		<dl>
-			<dt>
-				<fmt:message key="label.platform.user.password" />
-			</dt>
-			<dd>
-				<c:choose>
-					<c:when test="${prpDuser.userCode == null}">
-						<input type="password" name="prpDuser.password" class="required alphanumeric" minlength="6" maxlength="20" size="30" />
-					</c:when>
-					<c:otherwise>
-							******
-					</c:otherwise>
-				</c:choose>
+				<input type="text" name="locationInfo.category" class="required" maxlength="24" value="${locationInfo.category}" />
 			</dd>
 		</dl>
 		<dl>
 			<dt>
-				<fmt:message key="label.platform.user.info" />
+				<fmt:message key="label.platform.location.information" />
 			</dt>
 			<dd>
-				<input type="text" name="prpDuser.info" class="" value="${prpDuser.info }" />
+				<input type="text" name="locationInfo.information" class="required" maxlength="80" value="${locationInfo.information }" />
 			</dd>
 		</dl>
 
@@ -92,9 +87,9 @@
 				<fmt:message key="label.platform.user.validstatus" />
 			</dt>
 			<dd>
-				<select name="prpDuser.validStatus">
-					<option value="1" ${'1' eq prpDuser.validStatus ? 'selected="selected"' : ''}>有效</option>
-					<option value="0" ${'0' eq prpDuser.validStatus ? 'selected="selected"' : ''}>无效</option>
+				<select name="locationInfo.validStatus">
+					<option value="1" ${'1' eq prpLocationInfo.validStatus ? 'selected="selected"' : ''}>有效</option>
+					<option value="0" ${'0' eq prpLocationInfo.validStatus ? 'selected="selected"' : ''}>无效</option>
 				</select>
 			</dd>
 		</dl>

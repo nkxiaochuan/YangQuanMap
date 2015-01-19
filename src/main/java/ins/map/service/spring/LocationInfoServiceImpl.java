@@ -3,9 +3,12 @@ package ins.map.service.spring;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.util.Assert;
 
+import ins.framework.common.Page;
 import ins.framework.common.QueryRule;
 import ins.framework.dao.GenericDaoHibernate;
+import ins.framework.utils.DataUtils;
 import ins.map.schema.model.LocationInfo;
 import ins.map.service.facade.LocationInfoService;
 
@@ -30,6 +33,11 @@ public class LocationInfoServiceImpl extends
 		List<LocationInfo> list = this.find(queryRule);
 		return list;
 	}
+	
+	public Page findPrpLocationInfo(QueryRule queryRule, int pageNo, int pageSize) {
+		logger.debug("findprplocationInfo");
+		return super.find(queryRule, pageNo, pageSize);
+	}
 
 	public LocationInfo findLocationById(String id) {
 		QueryRule queryRule = QueryRule.getInstance();
@@ -41,19 +49,17 @@ public class LocationInfoServiceImpl extends
 		return null;
 	}
 
-	public boolean updateLocationInfoById(LocationInfo info) {
-		try {
-			this.update(info);
-			return true;
-		} catch (Exception e) {
-			log.error(e);
-			e.printStackTrace();
-		}
-		return false;
+	public void updateLocationInfo(LocationInfo info) {
+		Assert.notNull(info, "LocationInfo must have value.");
+		Assert.hasText(info.getId(),
+				"LocationInfo.getId() must have value.");
+
+		LocationInfo po = (LocationInfo) get(info.getId());
+		DataUtils.copySimpleObjectToTargetFromSource(po, info, false);
 	}
 
-	public void deleteLocationInfo(LocationInfo info) {
-		this.delete(info);
+	public void delete(String id) {
+		this.deleteByPK(id);
 		
 	}
 
@@ -65,6 +71,11 @@ public class LocationInfoServiceImpl extends
 		}
 		log.info("test");
 		return this.find(queryRule);
+	}
+	
+	public void save(LocationInfo info) {
+		super.save(info);
+		
 	}
 
 }

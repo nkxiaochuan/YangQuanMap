@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="location" extends="struts-default" namespace="/location">
+		<action name="query" class="prpLocationInfoAction" method="query">
+			<result name="success">/pages/platform/location/PrpLocationInfoQuery.jsp</result>
+		</action>
+		<action name="prepareAdd" class="prpLocationInfoAction" method="prepareAdd">
+			<result name="success">/pages/platform/location/PrpLocationInfoEdit.jsp</result>
+		</action>
+		<action name="prepareUpdate" class="prpLocationInfoAction" method="prepareUpdate">
+			<result name="success">/pages/platform/location/PrpLocationInfoEdit.jsp</result>
+		</action>
+		<action name="add" class="prpLocationInfoAction" method="add">
+			<result name="success">/pages/platform/location/PrpLocationInforQuery.jsp</result>
+		</action>
+		<action name="update" class="prpLocationInfoAction" method="update">
+		</action>
+		<action name="delete" class="prpLocationInfoAction" method="delete">
+		</action>
+		<action name="view" class="prpLocationInfoAction" method="view">
+			<result name="success">/pages/platform/location/PrpLocationInfoView.jsp</result>
+		</action>
+	</package>
+</struts>

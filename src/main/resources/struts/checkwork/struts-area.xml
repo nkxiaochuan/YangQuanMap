@@ -5,7 +5,7 @@
 	"http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="area" extends="struts-default" namespace="/">
+	<package name="area" extends="struts-default" namespace="/area">
 		<action name="query" class="prpAreaInfoAction" method="query">
 			<result name="success">/pages/platform/area/PrpAreaInfoQuery.jsp</result>
 		</action>

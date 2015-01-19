@@ -16,6 +16,8 @@
 	<!-- 机构管理 -->
 	<bean id="prpAreaInfoAction" class="ins.map.web.PrpAreaInfoAction"
 		scope="prototype" />
+	<bean id="prpLocationInfoAction" class="ins.map.web.PrpLocationInfoAction"
+		scope="prototype" />
  <!--
 	 证书认证 
 	<bean id="licenseAction" class="ins.platform.web.LicenseAction"

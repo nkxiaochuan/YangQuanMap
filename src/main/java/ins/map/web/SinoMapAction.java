@@ -86,41 +86,6 @@ public class SinoMapAction extends Struts2Action {
 		return SUCCESS;
 	}
 	
-	public String addLocationInfo() {
-		try {
-			System.out.println(locationInfo.getLatY());
-			PrpAreaInfo info = new PrpAreaInfo();
-			info.setComCode("admin");
-			locationInfo.setPrpAreaInfo(info);
-			locationInfoService.addLocationInfo(locationInfo);
-			return SUCCESS;
-		}catch(Exception e) {
-			log.error(e);
-			e.printStackTrace();
-		}
-		return ERROR;
-	}
-	
-	public String updateLocationInfo() {
-		try {
-			locationInfoService.updateLocationInfoById(locationInfo);
-			return SUCCESS;
-		}catch(Exception e) {
-			log.error(e);
-			e.printStackTrace();
-		}
-		return ERROR;
-	}
-	public String deleteLocationInfo() {
-		try {
-			locationInfoService.deleteLocationInfo(locationInfo);
-			return SUCCESS;
-		}catch(Exception e) {
-			log.error(e);
-			e.printStackTrace();
-		}
-		return ERROR;
-	}
 	/*public static void main(String args) {
 		SinoMapAction action = new SinoMapAction();
 		LocationInfo info = new LocationInfo();

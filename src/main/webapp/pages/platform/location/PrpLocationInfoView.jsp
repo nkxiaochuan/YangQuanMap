@@ -2,49 +2,61 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <h2 class="contentTitle">
-	<fmt:message key="label.platform.user.manage" />
+	<fmt:message key="label.platform.location.manage" />
 </h2>
 <div class="pageFormContent" layoutH="90">
 	<dl>
 		<dt>
-			<fmt:message key="label.platform.user.userCode" />
+			<fmt:message key="label.platform.location.id" />
 		</dt>
-		<dd>${prpDuser.userCode}</dd>
+		<dd>${locationInfo.id}</dd>
 	</dl>
 	<dl>
 		<dt>
-			<fmt:message key="label.platform.user.userName" />
+			<fmt:message key="label.platform.location.name" />
 		</dt>
-		<dd>${prpDuser.userName}</dd>
+		<dd>${locationInfo.name}</dd>
 	</dl>
 
 	<div class="divider"></div>
 	<dl>
 		<dt>
+			<fmt:message key="label.platform.location.lngX" />
+		</dt>
+		<dd>${locationInfo.lngX}</dd>
+	</dl>
+	<dl>
+		<dt>
+			<fmt:message key="label.platform.location.latY" />
+		</dt>
+		<dd>${locationInfo.latY}</dd>
+	</dl>
+	<dl>
+		<dt>
 			<fmt:message key="label.platform.user.comCode" />
 		</dt>
-		<dd>${prpDuser.prpAreaInfo.comCode}</dd>
+		<dd>${locationInfo.prpAreaInfo.comCode}</dd>
 	</dl>
 	<dl>
 		<dt>
-			<fmt:message key="label.platform.user.comName" />
+			<fmt:message key="label.platform.location.category" />
 		</dt>
-		<dd>${prpDuser.prpAreaInfo.comName}</dd>
-	</dl>
-	<dl>
-		<dt>
-			<fmt:message key="label.platform.user.password" />
-		</dt>
-		<dd>********</dd>
+		<dd>${locationInfo.category}</dd>
 	</dl>
 
+	<dl>
+		<dt>
+			<fmt:message key="label.platform.location.information" />
+		</dt>
+		<dd>${locationInfo.information}</dd>
+	</dl>
 	<dl>
 		<dt>
 			<fmt:message key="label.platform.user.validstatus" />
 		</dt>
 		<dd>
 			<c:choose>
-				<c:when test="${prpDuser.validStatus == '1'}">
+				<c:when test="${plocationInfo.validStatus == '1'}">
 					 有效 
 				</c:when>
 				<c:otherwise>

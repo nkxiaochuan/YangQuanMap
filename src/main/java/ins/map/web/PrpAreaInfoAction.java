@@ -88,7 +88,7 @@ public class PrpAreaInfoAction extends SinoMapBaseAction {
 		Page page = this.prpAreaInfoService.findPrpAreaInfo(queryRule, this.pageNo,
 				this.pageSize);
 		this.prpAreaInfoList = page.getResult();
-		this.totalCount = page.getPageSize();
+		this.totalCount = (int) page.getTotalCount();
 		return SUCCESS;
 	}
 	

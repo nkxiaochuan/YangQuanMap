@@ -65,6 +65,7 @@
 	<include file="struts/checkwork/struts-checkwork.xml"></include> 
 	<include file="struts/checkwork/struts-user.xml"></include>
 	<include file="struts/checkwork/struts-area.xml"></include>
+	<include file="struts/checkwork/struts-location.xml"></include>
 	<include file="struts/map/struts-map.xml"></include> 
 </struts>
 
