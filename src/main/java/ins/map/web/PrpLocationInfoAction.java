@@ -8,7 +8,6 @@ import ins.map.service.facade.LocationInfoService;
 import ins.map.service.facade.PrpAreaInfoService;
 import ins.platform.common.web.SinoMapBaseAction;
 import ins.platform.schema.model.PrpDuser;
-import ins.platform.schema.model.PrpRole;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -78,11 +77,7 @@ public class PrpLocationInfoAction extends SinoMapBaseAction {
 			areaInfo.setComCode(user.getPrpAreaInfo().getComCode());
 			areaInfoList.add(areaInfo);
 		}else {
-			areaInfoList = (List<PrpAreaInfo>) getCache().get("areaInfoList");
-			if(areaInfoList == null) {
-				areaInfoList = prpAreaInfoService.findAreaInfos();
-				getCache().put("areaInfoList", areaInfoList);
-			}
+			areaInfoList = prpAreaInfoService.findAreaInfos();
 		}
 	}
 	public String delete() {

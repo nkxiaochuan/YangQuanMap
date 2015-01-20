@@ -192,16 +192,8 @@ public class UserAction extends SinoMapBaseAction {
 			areaInfo.setComCode(user.getPrpAreaInfo().getComCode());
 			areaInfoList.add(areaInfo);
 		}else {
-			roleList = (List<PrpRole>) getCache().get("roleList");
-			if(roleList == null) {
-				roleList = prpRoleService.findRoles();
-				getCache().put("roleList", roleList);
-			}
-			areaInfoList = (List<PrpAreaInfo>) getCache().get("areaInfoList");
-			if(areaInfoList == null) {
-				areaInfoList = prpAreaInfoService.findAreaInfos();
-				getCache().put("areaInfoList", areaInfoList);
-			}
+			roleList = prpRoleService.findRoles();
+			areaInfoList = prpAreaInfoService.findAreaInfos();
 		}
 	}
 	

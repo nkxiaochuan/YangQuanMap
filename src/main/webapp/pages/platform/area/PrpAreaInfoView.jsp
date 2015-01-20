@@ -48,7 +48,7 @@
 		<dt>
 			<fmt:message key="label.platform.user.info" />
 		</dt>
-		<dd>${prpAreaInf.info}</dd>
+		<dd>${prpAreaInfo.info}</dd>
 	</dl>
 </div>
 <div class="formBar">

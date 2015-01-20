@@ -12,7 +12,6 @@ import ins.map.service.facade.PrpAreaInfoService;
 import ins.platform.schema.model.PrpDuser;
 import ins.platform.service.facade.PrpRoleService;
 import ins.platform.service.facade.UserService;
-import ins.framework.common.EncryptUtils;
 /**
  * ???
  * @author
@@ -110,6 +109,11 @@ public class LoginAction extends Struts2Action {
 		PrpDuser user = userService.findUserByUserName(j_username);
 		String enpass = Sha512DigestUtils.shaHex(j_password);
 		if (null != user&&enpass.equals(user.getPassword())) {
+			if(!"1".equals(user.getValidStatus())) {//unvalid user
+				getRequest().setAttribute("login", "0");
+				getRequest().setAttribute("login_em", getText("action.valid.zero"));
+				return "error";
+			}
 			getSession().setAttribute("userMsg", user);
 			getSession().setAttribute("userCode", user.getUserCode());
 			getRequest().setAttribute("login", "1");
@@ -125,7 +129,7 @@ public class LoginAction extends Struts2Action {
 			return "login";
 		}
 		getRequest().setAttribute("login", "0");
-		getRequest().setAttribute("login_em", "用户或密码输入错误！");
+		getRequest().setAttribute("login_em", getText("action.valid.wrong"));
 		return "error";
 	}
 	

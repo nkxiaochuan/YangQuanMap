@@ -88,8 +88,8 @@
 			</dt>
 			<dd>
 				<select name="locationInfo.validStatus">
-					<option value="1" ${'1' eq prpLocationInfo.validStatus ? 'selected="selected"' : ''}>有效</option>
-					<option value="0" ${'0' eq prpLocationInfo.validStatus ? 'selected="selected"' : ''}>无效</option>
+					<option value="1" ${'1' eq locationInfo.validStatus ? 'selected="selected"' : ''}><fmt:message key="page.valid.one"/></option>
+					<option value="0" ${'0' eq locationInfo.validStatus ? 'selected="selected"' : ''}><fmt:message key="page.valid.zero"/></option>
 				</select>
 			</dd>
 		</dl>

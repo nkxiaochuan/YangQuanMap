@@ -93,8 +93,8 @@
 			</dt>
 			<dd>
 				<select name="prpDuser.validStatus">
-					<option value="1" ${'1' eq prpDuser.validStatus ? 'selected="selected"' : ''}>有效</option>
-					<option value="0" ${'0' eq prpDuser.validStatus ? 'selected="selected"' : ''}>无效</option>
+					<option value="1" ${'1' eq prpDuser.validStatus ? 'selected="selected"' : ''}><fmt:message key="page.valid.one"/></option>
+					<option value="0" ${'0' eq prpDuser.validStatus ? 'selected="selected"' : ''}><fmt:message key="page.valid.zero"/></option>
 				</select>
 			</dd>
 		</dl>

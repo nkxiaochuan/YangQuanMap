@@ -69,6 +69,7 @@ public class LocationInfoServiceImpl extends
 		if(comCode !=null){
 			queryRule.addEqual("prpAreaInfo.comCode", comCode.trim());
 		}
+		queryRule.addEqual("validStatus", "1");
 		log.info("test");
 		return this.find(queryRule);
 	}

@@ -45,10 +45,10 @@
 		<dd>
 			<c:choose>
 				<c:when test="${prpDuser.validStatus == '1'}">
-					 有效 
+					 <fmt:message key="page.valid.one"/> 
 				</c:when>
 				<c:otherwise>
-					 无效 
+					 <fmt:message key="page.valid.zero"/>
 				</c:otherwise>
 			</c:choose>
 		</dd>

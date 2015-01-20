@@ -13,18 +13,9 @@ public class SinoMapBaseAction extends Struts2Action {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private Map cache = new HashMap();
 
 	public SinoMapBaseAction() {
 		this.pageSize = 15;
-	}
-	public Map getCache() {
-		return cache;
-	}
-
-	public void setCache(Map cache) {
-		this.cache = cache;
 	}
 	/**
 	 * 

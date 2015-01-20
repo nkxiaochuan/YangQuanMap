@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
-<title>邮政地图查询系统</title>
+<title><fmt:message key="main.manage.sinoMap"/></title>
 
 <link href="common/dwz/themes/azure/style.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="common/dwz/themes/css/core.css" rel="stylesheet" type="text/css" media="screen" />
@@ -86,7 +86,7 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 			<div class="headerNav">
 				<a class="logo"></a>
 				<ul class="nav">
-					<li><a href="#">当前登陆用户：${userMsg.userCode }- ${userMsg.userName }</a></li>
+					<li><a href="#"><fmt:message key="main.manage.currentUser"/>：${userMsg.userCode }- ${userMsg.userName }</a></li>
 					<li><a href="${ctx}/prepareChangePassword.do" target="dialog" width="600"><fmt:message key="label.common.main.changepassword" /></a></li>
 					<li><a href="${ctx}/logout.do"><fmt:message key="label.common.main.exit" /></a></li>
 				</ul>
@@ -126,7 +126,7 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 					<div class="accordionContent">
 							<ul class="tree treeFolder">
 								<li>
-									<a href="#">我的区域列表</a>
+									<a href="#"><fmt:message key="main.manage.myAreaList"/></a>
 									<ul>
 										<c:forEach var="prpAreaInfo" items="${prpAreaInfos}">
 											<li>
@@ -138,19 +138,19 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 								</li>
 								<c:if test="${roleCode == '1'}">
 									<li>
-										<a href="#">数据维护</a>
+										<a href="#"><fmt:message key="main.manage.data"/></a>
 										<ul>
 											<li>
 												<a href="${ctx}/area/query.do" target="navTab"
-													rel="areaManage">区域管理</a>
+													rel="areaManage"><fmt:message key="main.manage.area"/></a>
 											</li>
 											<li>
 												<a href="${ctx}/user/query.do" target="navTab"
-													rel="userManage">人员管理</a>
+													rel="userManage"><fmt:message key="main.manage.user"/></a>
 											</li>
 											<li>
 												<a href="${ctx}/location/query.do" target="navTab"
-													rel="locationManage">地点管理</a>
+													rel="locationManage"><fmt:message key="main.manage.location"/></a>
 											</li>
 										</ul>
 									</li>
