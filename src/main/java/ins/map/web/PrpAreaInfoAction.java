@@ -51,6 +51,7 @@ public class PrpAreaInfoAction extends SinoMapBaseAction {
 	public String update() {
 		
 		try {
+			prpAreaInfo.setOperateTimeForHis(new Date());
 			this.prpAreaInfoService.updateAreaInfo(this.prpAreaInfo);
 			renderJSON(success(getText("action.editSuccess"),"areaManage","","closeCurrent",""));
 		}catch(Exception e) {

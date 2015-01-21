@@ -59,6 +59,7 @@ public class PrpLocationInfoAction extends SinoMapBaseAction {
 	public String update() {
 		
 		try {
+			locationInfo.setOperateTimeForHis(new Date());
 			this.locationInfoService.save(this.locationInfo);
 			renderJSON(success(getText("action.editSuccess"),"locationManage","","closeCurrent",""));
 		}catch(Exception e) {
