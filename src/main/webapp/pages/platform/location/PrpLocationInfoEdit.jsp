@@ -73,14 +73,6 @@
 				<input type="text" name="locationInfo.category" class="required" maxlength="24" value="${locationInfo.category}" />
 			</dd>
 		</dl>
-		<dl>
-			<dt>
-				<fmt:message key="label.platform.location.information" />
-			</dt>
-			<dd>
-				<input type="text" name="locationInfo.information" class="required" maxlength="80" value="${locationInfo.information }" />
-			</dd>
-		</dl>
 
 		<dl>
 			<dt>
@@ -91,6 +83,17 @@
 					<option value="1" ${'1' eq locationInfo.validStatus ? 'selected="selected"' : ''}><fmt:message key="page.valid.one"/></option>
 					<option value="0" ${'0' eq locationInfo.validStatus ? 'selected="selected"' : ''}><fmt:message key="page.valid.zero"/></option>
 				</select>
+			</dd>
+		</dl>
+		<dl>
+		
+		</dl>
+		<dl>
+			<dt>
+				<fmt:message key="label.platform.location.information" />
+			</dt>
+			<dd>
+				<textarea name="textarea1" cols="60" rows="3" >${locationInfo.information }</textarea>
 			</dd>
 		</dl>
 	</div>

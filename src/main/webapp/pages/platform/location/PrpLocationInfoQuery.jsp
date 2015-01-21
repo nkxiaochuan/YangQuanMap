@@ -38,8 +38,8 @@
 
 	<div class="panelBar">
 		<ul class="toolBar"> 
-			<li><a class="add" target="dialog" width="800" rel="areaNav" href="${ctx}/location/prepareAdd.do"><span><fmt:message key="label.common.main.add" /></span></a></li>
-			<li><a class="edit" target="dialog" width="800" rel="areaNav" href="${ctx}/location/prepareUpdate.do?id={id}" ><span><fmt:message key="label.common.main.edit" /></span></a></li> 
+			<li><a class="add" target="dialog" width="800" height="350" rel="areaNav" href="${ctx}/location/prepareAdd.do"><span><fmt:message key="label.common.main.add" /></span></a></li>
+			<li><a class="edit" target="dialog" width="800" height="350" rel="areaNav" href="${ctx}/location/prepareUpdate.do?id={id}" ><span><fmt:message key="label.common.main.edit" /></span></a></li> 
 			<li class="line">line</li> 
 			<li><a class="delete" target="ajaxTodo" rel="id" href="${ctx}/location/delete.do?id={id}" title="<fmt:message key="title.common.delete" />"><span><fmt:message key="label.common.main.delete" /></span></a></li>			
 		</ul>
