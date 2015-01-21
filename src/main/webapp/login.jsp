@@ -67,7 +67,7 @@ function validateLogin(){
 				<form method="post" action="login.do" class="pageForm" onsubmit="return validateLogin();"> 
 					<p>
 						<label>用户名：</label>
-						<input type="text" id="j_username" name="j_username" class="required" style="width:120px" maxlength="10"/>
+						<input type="text" id="j_username" name="j_username" class="required" style="width:120px" maxlength="6"/>
 					</p>
 					<p>
 						<label>密 &nbsp;&nbsp;码：</label>
