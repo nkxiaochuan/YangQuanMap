@@ -55,4 +55,6 @@ public abstract interface UserService {
 
 	public abstract List<Object[]> findByHqlByArticleCode(String paramString);
 	
+	public List<PrpDuser> findUserListByComCode(String comCode);
+	
 }

@@ -1,16 +1,18 @@
 package ins.map.service.spring;
 
-import java.util.List;
-
-import org.apache.log4j.Logger;
-import org.springframework.util.Assert;
-
 import ins.framework.common.Page;
 import ins.framework.common.QueryRule;
 import ins.framework.dao.GenericDaoHibernate;
 import ins.framework.utils.DataUtils;
 import ins.map.schema.model.LocationInfo;
+import ins.map.schema.model.PrpAreaInfo;
 import ins.map.service.facade.LocationInfoService;
+import ins.map.service.facade.PrpAreaInfoService;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.springframework.util.Assert;
 
 public class LocationInfoServiceImpl extends
 		GenericDaoHibernate<LocationInfo, String> implements
@@ -18,6 +20,16 @@ public class LocationInfoServiceImpl extends
 
 	private static Logger log = Logger
 			.getLogger("LocationInfoServiceImpl.class");
+
+	private PrpAreaInfoService prpAreaInfoService;
+	
+	public PrpAreaInfoService getPrpAreaInfoService() {
+		return prpAreaInfoService;
+	}
+
+	public void setPrpAreaInfoService(PrpAreaInfoService prpAreaInfoService) {
+		this.prpAreaInfoService = prpAreaInfoService;
+	}
 
 	public void addLocationInfo(LocationInfo info) {
 		super.save(info);
@@ -29,7 +41,7 @@ public class LocationInfoServiceImpl extends
 
 	public List<LocationInfo> findLocationByComCode(String comCode) {
 		QueryRule queryRule = QueryRule.getInstance();
-		queryRule.addEqual("comCode", comCode.trim());
+		queryRule.addEqual("prpAreaInfo.comCode", comCode.trim());
 		List<LocationInfo> list = this.find(queryRule);
 		return list;
 	}
@@ -55,6 +67,11 @@ public class LocationInfoServiceImpl extends
 				"LocationInfo.getId() must have value.");
 
 		LocationInfo po = (LocationInfo) get(info.getId());
+		if(info.getPrpAreaInfo() != null && info.getPrpAreaInfo().getComCode() != null &&
+				!"".equals(info.getPrpAreaInfo().getComCode())) {
+			PrpAreaInfo areaInfo = this.prpAreaInfoService.findAreaInfoByComCode(info.getPrpAreaInfo().getComCode());
+			info.setPrpAreaInfo(areaInfo);
+		}
 		DataUtils.copySimpleObjectToTargetFromSource(po, info, false);
 	}
 

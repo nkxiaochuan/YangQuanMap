@@ -5,11 +5,10 @@ import ins.framework.cache.CacheService;
 import ins.framework.common.Page;
 import ins.framework.common.QueryRule;
 import ins.framework.dao.GenericDaoHibernate;
-import ins.framework.exception.BusinessException;
 import ins.framework.rule.RuleService;
-import ins.framework.utils.DataUtils;
+import ins.map.schema.model.PrpAreaInfo;
+import ins.map.service.facade.PrpAreaInfoService;
 import ins.platform.schema.model.PrpDuser;
-import ins.platform.schema.vo.PrpDuserVo;
 import ins.platform.service.facade.UserService;
 
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import ins.framework.utils.DataUtils;
 
 @Service("userService")
 public class UserServiceSpringImpl extends
@@ -31,6 +31,15 @@ public class UserServiceSpringImpl extends
 
 	private static CacheService cacheManager = CacheManager.getInstance("User");
 	private RuleService ruleService;
+	private PrpAreaInfoService prpAreaInfoService;
+
+	public PrpAreaInfoService getPrpAreaInfoService() {
+		return prpAreaInfoService;
+	}
+
+	public void setPrpAreaInfoService(PrpAreaInfoService prpAreaInfoService) {
+		this.prpAreaInfoService = prpAreaInfoService;
+	}
 
 	public RuleService getRuleService() {
 		return this.ruleService;
@@ -52,7 +61,7 @@ public class UserServiceSpringImpl extends
 	}
 
 	public PrpDuser getUser(String userCode) {
-		logger.debug("��ȡ����Ϊ" + userCode + "��Ա����Ϣ");
+		logger.debug("get " + userCode + " by userCode");
 		return ((PrpDuser) super.get(userCode));
 	}
 
@@ -63,12 +72,12 @@ public class UserServiceSpringImpl extends
 
 	@Transactional(propagation = Propagation.NEVER)
 	public void delete(String userCode) {
-		logger.debug("�h���Ϊ" + userCode + "��Ա����Ϣ");
+		logger.debug("delete " + userCode + " .");
 		super.deleteByPK(userCode);
 	}
 
 	public void save(PrpDuser prpDuser) {
-		logger.debug("����Ա����Ϣ");
+		logger.debug("save user");
 		prpDuser.setPassword(Sha512DigestUtils.shaHex(prpDuser.getPassword()));
 
 		if ((prpDuser.getValidStatus() == null)
@@ -89,6 +98,12 @@ public class UserServiceSpringImpl extends
 			prpDuser.setPassword(Sha512DigestUtils.shaHex(prpDuser
 					.getPassword()));
 		}
+		if(prpDuser.getPrpAreaInfo() != null && prpDuser.getPrpAreaInfo().getComCode() != null &&
+				!"".equals(prpDuser.getPrpAreaInfo().getComCode())) {
+			PrpAreaInfo areaInfo = this.prpAreaInfoService.findAreaInfoByComCode(prpDuser.getPrpAreaInfo().getComCode());
+			po.setPrpAreaInfo(areaInfo);
+		}
+		
 		DataUtils.copySimpleObjectToTargetFromSource(po, prpDuser, false);
 	}
 
@@ -275,6 +290,14 @@ public class UserServiceSpringImpl extends
 	public PrpDuser findUserByUserCode(String paramString) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<PrpDuser> findUserListByComCode(String comCode) {
+		QueryRule queryRule = QueryRule.getInstance();
+		queryRule.addSql(" 1=1");
+		queryRule.addEqual("prpAreaInfo.comCode", comCode);
+		return super.find(queryRule);
 	}
 
 }
