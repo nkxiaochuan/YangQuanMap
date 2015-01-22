@@ -86,6 +86,7 @@ public class PrpAreaInfoAction extends SinoMapBaseAction {
 				&& (!("".equals(this.prpAreaInfo.getComName())))) {
 			queryRule.addLike("comName", this.prpAreaInfo.getComName());
 		}
+		queryRule.addNotEqual("comCode", "10000000");//10000000 is just a base comcode for superuser
 		Page page = this.prpAreaInfoService.findPrpAreaInfo(queryRule, this.pageNo,
 				this.pageSize);
 		this.prpAreaInfoList = page.getResult();

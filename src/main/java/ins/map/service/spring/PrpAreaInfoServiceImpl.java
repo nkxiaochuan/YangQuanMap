@@ -29,6 +29,7 @@ public class PrpAreaInfoServiceImpl extends GenericDaoHibernate<PrpAreaInfo, Str
 		QueryRule queryRule = QueryRule.getInstance();
 		queryRule.addEqual("validStatus", "1");
 		queryRule.addSql(" 1=1");
+		queryRule.addNotEqual("comCode", "10000000");//10000000 is just a base comcode for superuser
 		return this.find(queryRule);
 	}
 

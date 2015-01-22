@@ -93,7 +93,7 @@
 				<fmt:message key="label.platform.location.information" />
 			</dt>
 			<dd>
-				<textarea name="textarea1" cols="60" rows="3" >${locationInfo.information }</textarea>
+				<textarea name="locationInfo.information" cols="60" rows="3" >${locationInfo.information }</textarea>
 			</dd>
 		</dl>
 	</div>
