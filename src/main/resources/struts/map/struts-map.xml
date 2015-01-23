@@ -4,20 +4,11 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 	"http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="sinoMapAction" extends="struts-default" namespace="/">
+	<package name="sinoMapAction" extends="struts-default" namespace="/sinoMapAction">
 		<action name="getXYdata" class="sinoMapAction" method="getXYdata">
 		</action>
 		<action name="prepareMap" class="sinoMapAction" method="prepareMap">
 			<result>/mainMap.jsp</result>
-		</action>
-		<action name="prepareAddLocationInfo" class="sinoMapAction" method="prepareAddLocationInfo">
-			<result>/addLocationInfo.jsp</result>
-		</action>		
-		<action name="addLocationInfo" class="sinoMapAction" method="addLocationInfo">
-		</action>
-		<action name="updateLocationInfo" class="sinoMapAction" method="updateLocationInfo">
-		</action>
-		<action name="deleteLocationInfo" class="sinoMapAction" method="deleteLocationInfo">
 		</action>
 	</package>
 
