@@ -53,7 +53,7 @@ function getXYdata(){
 	var comCode = document.getElementById("comCode").value;
 	$.ajax({
 		   type: "POST",
-		   url: "${ctx}/sinoMapAction/getXYdata.do",
+		   url: "/sinoMap/sinoMapAction/getXYdata.do",
 		   dataType:"json",
 		   data:"comCode="+comCode,
 		   success: function(res){
