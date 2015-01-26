@@ -162,6 +162,11 @@ public class UserAction extends SinoMapBaseAction {
 		try {
 			prpDuser.setInsertTimeForHis(new Date());
 			prpDuser.setOperateTimeForHis(new Date());
+			if(prpDuser.getPrpAreaInfo() == null || prpDuser.getPrpAreaInfo().getComCode() == null
+					|| "".equals(prpDuser.getPrpAreaInfo().getComCode())) {
+				renderJSON(feilure(getText("action.addFeilure.emptyArea")));
+				return null;
+			}
 			this.userService.save(this.prpDuser);
 			renderJSON(success(getText("action.addSuccess"),"userManage","","closeCurrent",""));
 		}catch(Exception e) {

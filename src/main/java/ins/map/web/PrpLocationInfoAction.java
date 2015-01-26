@@ -39,6 +39,11 @@ public class PrpLocationInfoAction extends SinoMapBaseAction {
 			locationInfo.setInsertTimeForHis(new Date());
 			locationInfo.setOperateTimeForHis(new Date());
 			//loationInfo.setValidStatus("1");
+			if(locationInfo.getPrpAreaInfo() == null || locationInfo.getPrpAreaInfo().getComCode() == null
+					|| "".equals(locationInfo.getPrpAreaInfo().getComCode())) {
+				renderJSON(feilure(getText("action.addFeilure.emptyArea")));
+				return null;
+			}
 			this.locationInfoService.save(this.locationInfo);
 			renderJSON(success(getText("action.addSuccess"),"locationManage","","closeCurrent",""));
 		}catch(Exception e) {
