@@ -121,7 +121,7 @@ public class LoginAction extends Struts2Action {
 			
 			
 			prpAreaInfos = new ArrayList<PrpAreaInfo>();
-			if(user.getRoleCode() !=null && "0".equals(user.getRoleCode().trim())){
+			if(user.getUserCode() != null && !"100000".equals(user.getUserCode().trim())){
 				prpAreaInfos.add(user.getPrpAreaInfo());
 			}else{
 				prpAreaInfos = prpAreaInfoService.findAreaInfos();

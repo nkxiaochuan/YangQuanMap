@@ -140,10 +140,12 @@ if(Locale.TRADITIONAL_CHINESE.equals(sessionLocale)){
 									<li>
 										<a href="#"><fmt:message key="main.manage.data"/></a>
 										<ul>
-											<li>
-												<a href="${ctx}/area/query.do" target="navTab"
-													rel="areaManage"><fmt:message key="main.manage.area"/></a>
-											</li>
+											<c:if test="${userCode == '100000'}">
+												<li>
+													<a href="${ctx}/area/query.do" target="navTab"
+														rel="areaManage"><fmt:message key="main.manage.area"/></a>
+												</li>
+											</c:if>
 											<li>
 												<a href="${ctx}/user/query.do" target="navTab"
 													rel="userManage"><fmt:message key="main.manage.user"/></a>
