@@ -26,20 +26,20 @@
 		</property> 
 	</bean> 
 	 -->
-	<!-- 数据源定义,使用配置文件 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="${jdbc.driverClassName}"></property>
-		<property name="url" value="${jdbc.url}"></property>
-		<property name="username" value="${jdbc.username}"></property>
-		<property name="password" value="${jdbc.password}"></property>
-		<property name="maxActive" value="5"></property>
-	</bean>
-	
-	<!--<bean id="dataSource"
+	<!-- 数据源定义,使用配置文件
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+			destroy-method="close">
+			<property name="driverClassName" value="${jdbc.driverClassName}"></property>
+			<property name="url" value="${jdbc.url}"></property>
+			<property name="username" value="${jdbc.username}"></property>
+			<property name="password" value="${jdbc.password}"></property>
+			<property name="maxActive" value="5"></property>
+		</bean>
+	 -->
+	<bean id="dataSource"
 		class="ins.framework.jndi.JndiObjectFindFactoryBean">
 		<property name="jndiName">
-			<value>mobileplatDataSource</value>
+			<value>sinoMapDataSource</value>
 		</property> 
 	</bean>
---></beans>
+</beans>

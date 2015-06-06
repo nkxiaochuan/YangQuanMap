@@ -292,7 +292,6 @@ public class UserServiceSpringImpl extends
 		return null;
 	}
 
-	@Override
 	public List<PrpDuser> findUserListByComCode(String comCode) {
 		QueryRule queryRule = QueryRule.getInstance();
 		queryRule.addSql(" 1=1");
